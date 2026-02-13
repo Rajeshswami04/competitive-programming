@@ -35,7 +35,6 @@
 //     }
 // }
 
-
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -75,35 +74,132 @@
 //     }
 // }
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// void solve(){
+//     int a,b,c;
+//     cin>>a>>b>>c;
+//     vector<int>v(a);
+//     for(int i=0;i<a;i++)cin>>v[i];
+//     int sum=0;
+//     for(int i:v){
+//         sum+=floor(i/(b*1.0))*c;
+//     }
+//     int ans=0;
+//     for(int i:v){
+//         int ss=i+sum-floor(i/(b*1.0))*c;
+//         ans=max(ans,ss);
+//     }
+//     cout<<ans<<"\n";
+// }
+// signed main(){
+//      ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin>>n;
+//     while(n--){
+//         solve();
+//     }
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// void solve()
+// {
+//     int n, m, k;
+//     cin >> n >> m >> k;
+//     string s;
+//     cin >> s;
+//     int cnt = 0;
+//     int p = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (s[i] == '0')
+//         {
+//             p++;
+//             if (p == m)
+//             {   int j=0;
+//                 while (i +j < n && j < k)
+//                     {s[i+j] = '1'; j++;}
+//                 i=i+j-1;
+//                 cnt++;
+//                 p = 0;
+//             }
+//         }else p=0;
+//     }
+//     cout << cnt << "\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// }
 
 
-#include<bits/stdc++.h>
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// void solve()
+// {
+//     int n,k;
+//     cin>>n>>k;
+//     vector<int>v(n);
+//     for(int i=0;i<n;i++)cin>>v[i];
+//     int mex=0;
+//     sort(v.begin(),v.end());
+//     for(int i:v){if(i==mex)mex++;}
+//     cout<<min(mex,k-1)<<"\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// }
+
+
+
+
+
+#include <bits/stdc++.h>
 using namespace std;
 #define int long long
-void solve(){
-    int a,b,c;
-    cin>>a>>b>>c;
-    vector<int>v(a);
-    for(int i=0;i<a;i++)cin>>v[i];
-    int sum=0;
-    for(int i:v){
-        sum+=floor(i/(b*1.0))*c;
-    }
-    int ans=0;
-    for(int i:v){
-        int ss=i+sum-floor(i/(b*1.0))*c;
-        ans=max(ans,ss);
+void solve()
+{
+    int n;
+    cin >> n;
+    vector<int> a(n), pre(n + 1, 0), suff(n, 0);
+    for(int i=0;i<n;i++)cin>>a[i];
+    for(int i=1;i<n;i++)pre[i+1]=pre[i]+abs(a[i]);
+    for(int i=n-1;i>=1;i--)suff[i-1]=suff[i]-(a[i]);
+    int ans=suff[0];
+    for(int i=1;i<n;i++){
+        ans=max(ans,a[0]+pre[i]+suff[i]);
     }
     cout<<ans<<"\n";
 }
-signed main(){
-     ios::sync_with_stdio(false);
+signed main()
+{
+    ios::sync_with_stdio(false);
     cin.tie(NULL);
     int n;
-    cin>>n;
-    while(n--){
+    cin >> n;
+    while (n--)
+    {
         solve();
     }
 }
-
-
