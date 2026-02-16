@@ -143,8 +143,6 @@
 //     }
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define int long long
@@ -171,35 +169,138 @@
 //     }
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> a(n), pre(n + 1, 0), suff(n, 0);
+//     for(int i=0;i<n;i++)cin>>a[i];
+//     for(int i=1;i<n;i++)pre[i+1]=pre[i]+abs(a[i]);
+//     for(int i=n-1;i>=1;i--)suff[i-1]=suff[i]-(a[i]);
+//     int ans=suff[0];
+//     for(int i=1;i<n;i++){
+//         ans=max(ans,a[0]+pre[i]+suff[i]);
+//     }
+//     cout<<ans<<"\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// vector<int> a;
+// vector<int> b;
+// int sol(int i, int k)
+// {
+//     if (i == a.size())
+//         return 0;
+//     int picka = -1e17;
+//     int pickb = -1e17;
+//     picka = sol(i + 1, k - a[i]);
+//     pickb = sol(i + 1, b[i] - k);
+//     return max(k-a[i], b[i]-k);
+// }
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     a.assign(n, 0);
+//     b.assign(n, 0);
+//     for (int i = 0; i < n; i++)
+//         cin >> a[i];
+//     for (int i = 0; i < n; i++)
+//         cin >> b[i];
+//         int k;
+//     sol(0, k);
+//     cout<<k<<"\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// }
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// int func(int idx){
+//     while(((idx&1)==0))idx=idx>>1;
+//     return idx;
+// }
+// void solve()
+// {
+//    int n;
+//    cin>>n; int b=0;
+//    vector<int>v(n+1),v1(n+1);
+//    for(int i=1;i<=n;i++){cin>>v[i]; v1[v[i]]=i;}
+//    int x=0;
+//    for(int i=1;i<=n;i++){
+//     if(func(i)!=func(v1[i])){cout<<"no\n"; return ;}
+//    }
+//    cout<<"yes\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// }
 
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-void solve()
-{
-    int n;
-    cin >> n;
-    vector<int> a(n), pre(n + 1, 0), suff(n, 0);
-    for(int i=0;i<n;i++)cin>>a[i];
-    for(int i=1;i<n;i++)pre[i+1]=pre[i]+abs(a[i]);
-    for(int i=n-1;i>=1;i--)suff[i-1]=suff[i]-(a[i]);
-    int ans=suff[0];
-    for(int i=1;i<n;i++){
-        ans=max(ans,a[0]+pre[i]+suff[i]);
-    }
-    cout<<ans<<"\n";
-}
-signed main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    int n;
-    cin >> n;
-    while (n--)
-    {
-        solve();
-    }
-}
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+
+// void solve()
+// {
+//    int n;
+//    cin>>n; int b=0;
+//    vector<int>v(n);
+//    for(int i=0;i<n;i++){cin>>v[i]; }
+//    int cnt=0;
+//    for(int i=1;i<n;i++){
+//     if(v[i]==v[i-1]&&(i+1<n&&(v[i]==v[i+1]||v[i]==abs(7-v[i+1])))){cnt++; i+=1;}
+//     else if(v[i]==v[i-1]){cnt++;}
+//     else if(v[i]==abs(7-v[i-1])&&(i+1<n&&(v[i]==v[i+1]||v[i]==abs(7-v[i+1])))){cnt++; i+=1;}
+//     else if(v[i]==abs(7-v[i-1]))cnt++;
+//    }
+//    cout<<cnt<<"\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// }

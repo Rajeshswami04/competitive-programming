@@ -100,7 +100,7 @@ using namespace std;
 //     TrieNode* root;
 
 //     // Recursive insert helper
-//     void insertRecursive(TrieNode* current, const string& word, int index) {
+//     void insertRecursive(TrieNode* current,  string& word, int index) {
 //         if (index == word.size()) {
 //             current->endOfWord = true;
 //             return;
@@ -115,7 +115,7 @@ using namespace std;
 //     }
 
 //     // Recursive search helper
-//     bool searchRecursive(TrieNode* current, const string& word, int index) {
+//     bool searchRecursive(TrieNode* current,  string& word, int index) {
 //         if (index == word.size()) {
 //             return current->endOfWord;
 //         }
@@ -130,7 +130,7 @@ using namespace std;
 
 //     // Recursive delete helper
 //     // Returns true if the parent should delete this node
-//     bool deleteWord(TrieNode* current, const string& word, int index) {
+//     bool deleteWord(TrieNode* current,  string& word, int index) {
 //         if (index == word.size()) {
 //             if (!current->endOfWord) {
 //                 return false;
@@ -166,7 +166,7 @@ using namespace std;
 //     /**
 //      * Iterative insert
 //      */
-//     void insert(const string& word) {
+//     void insert( string& word) {
 //         TrieNode* current = root;
 
 //         for (char ch : word) {
@@ -182,14 +182,14 @@ using namespace std;
 //     /**
 //      * Recursive insert
 //      */
-//     void insertRecursive(const string& word) {
+//     void insertRecursive( string& word) {
 //         insertRecursive(root, word, 0);
 //     }
 
 //     /**
 //      * Iterative search
 //      */
-//     bool search(const string& word) {
+//     bool search( string& word) {
 //         TrieNode* current = root;
 
 //         for (char ch : word) {
@@ -205,14 +205,14 @@ using namespace std;
 //     /**
 //      * Recursive search
 //      */
-//     bool searchRecursive(const string& word) {
+//     bool searchRecursive( string& word) {
 //         return searchRecursive(root, word, 0);
 //     }
 
 //     /**
 //      * Delete word
 //      */
-//     void deleteWord(const string& word) {
+//     void deleteWord( string& word) {
 //         deleteWord(root, word, 0);
 //     }
 // };
@@ -379,46 +379,85 @@ using namespace std;
 // }
 // // output should be 4 ,2
 
-vector<long long> segmax;
-vector<long long> segmin;
+// vector<long long> segmax;
+// vector<long long> segmin;
 
-void buildtree(int l, int r, int idx, vector<int>& nums) {
-    if (l == r) {
-        segmax[idx] = segmin[idx] = nums[l];
-        return;
-    }
-    int mid = (l + r) / 2;
-    buildtree(l, mid, 2 * idx + 1, nums);
-    buildtree(mid + 1, r, 2 * idx + 2, nums);
-    segmax[idx] = max(segmax[2 * idx + 1], segmax[2 * idx + 2]);
-    segmin[idx] = min(segmin[2 * idx + 1], segmin[2 * idx + 2]);
-}
+// void buildtree(int l, int r, int idx, vector<int>& nums) {
+//     if (l == r) {
+//         segmax[idx] = segmin[idx] = nums[l];
+//         return;
+//     }
+//     int mid = (l + r) / 2;
+//     buildtree(l, mid, 2 * idx + 1, nums);
+//     buildtree(mid + 1, r, 2 * idx + 2, nums);
+//     segmax[idx] = max(segmax[2 * idx + 1], segmax[2 * idx + 2]);
+//     segmin[idx] = min(segmin[2 * idx + 1], segmin[2 * idx + 2]);
+// }
 
-pair<long long, long long> query(int l, int r, int idx, int ql, int qr) {
-    if (qr < l || r < ql) return {LLONG_MAX, LLONG_MIN};
-    if (ql <= l && r <= qr) return {segmin[idx], segmax[idx]};
-    int mid = (l + r) / 2;
-    auto left = query(l, mid, 2 * idx + 1, ql, qr);
-    auto right = query(mid + 1, r, 2 * idx + 2, ql, qr);
-    return {min(left.first, right.first), max(left.second, right.second)};
-}
+// pair<long long, long long> query(int l, int r, int idx, int ql, int qr) {
+//     if (qr < l || r < ql) return {LLONG_MAX, LLONG_MIN};
+//     if (ql <= l && r <= qr) return {segmin[idx], segmax[idx]};
+//     int mid = (l + r) / 2;
+//     auto left = query(l, mid, 2 * idx + 1, ql, qr);
+//     auto right = query(mid + 1, r, 2 * idx + 2, ql, qr);
+//     return {min(left.first, right.first), max(left.second, right.second)};
+// }
     
-    long long countSubarrays(vector<int> nums, long long k) {
-       int n=nums.size();
-        segmax.assign(4*n,LLONG_MIN);
-        segmin.assign(4*n,LLONG_MAX);
-        buildtree(0,n-1,0,nums);
-        long long cnt=0;
-        for(int i=0;i<n;i++){
-            for(int j=i;j<n;j++){
-                auto it =query(0,n-1,0,i,j);
-                long long cost=1LL*(it.second-it.first)*(j-i+1);
-                if(cost<=k)cnt++;
+//     long long countSubarrays(vector<int> nums, long long k) {
+//        int n=nums.size();
+//         segmax.assign(4*n,LLONG_MIN);
+//         segmin.assign(4*n,LLONG_MAX);
+//         buildtree(0,n-1,0,nums);
+//         long long cnt=0;
+//         for(int i=0;i<n;i++){
+//             for(int j=i;j<n;j++){
+//                 auto it =query(0,n-1,0,i,j);
+//                 long long cost=1LL*(it.second-it.first)*(j-i+1);
+//                 if(cost<=k)cnt++;
+//             }
+//         }
+//         return cnt;
+//     }
+// int main(){
+//   cout<<countSubarrays({1,2,3},0);
+// }
+class Solution {
+public:
+    int almostPalindromic(string s) {
+        int n = s.length();
+        int maxLen = 0;
+
+        auto isPal = [&](int l, int r) {
+            while (l < r) {
+                if (s[l++] != s[r--]) return false;
+            }
+            return true;
+        };
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int len = j - i + 1;
+                if (len <= maxLen) continue; // optimisation number 1
+
+                int l = i, r = j;
+                bool mismatch = false;
+                while (l < r) {
+                    if (s[l] == s[r]) {
+                        l++;
+                        r--;
+                    } else {
+                        if (isPal(l + 1, r) || isPal(l, r - 1)) {
+                            maxLen = max(maxLen, len);
+                        }
+                        mismatch = true;
+                        break; // optimisation number 2
+                    }
+                }
+                if (!mismatch) {
+                    maxLen = max(maxLen, len); // this is for true palindrom
+                }
             }
         }
-        return cnt;
+        return maxLen;
     }
-int main(){
-  cout<<countSubarrays({1,2,3},0);
-}
-
+};
