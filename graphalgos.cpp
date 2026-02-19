@@ -93,63 +93,128 @@ using namespace std;
 //     cout << total_weight << endl;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-const int INF = 1000000000;
+// const int INF = 1000000000;
 
-struct Edge {
-    int w, to;
-};
+// struct Edge {
+//     int w, to;
+// };
 
-int n;
-vector<vector<Edge>> adj;
+// int n;
+// vector<vector<Edge>> adj;
 
-void prim() {
+// void prim() {
 
-    int total_weight = 0;
+//     int total_weight = 0;
 
-    vector<int> min_w(n, INF);      // best weight to connect vertex
-    vector<int> parent(n, -1);      // store MST parent
-    vector<bool> selected(n, false);
+//     vector<int> min_w(n, INF);      // best weight to connect vertex
+//     vector<int> parent(n, -1);      // store MST parent
+//     vector<bool> selected(n, false);
 
-    // min heap: (weight, vertex)
-    priority_queue<
-        pair<int,int>,
-        vector<pair<int,int>>,
-        greater<pair<int,int>>
-    > pq;
+//     // min heap: (weight, vertex)
+//     priority_queue<
+//         pair<int,int>,
+//         vector<pair<int,int>>,
+//         greater<pair<int,int>>
+//     > pq;
 
-    min_w[0] = 0;
-    pq.push({0, 0});
+//     min_w[0] = 0;
+//     pq.push({0, 0});
 
-    while (!pq.empty()) {
+//     while (!pq.empty()) {
 
-        int v = pq.top().second;
-        int weight = pq.top().first;
-        pq.pop();
+//         int v = pq.top().second;
+//         int weight = pq.top().first;
+//         pq.pop();
 
-        // skip if already selected (important!)
-        if (selected[v])
-            continue;
+//         // skip if already selected (important!)
+//         if (selected[v])
+//             continue;
 
-        selected[v] = true;
-        total_weight += weight;
+//         selected[v] = true;
+//         total_weight += weight;
 
-        if (parent[v] != -1)
-            cout << v << " " << parent[v] << endl;
+//         if (parent[v] != -1)
+//             cout << v << " " << parent[v] << endl;
 
-        for (Edge e : adj[v]) {
-            if (!selected[e.to] && e.w < min_w[e.to]) {
+//         for (Edge e : adj[v]) {
+//             if (!selected[e.to] && e.w < min_w[e.to]) {
 
-                min_w[e.to] = e.w;
-                parent[e.to] = v;
+//                 min_w[e.to] = e.w;
+//                 parent[e.to] = v;
 
-                // push new pair (duplicate allowed)
-                pq.push({e.w, e.to});
-            }
-        }
-    }
+//                 // push new pair (duplicate allowed)
+//                 pq.push({e.w, e.to});
+//             }
+//         }
+//     }
 
-    cout << total_weight << endl;
-}
+//     cout << total_weight << endl;
+// }
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// const int INF = 1000000000;
+// struct Edge {
+//     int a, b, cost;
+// };
+// int n, m;
+// vector<Edge> edges;
+// vector<int> d;
+// void solve(int start) {
+//     d.assign(n, INF);
+//     d[start] = 0;
+//     for (;;) {
+//         bool any = false;
+//         for (auto &e : edges) {
+//             if (d[e.a] < INF && d[e.b] > d[e.a] + e.cost) {
+//                 d[e.b] = d[e.a] + e.cost;
+//                 any = true;
+//             }
+//         }
+//         if (!any)
+//             break;
+//     }
+//     bool negCycle = false;
+//     for (auto &e : edges) {
+//         if (d[e.a] < INF && d[e.b] > d[e.a] + e.cost) {
+//             negCycle = true;
+//             break;
+//         }
+//     }
+
+//     if (negCycle) {
+//         cout << "Negative-weight cycle detected!\n";
+//         return;
+//     }
+//     // Display distances
+//     for (int i = 0; i < n; i++) {
+//         if (d[i] == INF)
+//             cout << "Distance to " << i << " = INF\n";
+//         else
+//             cout << "Distance to " << i << " = " << d[i] << "\n";
+//     }
+// }
+// int main() {
+//     cout << "Enter number of vertices and edges: ";
+//     cin >> n >> m;
+//     cout << "Enter edges (from to cost), 0-indexed:\n";
+//     for (int i = 0; i < m; i++) {
+//         Edge e;
+//         cin >> e.a >> e.b >> e.cost;
+//         edges.push_back(e);
+//     }
+//     int start;
+//     cout << "Enter start vertex: ";
+//     cin >> start;
+//     solve(start);
+//     return 0;
+// }

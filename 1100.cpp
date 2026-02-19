@@ -304,3 +304,89 @@
 //         solve();
 //     }
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// void solve()
+// {
+//     int n;
+//     long long X;
+//     cin >> n >> X;
+//     vector<long long> a(n);
+//     for (int i = 0; i < n; i++)
+//         cin >> a[i];
+//     sort(a.begin(), a.end());
+//     long long loyalty = 0;
+//     long long bonus = 0;
+//     int l = 0;          
+//     int r = n - 1;      
+//         vector<int>v;
+//     while (l <= r) {
+//         if ((loyalty + a[r]) / X > loyalty / X) {
+//             loyalty += a[r];
+//             bonus+=a[r];
+//             v.push_back(a[r]);
+//             r--;
+//         } else {
+//             loyalty += a[l];
+//             v.push_back(a[l]);
+//             l++;
+//         }
+//     }
+//     cout << bonus << "\n";
+//     for(auto it:v)cout<<it<<" ";
+//     cout<<"\n";
+// }
+// signed main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int n;
+//     cin >> n;
+//     while (n--)
+//     {
+//         solve();
+//     }
+// }
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+// #define int long long
+void solve()
+{
+    int n;
+    // long long X;
+    cin >> n ;
+    vector<long long> a(n+1);
+    for (int i = 0; i < n; i++)
+    {int x; cin>>x; a[x]++; }
+    int ans=0;
+    for(int s=2;s<=2*n;s++){
+        int cnt=0;
+        for(int i=max(1,(s-n));i<=min(s/2,n) ;i++){
+            if(2*i==s){cnt+=a[i]/2;}
+            else cnt+=min(a[i],a[s-i]);
+        }
+        // if(s%2==0)cnt+=a[s/2]/2;
+        ans=max(ans,cnt);
+    }    
+    cout<<ans<<"\n";
+}
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        solve();
+    }
+}
+
+
