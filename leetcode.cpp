@@ -421,43 +421,162 @@ using namespace std;
 // int main(){
 //   cout<<countSubarrays({1,2,3},0);
 // }
-class Solution {
-public:
-    int almostPalindromic(string s) {
-        int n = s.length();
-        int maxLen = 0;
+// class Solution {
+// public:
+//     int almostPalindromic(string s) {
+//         int n = s.length();
+//         int maxLen = 0;
 
-        auto isPal = [&](int l, int r) {
-            while (l < r) {
-                if (s[l++] != s[r--]) return false;
-            }
-            return true;
-        };
+//         auto isPal = [&](int l, int r) {
+//             while (l < r) {
+//                 if (s[l++] != s[r--]) return false;
+//             }
+//             return true;
+//         };
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int len = j - i + 1;
-                if (len <= maxLen) continue; // optimisation number 1
+//         for (int i = 0; i < n; i++) {
+//             for (int j = i + 1; j < n; j++) {
+//                 int len = j - i + 1;
+//                 if (len <= maxLen) continue; // optimisation number 1
 
-                int l = i, r = j;
-                bool mismatch = false;
-                while (l < r) {
-                    if (s[l] == s[r]) {
-                        l++;
-                        r--;
-                    } else {
-                        if (isPal(l + 1, r) || isPal(l, r - 1)) {
-                            maxLen = max(maxLen, len);
-                        }
-                        mismatch = true;
-                        break; // optimisation number 2
-                    }
-                }
-                if (!mismatch) {
-                    maxLen = max(maxLen, len); // this is for true palindrom
-                }
+//                 int l = i, r = j;
+//                 bool mismatch = false;
+//                 while (l < r) {
+//                     if (s[l] == s[r]) {
+//                         l++;
+//                         r--;
+//                     } else {
+//                         if (isPal(l + 1, r) || isPal(l, r - 1)) {
+//                             maxLen = max(maxLen, len);
+//                         }
+//                         mismatch = true;
+//                         break; // optimisation number 2
+//                     }
+//                 }
+//                 if (!mismatch) {
+//                     maxLen = max(maxLen, len); // this is for true palindrom
+//                 }
+//             }
+//         }
+//         return maxLen;
+//     }
+// };
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// unordered_map<long long,unordered_map<double,long long>>mpp;
+// int func(int i,int last,vector<int>&nums,double val, double k){
+//     if(i==nums.size())return (long long)val==(long long)k&&last!=i;
+//     if(mpp.count(i)&&mpp[i].count(val))return mpp[i][val];
+//     double mul=1.0*val*nums[i]; 
+//     double div=(val*1.0)/nums[i]; 
+//     long long cnt=func(i+1,i,nums,mul,k)+func(i+1,i,nums,div,k)+func(i+1,last,nums,val,k);
+//     return mpp[i][val]=cnt;
+// }
+
+
+    
+    // bool isDigitorialPermutation(int n) {
+    // int cnt=0;
+    // if (n < 0) return false;
+    // int a=n;
+    // while(a){
+    //     int pro=1;
+    //     int num=a%10;
+    //     while(num>1){pro*=num; num--;}
+    //     cnt+=pro;
+    //     a/=10;
+    // }    
+    // return n==cnt;
+    // }
+    // int main(){
+    //     cout<<isDigitorialPermutation(10);
+    // }
+
+//     #include <iostream>
+// #include <string>
+// #include <vector>
+// #include <algorithm>
+// #include <unordered_map>
+
+// int maxDifference(std::string s) {
+//     int n = s.length();
+//     if (n == 0) return 0;
+
+//     std::unordered_map<char, int> counts;
+//     int max_mpp = 0;
+
+//     for (char c : s) {
+//         counts[c]++;
+//         max_mpp = std::max(max_mpp, counts[c]);
+//     }
+
+//     // Logic: If max_mpp is small enough, we can swap everyone.
+//     // If not, the "overflow" of the most mppuent char must stay put.
+//     if (max_mpp <= n / 2) {
+//         return n;
+//     } else {
+//         return 2 * (n - max_mpp);
+//     }
+// }
+
+// int main() {
+//     std::string s = "abcdesfffffffffddddd"; // max_mpp = 3, n = 4. Result: 2 * (4 - 3) = 2
+//     std::cout << "Max difference: " << maxDifference(s) << std::endl;
+//     return 0;
+// }
+
+
+//  int mirrormppuency(string s) {
+//       unordered_map<char,int>mpp;
+//         for(char i:s){
+//             mpp[i]++;
+//         }
+//         unordered_set<char>m1;
+//         int cnt=0;
+//         for(char i:s){
+//             char m;
+//             if(i<='z'&&i>='a'){m='a'+('z'-i);}
+//             else { m='0'+('9'-i);}
+//             if(m1.count(i)||m1.count(m))continue;
+//                 cnt+=abs(mpp[i]-mpp[m]);
+//                 m1.insert(i);
+//                 m1.insert(m);
+//         }
+//         return cnt;
+//     }
+//     int main(){
+//         cout<<
+// mirrormppuency("4m7h");
+//     }
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> good(int n) {
+    unordered_map<int,int> mpp;
+    int maxi = cbrt(n); 
+    for(int a=1; a<=maxi; a++) {
+        for(int b=a; b<=maxi; b++) {
+            int t = a*a*a + b*b*b;
+            if(t <= n) {
+                mpp[t]++;
             }
         }
-        return maxLen;
     }
-};
+    vector<int> ans;
+    for(auto p : mpp) {
+        if(p.second >= 2) ans.push_back(p.first);
+    }
+    sort(ans.begin(), ans.end());
+    return ans;
+}
+int main() {
+    int n = 578;
+    vector<int> res = good(4104);
+    for(int x : res) cout << x << " ";
+}
