@@ -106,41 +106,41 @@
 //     }
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
- void solve() {
-   int n;
-   cin>>n;
-   vector<int>v1(n+1);
-   vector<int>v2(n+1);
-   for(int i=1;i<=n;i++)cin>>v1[i];
-   for(int i=1;i<=n;i++)cin>>v2[i];
-   int cnt=0;
-   for(int i=1;i<=n;i++){
-    int gcd1=v1[i];
-    if(i>1)gcd1=__gcd(gcd1,v1[i-1]);
-    int gcd2=v1[i];
-    if(i<n)gcd2=__gcd(gcd2,v1[i+1]);
-    if(i==1){if(v1[i]>gcd2){cnt++; continue;}}
-    if(i==n){if(v1[i]>gcd1){cnt++; continue;}}
-    int gc=__gcd(gcd1,gcd2);
-    int lcm= (1LL*gcd1*gcd2)/gc;
-    if(lcm<v1[i])cnt++;
-   }
-   cout<<cnt<<"\n";
-}
+//  void solve() {
+//    int n;
+//    cin>>n;
+//    vector<int>v1(n+1);
+//    vector<int>v2(n+1);
+//    for(int i=1;i<=n;i++)cin>>v1[i];
+//    for(int i=1;i<=n;i++)cin>>v2[i];
+//    int cnt=0;
+//    for(int i=1;i<=n;i++){
+//     int gcd1=v1[i];
+//     if(i>1)gcd1=__gcd(gcd1,v1[i-1]);
+//     int gcd2=v1[i];
+//     if(i<n)gcd2=__gcd(gcd2,v1[i+1]);
+//     if(i==1){if(v1[i]>gcd2){cnt++; continue;}}
+//     if(i==n){if(v1[i]>gcd1){cnt++; continue;}}
+//     int gc=__gcd(gcd1,gcd2);
+//     int lcm= (1LL*gcd1*gcd2)/gc;
+//     if(lcm<v1[i])cnt++;
+//    }
+//    cout<<cnt<<"\n";
+// }
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+// int main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
 
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-}
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+// }
 
 //  vector<long long> getp(){
 //         int maxi=200000;
@@ -326,3 +326,65 @@ int main() {
 // // 10110011000001101011111011011110010011100101101111100111000111010001011101101100
 
 
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+//  void solve() {
+//    string s;
+//    cin>>s;
+//    int n=s.size();
+//    bool p=0;
+//    for(int i=0;i<n-1;i++){
+//     if(s[i]!='<'&&s[i+1]!='>'){p=1; break;}
+//    }
+//    if(p){cout<<-1<<"\n"; return;}
+//    else{
+//     int m1=count(s.begin(),s.end(),'<');
+//     int m2=count(s.begin(),s.end(),'>');
+//     cout<<n-min(m1,m2)<<"\n";
+// }
+// }
+
+// int main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+// }
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+ void solve() {
+    int n; cin>>n;
+    vector<int>v(n,0);
+    for(int i=0;i<n;i++)cin>>v[i];
+   stack<int>st;
+   for(int i=n-1;i>=0;i--){
+   int x=v[i];
+   while(!st.empty()&&x+1==st.top())st.pop();
+   st.push(x);
+ }
+ cout<<st.size()<<"\n";
+}
+
+
+signed
+ main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+}
