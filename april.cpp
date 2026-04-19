@@ -360,31 +360,200 @@
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+//  void solve() {
+//     int n; cin>>n;
+//     vector<int>v(n,0);
+//     for(int i=0;i<n;i++)cin>>v[i];
+//    stack<int>st;
+//    for(int i=n-1;i>=0;i--){
+//    int x=v[i];
+//    while(!st.empty()&&x+1==st.top())st.pop();
+//    st.push(x);
+//  }
+//  cout<<st.size()<<"\n";
+// }
+
+
+// signed
+//  main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+//  void solve() {
+// int n,x;
+// cin>>n>>x;
+// vector<vector<int>>v(n,vector<int>(3,0));
+// int mx=-1e17; int jump=0;
+// for(int i=0;i<n;i++){
+//     cin>>v[i][0]>>v[i][1]>>v[i][2];
+//     mx=max(mx,v[i][0]*v[i][1]-v[i][2]);
+//     jump+=v[i][0]*(v[i][1]-1);}
+// if(jump-x>=0){
+//     cout<<0<<"\n"; return;
+// }
+// if(mx<=0){cout<<-1<<"\n";
+//     return;
+// }
+// int r=x-jump;
+// cout<< (r+mx-1)/mx<<"\n";
+// }
+
+
+// signed
+//  main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+// }
+
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
- void solve() {
-    int n; cin>>n;
-    vector<int>v(n,0);
-    for(int i=0;i<n;i++)cin>>v[i];
-   stack<int>st;
-   for(int i=n-1;i>=0;i--){
-   int x=v[i];
-   while(!st.empty()&&x+1==st.top())st.pop();
-   st.push(x);
- }
- cout<<st.size()<<"\n";
+// #define int long long
+//  void solve() {
+// int n;
+// cin>>n;
+// if(n%2==0){
+//     int x=n/2;
+//     for(int i=0;i<x;i++){
+//         cout<<x-i<<" "<<n-i<<" ";
+//     }
+//     cout<<"\n";
+// }else{
+//     int x=n/2;
+//     for(int i=0;i<x;i++){
+//         cout<<n-i-1<<" "<<1+i<<" ";
+//     }
+//     cout<<n<<"\n";
+// }
+// }
+
+
+// signed
+//  main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+// }
+vector<vector<int>> colorvis(int n, int m, vector<vector<int>>& sources) {
+
+    queue<vector<int>> q;
+    vector<vector<int>> vis(n, vector<int>(m, 0));
+    for(auto &it : sources) {
+        int x = it[0], y = it[1], c = it[2];
+        q.push({0, c, x, y});
+        vis[x][y] = c;
+    }
+    vector<vector<int>> dir = {{-1,0},{1,0},{0,1},{0,-1}};
+    while(!q.empty()) {
+        int sz = q.size();
+        set<pair<int,int>> st;
+        for(int i=0;i<sz;i++) {
+            auto it = q.front();
+            q.pop();
+            int dep = it[0];
+            int c   = it[1];
+            int x   = it[2];
+            int y   = it[3];
+            for(auto &d : dir) {
+                int x1 = x + d[0];
+                int y1 = y + d[1];
+                if(x1>=0 && x1<n && y1>=0 && y1<m) {
+                    if(vis[x1][y1] == 0) {
+                        vis[x1][y1] = c;
+                        q.push({dep+1,c,x1,y1});
+                        st.insert({x1,y1});
+                    }
+                    else if(st.count({x1,y1})) {
+                        if(c > vis[x1][y1]) {
+                            vis[x1][y1] = c;
+                            q.push({dep+1,c,x1,y1});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return vis;
 }
 
+    // int main(){
+    //    int n=3; int m=3;
+    //    vector<vector<int>>s={{0,1,3},{1,1,5}};
+    //    vector<vector<int>>v=colorvis(n,m,s);
+    //    for(auto it:v){
+    //     for(auto itt:it){
+    //         cout<<itt<<" ";
+    //     }
+    //     cout<<"\n";
+    //    }
+    // }
+#include <bits/stdc++.h>
+using namespace std;
 
-signed
- main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
+vector<long long> good(string &src) {
+    vector<long long> v;
+    v.push_back(0);
+    for (int i = 0; i < 6; i++) {
+        if (src[i] == 'D') {
+            v.push_back(v.back() + 4);
+        } else {
+            v.push_back(v.back() + 1);
+        }
     }
+    return v;
+}
+
+bool check(vector<long long> &d, string &s) {
+    int last = s[0] - '0';
+    for (long long i = 1; i <= 6; i++) {
+        if (s[d[i]] - '0' < last) return false;
+        last = s[d[i]] - '0';
+    }
+    return true;
+}
+
+long long countGoodIntegersOnPath(long long l, long long r, string directions) {
+    vector<long long> idx = good(directions);
+    long long cnt = 0;
+    for (long long i = l; i <= r; i++) {
+        string temp = to_string(i);
+        if (temp.size() < 16) {
+            temp = string(16 - temp.size(), '0') + temp;
+        }
+        if (check(idx, temp)) cnt++;
+    }
+    return cnt;
+}
+
+int main() {
+    cout << countGoodIntegersOnPath(8, 10, "DDDRRR");
 }
