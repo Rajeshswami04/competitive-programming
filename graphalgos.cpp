@@ -218,3 +218,40 @@ using namespace std;
 //     solve(start);
 //     return 0;
 // }
+
+
+
+// leetcode 1857
+
+
+// class Solution {
+// public:
+//     int largestPathValue(string colors, vector<vector<int>>& edges) {
+//         int n=colors.size();
+//         vector<vector<int>>dp(n,vector<int>(26,0));
+//         unordered_map<int,vector<int>>adj;
+//         for(auto it:edges)adj[it[0]].push_back(it[1]);
+//         queue<int>q;
+//         vector<int>ind(n,0);
+//         for(auto it:edges){ind[it[1]]++;}
+//         for(int i=0;i<n;i++){if(ind[i]==0)q.push(i);  dp[i][colors[i]-'a']=1;}
+//         int ans=0; int v=0;
+//         while(!q.empty()){
+//             v++;
+//             int u=q.front();
+//             int c=colors[u]-'a';
+//             for(int v:adj[u]){
+//                 int c1=colors[v]-'a';
+//                 for(int j=0;j<26;j++){
+//                 dp[v][j]=max(dp[v][j],dp[u][j]+(j==c1));
+//                 }
+//                 ind[v]--;
+//                 if(ind[v]==0)q.push(v);
+//             }
+//             ans=max(ans,dp[u][c]);
+//             q.pop();
+//         }
+//         if(v!=n)return -1;
+//         return ans;
+//     }
+// };
