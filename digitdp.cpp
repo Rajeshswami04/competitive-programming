@@ -148,3 +148,45 @@ using namespace std;
 //      return solve(s,0,1,0,0)-1;    
 //     }
 // };
+
+
+
+// class Solution {
+// public:
+// using ll = long long;
+// // 233
+// ll dp[2][12][12][2];
+
+// ll digitdp(const string &s, int tight, int cnt,int idx, int lz) {
+//     if (idx == (int)s.size()) return cnt;
+
+//     if (dp[tight][cnt][idx][lz] != -1)
+//         return dp[tight][cnt][idx][lz];
+
+//     ll res = 0;
+//     int up = tight ? (s[idx] - '0') : 9;
+
+//     for (int d = 0; d <= up; d++) {
+//         if(d==1){res += digitdp(
+//             s,
+//             tight && (d == up),
+//             cnt+1,
+//             idx+1,0
+//         ); continue;}
+//         res += digitdp(
+//             s,
+//             tight && (d == up),
+//             cnt,
+//             idx + 1,
+//             lz && (d == 0)
+//         );
+//     }
+
+//     return dp[tight][cnt][idx][lz] = res;
+// }
+//     int countDigitOne(int n) {
+//       memset(dp,-1,sizeof(dp));
+//       string s=to_string(n);
+//       return digitdp(s,1,0,0,0);  
+//     }
+// };
