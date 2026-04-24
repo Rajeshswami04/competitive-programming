@@ -221,3 +221,80 @@ using namespace std;
 //      return solve(s,0,1,0,0,0);    
 //     }
 // };
+
+
+
+
+
+// using ll = long long;
+
+// ll dp[2][11][20][2];
+
+// ll digitdp(const string &s, int tight, int prev, int idx, int lz) {
+//     if (idx == (int)s.size()) return 1;
+
+//     if (dp[tight][prev][idx][lz] != -1)
+//         return dp[tight][prev][idx][lz];
+
+//     ll res = 0;
+//     int up = tight ? (s[idx] - '0') : 1;
+
+//     for (int d = 0; d <= up; d++) {
+
+//         if (!lz && d == prev) continue;
+
+//         res += digitdp(
+//             s,
+//             tight && (d == up),
+//             d,
+//             idx + 1,
+//             lz && (d == 0)
+//         );
+//     }
+
+//     return dp[tight][prev][idx][lz] = res;
+// }
+
+
+// //600
+// class Solution {
+// public:
+    
+// using ll = long long;
+
+// ll dp[2][4][50];
+
+// ll digitdp(const string &s, int tight, int prev, int idx) {
+//     if (idx == (int)s.size()) return 1;
+
+//     if (dp[tight][prev][idx] != -1)
+//         return dp[tight][prev][idx];
+
+//     ll res = 0;
+//     int up = tight ? (s[idx] - '0') : 1;
+
+//     for (int d = 0; d <= up; d++) {
+
+//         if (d == prev&&d==1) continue;
+
+//         res += digitdp(
+//             s,
+//             tight && (d == up),
+//             d,
+//             idx + 1
+//         );
+//     }
+
+//     return dp[tight][prev][idx] = res;
+// }
+
+//     int findIntegers(int n) {
+//         string s="";
+//         while(n){
+//             s=to_string(n%2)+s;
+//             n/=2;
+//         }
+//         memset(dp,-1,sizeof(dp));
+//         return digitdp(s,1,2,0);
+//     }
+// };
