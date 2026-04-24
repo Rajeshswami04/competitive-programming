@@ -190,3 +190,34 @@ using namespace std;
 //       return digitdp(s,1,0,0,0);  
 //     }
 // };
+
+//1012
+// class Solution {
+// public:
+//     int dp[13][2][1024][2][2];
+//     int solve(string &s,int i,bool tight,int mask,bool lz,bool cg){
+//         if(i==s.size())return cg>=1;
+//         if(dp[i][tight][mask][lz][cg]!=-1)return dp[i][tight][mask][lz][cg];
+//         int lb=0; int res=0;
+//         int up=tight?(s[i]-'0'):9;
+//         for(int d=lb;d<=up;d++){
+//             bool nt=tight && (d==up);
+//             if(!lz && d==0){
+//                 res+=solve(s,i+1,nt,mask,0);
+//             }else{
+//             if(mask&(1<<d)){
+//             res+=solve(s,i+1,nt,mask|(1<<d),1,1);}
+//             else{
+//                res+=solve(s,i+1,nt,mask|(1<<d),1,0) 
+//             }
+//     }
+//         }
+//         return dp[i][tight][mask][lz][cg]=res;
+//     }
+    
+//     int countSpecialNumbers(int n) {
+//      memset(dp,-1,sizeof(dp));
+//      string s=to_string(n);
+//      return solve(s,0,1,0,0,0);    
+//     }
+// };
