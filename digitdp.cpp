@@ -298,3 +298,38 @@ using namespace std;
 //         return digitdp(s,1,2,0);
 //     }
 // };
+
+
+// //902
+// class Solution {
+// public:
+// using ll = long long;
+// ll dp[2][11][2];
+// ll digitdp(const string &s, int tight, int idx, bool lz,string &v) {
+//     if (idx == (int)s.size()) return 1;
+//     if (dp[tight][idx][lz] != -1)
+//         return dp[tight][idx][lz];
+//     ll res = 0;
+//     int up = tight ? (s[idx] - '0') :9;
+//     if(lz==1)res+=digitdp(s,tight&&(0==up),idx+1,1,v);
+//     for (char c :v) {
+//         int d=c-'0';
+//         if(d>up)break;
+//        res += digitdp(s,
+//             tight && (d == up),
+//             idx + 1,
+//             0,v
+//         );
+//     }
+
+//     return dp[tight][idx][lz] = res;
+// }
+//     int atMostNGivenDigitSet(vector<string>& digits, int n) {
+//         string t="";
+//         for(auto it:digits)t+=it;
+//         string s=to_string(n);
+//         // funct(digits);
+//         memset(dp,-1,sizeof(dp));
+//         return digitdp(s,1,0,1,t)-1;
+//     }
+// };

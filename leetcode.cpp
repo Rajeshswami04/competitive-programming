@@ -557,26 +557,161 @@ using namespace std;
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> good(int n) {
-    unordered_map<int,int> mpp;
-    int maxi = cbrt(n); 
-    for(int a=1; a<=maxi; a++) {
-        for(int b=a; b<=maxi; b++) {
-            int t = a*a*a + b*b*b;
-            if(t <= n) {
-                mpp[t]++;
+// vector<int> good(int n) {
+//     unordered_map<int,int> mpp;
+//     int maxi = cbrt(n); 
+//     for(int a=1; a<=maxi; a++) {
+//         for(int b=a; b<=maxi; b++) {
+//             int t = a*a*a + b*b*b;
+//             if(t <= n) {
+//                 mpp[t]++;
+//             }
+//         }
+//     }
+//     vector<int> ans;
+//     for(auto p : mpp) {
+//         if(p.second >= 2) ans.push_back(p.first);
+//     }
+//     sort(ans.begin(), ans.end());
+//     return ans;
+// }
+// int main() {
+//     int n = 578;
+//     vector<int> res = good(4104);
+//     for(int x : res) cout << x << " ";
+// }
+// vector<int> findValidElements(vector<int> nums) {
+//     int n = nums.size();
+//     if(n == 0) return {};
+//     if(n==2&&nums[0]==nums[1])return {nums[0]};
+//     vector<int> suf(n);
+//     suf[n-1] = nums[n-1];
+//     for(int i = n-2; i >= 0; i--) {
+//         suf[i] = max(nums[i], suf[i+1]);
+//     }
+
+//     vector<int> ans;
+
+//     int leftMax = INT_MIN;
+
+//     for(int i = 0; i < n; i++) {
+//         int rightMax = (i == n-1) ? INT_MIN : suf[i+1];
+
+//         if(i == 0 || i == n-1 || 
+//            nums[i] > leftMax || nums[i] > rightMax) {
+//             ans.push_back(nums[i]);
+//         }
+
+//         leftMax = max(leftMax, nums[i]);
+//     }
+
+//     return ans;
+// }
+//     int main(){
+// vector<int>a=findValidElements({5,5});
+// for(auto it:a){cout<<it<<" ";}
+//     }
+
+// string sortVowels(string s) {
+//     vector<int> freq(26, 0);
+//     for(char c : s) {
+//         if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u') {
+//             freq[c - 'a']++;
+//         }
+//     }
+//     vector<tuple<int,int,char>> fre;
+//     for(char c : {'a','e','i','o','u'}) {
+//         int idx = c - 'a';
+//         if(freq[idx] > 0) {
+//             int pos = s.find(c);
+//             fre.push_back({freq[idx], pos, c});
+//         }
+//     }
+//     sort(fre.begin(), fre.end(), [](auto &a, auto &b){
+//         if(get<0>(a) != get<0>(b))
+//             return get<0>(a) > get<0>(b);
+//         return get<1>(a) < get<1>(b);    
+//     });
+//     string ans = "";
+//     for(auto &t : fre) {
+//         int count = get<0>(t);
+//         char c = get<2>(t);
+//         ans += string(count, c);
+//     }
+//     int j = 0;
+//     for(int i = 0; i < s.size(); i++) {
+//         if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u') {
+//             s[i] = ans[j++];
+//         }
+//     }
+//     return s;
+// }
+
+// string sortVowels(string s) {
+//        vector<int>v(26,0);
+//         for(char i:s){
+//             if(i=='a'||i=='e'||i=='o'||i=='i'||i=='u'){
+//             v[i-'a']++;}
+//         }
+//         vector<tuple<int,int,char>> fre;
+//         for(char i : {'a','e','i','o','u'}) {
+//     int idx = i - 'a';
+//     if(v[idx] != 0) {
+//         int t = s.find(i);
+//         fre.push_back({v[idx], t, i});
+//     }
+// }
+//         sort(fre.begin(),fre.end(),[&](auto&a,auto&b){
+//             if(get<0>(a) != get<0>(b))
+//             return get<0>(a) > get<0>(b);
+//         return get<1>(a) < get<1>(b);    
+//         });
+//         string ans="";
+//         for(auto &t:fre){
+//             int count=get<0>(t);
+//             char c=get<2>(t);
+//             ans+=string(count,c);
+//         }
+//         int j=0;
+//         for(int i=0;i<s.size();i++){
+//              if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u') {
+//             s[i] = ans[j++];
+//         } 
+//         }
+//         return s;
+//     }
+//     int main(){
+//         string s=sortVowels("baeiou");
+//         cout<<s;
+//     } 
+bool check(int i,vector<int>&nums){
+        int maxi=0; bool b=0;
+        for(int j=0;j<i;j++){
+            maxi=max(nums[j],maxi);
+            if(maxi>=nums[i]){b=1; break;}
+        }
+        if(b==0)return 1;
+        if(b==1){
+            b=0;
+            maxi=0;
+            for(int j=nums.size()-1;j>i;j--){
+                maxi=max(maxi,nums[j]);
+                if(nums[i]<=maxi){b=1; break;}
             }
         }
+        if(b==1)return 0;
+        return 1;
     }
-    vector<int> ans;
-    for(auto p : mpp) {
-        if(p.second >= 2) ans.push_back(p.first);
+    vector<int> findValidElements(vector<int> nums) {
+        vector<int>ans;
+        int n=nums.size();
+        if(n==1)return nums;
+        for(int i=0;i<n;i++){
+            if(check(i,nums)){ans.push_back(nums[i]);}
+        }
+        return ans;
     }
-    sort(ans.begin(), ans.end());
-    return ans;
-}
-int main() {
-    int n = 578;
-    vector<int> res = good(4104);
-    for(int x : res) cout << x << " ";
-}
+    int main(){
+        vector<int>a=findValidElements({1,2,4,2,3,2});
+        for(auto it:a){cout<<it<<" ";}
+    }
