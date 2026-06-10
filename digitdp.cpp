@@ -3,24 +3,16 @@
 // prefix[r]-prefix[l]   => ans[right]-ans[left-1]
 #include <bits/stdc++.h>
 using namespace std;
-
 // using ll = long long;
-
 // ll dp[2][11][20][2];
-
 // ll digitdp(const string &s, int tight, int prev, int idx, int lz) {
 //     if (idx == (int)s.size()) return 1;
-
 //     if (dp[tight][prev][idx][lz] != -1)
 //         return dp[tight][prev][idx][lz];
-
 //     ll res = 0;
 //     int up = tight ? (s[idx] - '0') : 9;
-
 //     for (int d = 0; d <= up; d++) {
-
 //         if (!lz && d == prev) continue;
-
 //         res += digitdp(
 //             s,
 //             tight && (d == up),
@@ -29,13 +21,11 @@ using namespace std;
 //             lz && (d == 0)
 //         );
 //     }
-
 //     return dp[tight][prev][idx][lz] = res;
 // }
 
 // ll countUpto(ll x) {
 //     if (x < 0) return 0;
-
 //     string s = to_string(x);
 
 //     memset(dp, -1, sizeof(dp));
@@ -333,3 +323,128 @@ using namespace std;
 //         return digitdp(s,1,0,1,t)-1;
 //     }
 // };
+
+
+
+class Solution {
+public:
+
+    struct Node {
+        long long waviness;
+        long long cnt;
+    };
+
+    string s;
+
+    // dp[tight][prev2][prev1][idx][lz]
+    Node dp[2][11][11][17][2];
+    bool vis[2][11][11][17][2];
+
+    Node digitdp(int tight, int prev2, int prev1,
+                 int idx, int lz) {
+
+        // Base case
+        if (idx == s.size()) {
+            return {0, 1};
+        }
+
+        // Memoization
+        if (vis[tight][prev2][prev1][idx][lz]) {
+            return dp[tight][prev2][prev1][idx][lz];
+        }
+
+        vis[tight][prev2][prev1][idx][lz] = true;
+
+        long long totalWaviness = 0;
+        long long totalCnt = 0;
+
+        int limit = tight ? (s[idx] - '0') : 9;
+
+        for (int d = 0; d <= limit; d++) {
+
+            int newTight = tight && (d == limit);
+
+            // Still leading zeros
+            if (lz && d == 0) {
+
+                Node child = digitdp(
+                    newTight,
+                    10,   // prev2 reset
+                    10,   // prev1 reset
+                    idx + 1,
+                    1
+                );
+
+                totalWaviness += child.waviness;
+                totalCnt += child.cnt;
+            }
+            else {
+
+                long long add = 0;
+                int newPrev2, newPrev1;
+
+                // First non-zero digit
+                if (lz) {
+                    newPrev2 = 10;
+                    newPrev1 = d;
+                }
+                else {
+
+                    // Check peak/valley
+                    if (prev2 != 10) {
+
+                        bool peak =
+                            (prev1 > prev2 && prev1 > d);
+
+                        bool valley =
+                            (prev1 < prev2 && prev1 < d);
+
+                        if (peak || valley)
+                            add = 1;
+                    }
+
+                    newPrev2 = prev1;
+                    newPrev1 = d;
+                }
+
+                Node child = digitdp(
+                    newTight,
+                    newPrev2,
+                    newPrev1,
+                    idx + 1,
+                    0
+                );
+                totalWaviness +=
+                    child.waviness + add * child.cnt;
+                // add*child.cnt counts current valleys and peaks
+                totalCnt += child.cnt;
+            }
+        }
+        return dp[tight][prev2][prev1][idx][lz] =
+               {totalWaviness, totalCnt};
+    }
+    long long solve(long long n) {
+
+        if (n <= 0)
+            return 0;
+
+        s = to_string(n);
+
+        memset(vis, 0, sizeof(vis));
+
+        return digitdp(
+            1,   // tight
+            10,  // prev2
+            10,  // prev1
+            0,   // idx
+            1    // leading zero
+        ).waviness;
+    }
+
+    long long totalWaviness(long long num1,
+                            long long num2) {
+
+        return solve(num2) -
+               solve(num1 - 1);
+    }
+};
