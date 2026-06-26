@@ -1,0 +1,10 @@
+prefixmins
+prefixmax
+suffixmin
+suffixmax
+prefixsum
+suffixsum
+rangesum ->segment
+rangemin/max->sparse tree
+min opreations by div or multi mostly dijkstra varinat or brute laga do
+try think as  indepedent conditions 

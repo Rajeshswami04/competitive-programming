@@ -235,9 +235,6 @@ using namespace std;
 //     }
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // void solve()
@@ -265,8 +262,6 @@ using namespace std;
 //         solve();
 //     }
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -302,10 +297,6 @@ using namespace std;
 //     }
 // }
 
-
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // void solve()
@@ -322,7 +313,7 @@ using namespace std;
 //         if(it==1)u++;
 //         else{
 //         long long jhel=floor((double)it/2)-1LL;
-//         slots+=jhel; 
+//         slots+=jhel;
 //       }
 //       sm+=it;
 // }
@@ -343,11 +334,6 @@ using namespace std;
 //         solve();
 //     }
 // }
-
-
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -372,11 +358,6 @@ using namespace std;
 //     }
 // }
 
-
-
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 
@@ -393,32 +374,32 @@ using namespace std;
 //     if (len > 1) {
 //         long long num = 0;
 //         for (long long i = 0; i < len - 1; i++) {
-//             num = num * 10 + d[n-1]; 
+//             num = num * 10 + d[n-1];
 //         }
 //         ans = min(ans, abs(a - num));
 //     }
 //     long long first_digit = (d[0] == 0) ? d[1] : d[0];
 //     long long num = first_digit;
 //     for (long long i = 0; i < len; i++) {
-//         num = num * 10 + d[0]; 
+//         num = num * 10 + d[0];
 //     }
 //     ans = min(ans, abs(a - num));
 //     long long prefix = 0;
 //     for (long long i = 0; i < len; i++) {
 //         long long hh=0;
 //         long long target_digit = s[i] - '0';
-        
+
 //         // for(auto x:d){if(x==target_digit)hh=1;}
 //         for (long long x : d) {
 //             if(x==target_digit)hh=1;
 //             if (x != target_digit) {
 //                 long long candidate = prefix * 10 + x;
-    
+
 //                 for (long long j = i + 1; j < len; j++) {
 //                     if (x > target_digit) {
-//                         candidate = candidate * 10 + d[0]; 
+//                         candidate = candidate * 10 + d[0];
 //                     } else {
-//                         candidate = candidate * 10 + d[n-1]; 
+//                         candidate = candidate * 10 + d[n-1];
 //                     }
 //                 }
 //                 ans = min(ans, abs(a - candidate));
@@ -428,7 +409,7 @@ using namespace std;
 //         if (hh) {
 //             prefix = prefix * 10 + target_digit;
 //         } else {
-//             break; 
+//             break;
 //         }
 //         if (i == len - 1) {
 //             ans = 0;
@@ -450,8 +431,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 
@@ -466,23 +445,23 @@ using namespace std;
 //     cin >> n >> x >> y;
 //     vector<long long> v(n);
 //     for(long long i = 0; i < n; i++) cin >> v[i];
-    
+
 //     vector<long long> bet;
 //     vector<long long> rem;
 //     x--; y--;
-    
+
 //     for(long long i = 0; i < n; i++){
 //         if(i >x && i<=y) bet.push_back(v[i]);
 //         else rem.push_back(v[i]);
 //     }
-    
-//     if(bet.size() != 0){ 
+
+//     if(bet.size() != 0){
 //         long long mx = n + 1;
 //         for(long long it : bet) { mx = min(it, mx); }
 //         for(long long i = 0; i < bet.size(); i++) {
 //             if(bet[i] == mx) { rotate(bet, i); break; }
 //         }
-        
+
 //         long long f = 0;
 //         for(long long j = 0; j < rem.size(); j++){
 //             if(rem[j] > mx && f == 0){
@@ -515,7 +494,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -562,9 +540,8 @@ using namespace std;
 //     return 0;
 // }
 
-
-// for i>=2 i<n ele[i]^i=in next elements 
-// its hard version is i>=1 and i<=n hehe 1800 rated cf 
+// for i>=2 i<n ele[i]^i=in next elements
+// its hard version is i>=1 and i<=n hehe 1800 rated cf
 // #include <bits/stdc++.h>
 // using namespace std;
 // void solve() {
@@ -582,7 +559,7 @@ using namespace std;
 //             cout<<i+1<<" "<<i<<" ";
 //         }
 //         cout<<n<<" "<<1<<"\n";
-//     }    
+//     }
 // }
 // long long main() {
 //     ios::sync_with_stdio(false);
@@ -595,10 +572,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -627,9 +600,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
-
 
 // grid l  1093 div2
 // #include <bits/stdc++.h>
@@ -660,9 +630,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -708,8 +675,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // void solve() {
@@ -727,7 +692,7 @@ using namespace std;
 //             if(s[i]==s[i-1]&&s[i]!='?'){cout<<"NO\n"; return;}
 //         }
 //     }
-//     cout<<"YES\n"; 
+//     cout<<"YES\n";
 // }
 // long long main() {
 //     ios::sync_with_stdio(false);
@@ -740,8 +705,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -775,9 +738,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -840,11 +800,9 @@ using namespace std;
 //     while(t--) solve();
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
-// the question is that you are given two int a b and x you can divide a,b by 
+// the question is that you are given two int a b and x you can divide a,b by
 // x and increase a or b by1  , you have to find min opr to equal two number
 // void solve() {
 //     long long a,b,x;
@@ -888,8 +846,6 @@ using namespace std;
 //     while(t--) solve();
 // }
 
-
-
 // using namespace std;
 
 // long long maxRatings(vector<vector<long long>>& units) {
@@ -924,15 +880,13 @@ using namespace std;
 // }
 // long long main() {
 //     vector<vector<long long>> v = {{1}, {1}};
-//     cout << "Maximum Ratings Sum: " << maxRatings(v) << endl; 
+//     cout << "Maximum Ratings Sum: " << maxRatings(v) << endl;
 //     return 0;
 // }
 
-
-
 // bool fun(long long l,long long r,vector<long long>&nums){
 //         unordered_map<long long,long long>mp;
-//         long long freq=0; 
+//         long long freq=0;
 //          long long minfreq=1e9;
 //         for(long long i=l;i<=r;i++){mp[nums[i]]++; freq=max(freq,mp[nums[i]]);
 //                             //  minfreq=min(minfreq,mp[nums[i]]);
@@ -958,13 +912,11 @@ using namespace std;
 //         }
 //         for(long long i=0;i<n;i++){
 //             for(long long j=i+1;j<n;j++){
-               
+
 //             }
 //         }
 //         return len;
 //     }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1064,7 +1016,6 @@ using namespace std;
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // void solve() {
@@ -1104,12 +1055,8 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
-
 
 // void solve() {
 //     long long n;
@@ -1161,7 +1108,7 @@ using namespace std;
 //     for(auto &it:v)s1+=it;
 //     int maxx=s1;
 //     int k=-1;
-//     for(int i=0;i<n;i++){ // prefix suffix trick 
+//     for(int i=0;i<n;i++){ // prefix suffix trick
 //         s1-=v[i];
 //         if(v[i]>0){
 //             int t=s2+s1-v[i];
@@ -1176,7 +1123,7 @@ using namespace std;
 //         cout<<0<<"\n";
 //         return;
 //     }
-    
+
 //     int cnt=1;
 //     for(int i=k-1;i>=0;i--){
 //         int x=v[i];
@@ -1186,7 +1133,7 @@ using namespace std;
 //             cnt++;
 //         }
 //     }
-//     ans.push_back(k+1);  
+//     ans.push_back(k+1);
 //     cout<<ans.size()<<"\n";
 //     for(auto it:ans){
 //         cout<<it<<" ";
@@ -1205,10 +1152,6 @@ using namespace std;
 //     return 0;
 // }
 
- 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // palindromex array
@@ -1219,7 +1162,7 @@ using namespace std;
 //     int n=v.size()/2;
 //     for(int i=0;i<=n;i++)st.insert(i);
 //     int flag=0;
-    
+
 //     while(l>=0&&r<2*n){
 //         if(v[l]!=v[r]){flag=1; break;}
 //         st.erase(v[l]);
@@ -1253,9 +1196,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
- 
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1304,8 +1244,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 
@@ -1327,7 +1265,7 @@ using namespace std;
 //         h--;
 //     }
 //     if (t > 0) {
-//         cnt += 2*t+1; 
+//         cnt += 2*t+1;
 //     }
 //     cnt += h * 3 + u * 3;
 //     cout << cnt << "\n";
@@ -1344,8 +1282,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // #define int long long
 // using namespace std;
@@ -1359,7 +1295,7 @@ using namespace std;
 //         int c;
 //         cin>>c;
 //         if(i==p-1){q.push({-1,c});}
-//         else {q.push({c,c}); 
+//         else {q.push({c,c});
 //     }
 //     }
 //     int cnt=0;
@@ -1392,9 +1328,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // vector<vector<long double>>v;
@@ -1425,10 +1358,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1474,10 +1403,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
-
 // #include <bits/stdc++.h>
 // #define int long long
 // using namespace std;
@@ -1517,56 +1442,50 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-//codeforces 1102 div 2 d
-// #include <bits/stdc++.h>
-// #define int long long
-// using namespace std;
-//    void solve() {
-//        int n;
-//        cin>>n;
-//     string s;
-//     cin>>s;
-//     int sum=0;
-//     int alt=0;
-//     vector<int>dp(3,0);
-//     for(int i=0;i<n;i++){
-//         char c=s[i];
-//         vector<int>temp(3,0);
-//         if(c=='0'){
-//             temp[0]=dp[1];
-//             temp[1]=dp[2];
-//             temp[2]=dp[0]+1;
-//         }else{
-//             temp[0]=dp[2];
-//             temp[1]=dp[0]+1;
-//             temp[2]=dp[1];
-//         }
-//         dp=temp;
-//         if(i&&s[i]!=s[i-1])alt++;
-//         else alt=1;
-//         sum+=dp[2]+dp[1]-(alt-1)/2;
-//     }
-//     cout<<sum<<'\n';
-// }
-//     signed main() {
-//     ios::sync_with_stdio(false);
-//     cin.tie(nullptr);
-//     long long t;
-//     if (cin >> t) {
-//         while (t--) {
-//             solve();
-//         }
-//     }
-//     return 0;
-// }
-
-
-
-
-
-
+// codeforces 1102 div 2 d
+// 00->1 and 11->0
+// no of substriing of s which can be reduced to one len
+//  #include <bits/stdc++.h>
+//  #define int long long
+//  using namespace std;
+//     void solve() {
+//         int n;
+//         cin>>n;
+//      string s;
+//      cin>>s;
+//      int sum=0;
+//      int alt=0;
+//      vector<int>dp(3,0);
+//      for(int i=0;i<n;i++){
+//          char c=s[i];
+//          vector<int>temp(3,0);
+//          if(c=='0'){
+//              temp[0]=dp[1];
+//              temp[1]=dp[2];
+//              temp[2]=dp[0]+1;
+//          }else{
+//              temp[0]=dp[2];
+//              temp[1]=dp[0]+1;
+//              temp[2]=dp[1];
+//          }
+//          dp=temp;
+//          if(i&&s[i]!=s[i-1])alt++;
+//          else alt=1;
+//          sum+=dp[2]+dp[1]-(alt-1)/2;
+//      }
+//      cout<<sum<<'\n';
+//  }
+//      signed main() {
+//      ios::sync_with_stdio(false);
+//      cin.tie(nullptr);
+//      long long t;
+//      if (cin >> t) {
+//          while (t--) {
+//              solve();
+//          }
+//      }
+//      return 0;
+//  }
 
 // div 3 e 2227e
 // #include <bits/stdc++.h>
@@ -1581,7 +1500,7 @@ using namespace std;
 //     int sum=0;
 //     for(int i=n-2;i>=0;i--){
 //         sum+=v[i];
-//     }  
+//     }
 //     cout<<sum<<"\n";
 //     return ;
 //     }
@@ -1624,12 +1543,7 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
-
-
-// mex mistake 
+// mex mistake
 // #include <bits/stdc++.h>
 // #define int long long
 // using namespace std;
@@ -1678,10 +1592,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
-
 // // // 461
 // #include <bits/stdc++.h>
 // #define int long long
@@ -1727,8 +1637,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
 
 // exceptional segments
 // #include <bits/stdc++.h>
@@ -1814,65 +1722,61 @@ using namespace std;
 //     return 0;
 // }
 
+// alternating path
+//  beautiful verties
+//  #include <bits/stdc++.h>
+//  #define int long long
+//  #define endl "\n"
+//  using namespace std;
+//     void solve() {
+//      int n,m;
+//      cin>>n>>m;
+//      vector<int>vis(n,-1);
+//      vector<vector<int>>adj(n);
+//      for(int i=0;i<m;i++){
+//          int u,v;
+//          cin>>u>>v;
+//          u--;
+//          v--;
+//          adj[u].push_back(v);
+//          adj[v].push_back(u);
+//      }
+//      int cnt=0;
+//      for(int i=0;i<n;i++){
+//          if(vis[i]==-1){
+//          queue<int>q;
+//          q.push(i);
+//          vector<int>cn(2,0);
+//          vis[i]=0;
+//          int ok=1;
+//          while(!q.empty()){
+//              int t=q.front(); q.pop();
+//              cn[vis[t]]++;
+//              for(auto it:adj[t]){
+//                  if(vis[it]==vis[t]){ok=0;}
+//                  else if(vis[it]==-1) {
+//                      vis[it]=vis[t]^1;
+//                      q.push(it);
+//                  }
+//              }
+//          }
+//          if(ok)cnt+=max(cn[0],cn[1]);}
+//      }
+//      cout<<cnt<<endl;
+//  }
+//      signed main() {
+//      ios::sync_with_stdio(false);
+//      cin.tie(nullptr);
+//      long long t;
+//      if (cin >> t) {
+//          while (t--) {
+//              solve();
+//          }
+//      }
+//      return 0;
+//  }
 
-
-
-
-// #include <bits/stdc++.h>
-// #define int long long
-// #define endl "\n"
-// using namespace std;
-//    void solve() {
-//     int n,m;
-//     cin>>n>>m;
-//     vector<int>vis(n,-1);
-//     vector<vector<int>>adj(n);
-//     for(int i=0;i<m;i++){
-//         int u,v;
-//         cin>>u>>v;
-//         u--;
-//         v--;
-//         adj[u].push_back(v);
-//         adj[v].push_back(u);
-//     }
-//     int cnt=0;
-//     for(int i=0;i<n;i++){
-//         if(vis[i]==-1){
-//         queue<int>q;
-//         q.push(i);
-//         vector<int>cn(2,0);
-//         vis[i]=0;
-//         int ok=1;
-//         while(!q.empty()){
-//             int t=q.front(); q.pop();
-//             cn[vis[t]]++;
-//             for(auto it:adj[t]){
-//                 if(vis[it]==vis[t]){ok=0;}
-//                 else if(vis[it]==-1) {
-//                     vis[it]=vis[t]^1;
-//                     q.push(it);
-//                 }
-//             }
-//         }
-//         if(ok)cnt+=max(cn[0],cn[1]);}
-//     }
-//     cout<<cnt<<endl;
-// }
-//     signed main() {
-//     ios::sync_with_stdio(false);
-//     cin.tie(nullptr);
-//     long long t;
-//     if (cin >> t) {
-//         while (t--) {
-//             solve();
-//         }
-//     }
-//     return 0;
-// }
-
-
-
-//leetcode 1840 maximum height of buildings
+// leetcode 1840 maximum height of buildings
 
 // class Solution {
 // public:
@@ -1894,7 +1798,6 @@ using namespace std;
 //             r[i][1]=min(y2,y1+abs(x2-x1));
 //         }
 //         int ans=0;
-//         // r.push_back({n,n-1});
 //         for(int i=1;i<r.size();i++){
 //             int x1=r[i-1][0];
 //             int x2=r[i][0];
@@ -1903,56 +1806,894 @@ using namespace std;
 //             ans=max(ans,((y1+y2+x2-x1)>>1));
 //         }
 //         ans=max(ans,r[r.size()-1][1]-r[r.size()-1][0]+n);
-//         return ans;
+//         // last line is because if restriction array is empty then you we get  0-1+n = n-1 that is right ?
+// return ans;
 //     }
 // };
 
+// #include <bits/stdc++.h>
+// #define int long long
+// #define endl "\n"
+// using namespace std;
+//    void solve() {
+//     int n,k;
+//     cin>>n>>k;
+//     string a;
+//     string b;
+//     cin>>a;
+//     cin>>b;
+//     int a10=0;
+//     int a11=0;
+//     int b10=0;
+//     int b11=0;
+//     int ab1=0;
+//     int ab0=0;
+
+//     for(char i:a){if(i=='1')a11++; else a10++;}
+//     for(char i:b){if(i=='1')b11++; else b10++;}
+//     for(int i=0;i<n;i++){
+//         char t1=a[i];
+//         char t2=b[i];
+//         if(t1==t2)ab0++;
+//         else ab1++;
+//     }
+//     int po=(1<<k)+1;
+//     int cnt1=(a10*a11)*((po-1)/3 +1);
+//     int cnt2=(b10*b11)*((po-2)/3 +1);
+//     int cnt3=(ab0*ab1)*(po/3);
+//     cout<<cnt1+cnt2+cnt3<<endl;
+// }
+//     signed main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     long long t;
+//     if (cin >> t) {
+//         while (t--) {
+//             solve();
+//         }
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #define int long long
+// #define endl "\n"
+// using namespace std;
+//    void solve() {
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v){
+//         cin>>it;
+//     }
+//     vector<int>s(v.begin(),v.end());
+//     sort(s.begin(),s.end());
+//     int med=s[n/2];
+//     int cnt=0;
+//     vector<int>dp(n+1,-1e9);
+//     dp[0]=0;
+//     for(int i=1;i<=n;i++){
+//         int lt=0,gt=0,e=0;
+//         for(int j=i-1;j>=0;j--){
+//             if(v[j]==med)e++;
+//             else if(v[j]<med)lt++;
+//             else gt++;
+//             if((i-j)%2==0)continue;
+//             if(gt+e>lt&&lt+e>gt){
+//                 dp[i]=max(dp[i],dp[j]+1);
+//             }
+//         }
+//     }
+//     cout<<dp[n]<<endl;
+// }
+//     signed main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     long long t;
+//     if (cin >> t) {
+//         while (t--) {
+//             solve();
+//         }
+//     }
+//     return 0;
+// }
+
+
+//interactive one
+
+// #include <bits/stdc++.h>
+// #define int long long
+// // #define endl "\n"
+// using namespace std;
+//     signed main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     long long t;
+//     if (cin >> t) {
+//         while (t--) {
+//           int n;
+//     cin>>n;
+//     int done;
+//     for(int i=2*n-1;i>=1;i-=2){
+//         cout<<"? "<<i<<" "<<i+1<<endl;
+//         cin>>done;
+//         if(done){
+//             cout<<"! "<<i<<endl;
+//             break;
+//         }
+//     }
+//     if(done)continue;;
+//     cout<<"? 1 3"<<endl;
+//     cin>>done;
+//     if(done){
+//         cout<<"! 3"<<endl;
+//     }else cout<<"! 2"<<endl;
+//         }
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+// inline void solve(){
+//     int n;cin >> n;
+//     vector<vector<int>> v(n);
+//     for(int i = 0;i < n;i += 1){
+//         int m;cin >> m;
+//         vector<int> a(m);
+//         for(auto &x : a) cin >> x;
+//         reverse(a.begin(), a.end());
+//         set<int> st;
+//         for(auto &x : a){
+//             if(!st.contains(x)){
+//                 st.insert(x);
+//                 v[i].push_back(x);
+//             }
+//         }
+//     }
+//     vector<int> vis(n), ans;                     
+//     set<int> st;
+//     for(int k = 0; k < n;k += 1){
+//         int ind = -1;
+//         vector<int> best;
+//         for(int i = 0;i < n;i += 1){
+//             if(vis[i]) continue;
+//             vector<int> cur;
+//             for(auto &x : v[i]){
+//                 if(!st.contains(x)){
+//                     cur.push_back(x);}}
+//             if(ind == -1 || best > cur){
+//                 best = cur;
+//                 ind = i;
+//             }
+//         }
+//         if(ind != -1){
+//             vis[ind] = 1;
+//             for(auto &x : best){
+//                 ans.push_back(x);
+//                 st.insert(x);
+//             }
+//         }
+//     }
+//     for(auto &x : ans) cout << x << ' ';
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+// 5
+// 3
+// 5 1 2 3 4 6
+// 3 2 5 1
+// 4 1 9 2 3
+// 2
+// 2 1 6
+// 1 6
+// 1
+// 3 6 1 1
+// 5
+// 4 2 3 3 4
+// 5 1 2 4 3 1
+// 2 4 1
+// 3 3 3 1
+// 5 4 3 2 2 2
+// 5
+// 4 2 3 1 4
+// 5 2 5 5 6 5
+// 5 3 4 7 5 5
+// 8 3 6 4 3 1 1 5 4
+// 2 1 1
+// Output
+// 1 5 2 3 9 6 4
+// 6 1
+// 1 6
+// 1 3 2 4
+// 1 4 3 2 5 6 7
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+// void solve(){
+//     int a,b;
+//     cin>>a>>b;
+//     if(a>=b){cout<<"Alice\n"; return;}
+//     bool bb=0;
+//     bool aa=(min(a/2,b/3)>=(b-a));
+//     // cout<<a*1.0/b*1.0<<" ";
+//     // while(a){
+//     //     if(a==2){aa=1; break;}
+//     //     a/=2;
+//     // }
+//     // while(b){
+//     //     if(b==3){bb=1; break;}
+//     //     b/=2;
+//     // }
+    
+//     if(aa){cout<<"Bob\n";}else cout<<"Alice\n";
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         // cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+//math based relation pure
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     vector<int>ans(n);
+//     for(int i=1;i<n-1;i++){
+//         ans[i]=(v[i-1]+v[i+1]-2*v[i])>>1;
+//     }
+//     ans[n-1]=v[0];// diff process for last and first element
+//     for(int i=1;i<n-1;i++)ans[n-1]-=(i*ans[i]);
+//     ans[n-1]=ans[n-1]/(n-1);
+//     ans[0]=v[n-1];
+//     for(int i=1;i<n-1;i++)ans[0]-=((n-1-i)*ans[i]);
+//     ans[0]=ans[0]/(n-1);
+//     for(auto it:ans)cout<<it<<" ";
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// // informity minimiation string 
+// void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<vector<int>> v(n, vector<int>(26, 0));
+//     for(int i = 0; i < k; i++){
+//         string t;
+//         cin >> t;
+//         for(int j = 0; j < n; j++){
+//             v[j][t[j] - 'a'] = 1;
+//         }
+//     }
+//     for(int len = 1; len <= n; len++){
+//         if(n % len != 0) continue;   
+//         string pat = "";
+//         bool possi = true;
+//         for(int j = 0; j < len; j++){
+//             char match = '0';
+//             for(char c = 'a'; c <= 'z'; c++){
+//                 bool ok = 1;
+//                 for(int k = j; k < n; k += len){
+//                     if(v[k][c - 'a'] == 0){
+//                         ok = 0; 
+//                         break; // propageated effeect 
+//                     }
+//                 }
+//                 if(ok){
+//                     match = c; 
+//                     break; // propagated effect
+//                 }
+//             }
+//             if(match == '0'){
+//                 possi = false;
+//                 break; // final effect of innel loop
+//             }
+//             pat += match; // made result block
+//         }
+//         if(possi){
+//             string ans = "";
+//             for(int r = 0; r < n / len; r++){
+//                 ans += pat;
+//             }
+//             cout << ans;
+//             return;
+//         }
+//     }
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+// int prime(long long n) {
+//     vector<long long> factors;
+
+//     for (long long i = 2; i * i <= n; i++) {
+//         if (n % i == 0) {
+//             factors.push_back(i);
+//             while (n % i == 0) n /= i;
+//         }
+//     }
+//     if(n>1)factors.push_back(n);
+//     if(factors.size()==0)return 1;
+//     return factors.size()>1?-1:factors[0];
+// }
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     int b=0;
+//     int one=0;
+//     for(int i=0;i<n-1;i++){
+//         if(v[i]>v[i+1]){if(v[i+1]==1)one=1;
+//             b=1;}
+//     }
+//     if(one==1){cout<<"Alice"; return;}
+//     if(b==0){cout<<"Bob"; return;}
+//     vector<int>p(n);
+//     for(int i=0;i<n;i++)p[i]=prime(v[i]);
+//     b=0;
+//     for(int i=0;i<n-1;i++){
+//         if(p[i]>p[i+1]){
+//             b=1;}
+//       if(p[i]==-1||p[i+1]==-1){cout<<"Alice"; return;}
+//           }
+//     if(b==0){
+//     cout<<"Bob"; return;}
+//     cout<<"Alice";
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int inf = 1e15;
+// const int mod =1e9+7;
+// void dfs(int &t,int u,vector<vector<int>>&adj){
+//     t++;
+//     for(auto it:adj[u]){
+//         dfs(t,it,adj);
+//     }
+//     t++;
+// }
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<vector<int>>adj(n+1);
+//     adj[0].push_back(1);
+//     unordered_map<int,int>par;
+//     for(int i=1;i<=n;i++){
+//         int left; cin>>left;
+//         int right; cin>>right;
+//         if(left==0)continue;
+//         adj[i].push_back(left);
+//         adj[i].push_back(right);
+//         par[right]=i;
+//         par[left]=i;
+//     }
+//     vector<int>ans(n+1,-1);
+//     ans[0]=0;
+//     queue<int>q;
+//     q.push(1);
+//     while(!q.empty()){
+//         int t=0;
+//         auto it=q.front();
+//         dfs(t,it,adj);
+//         ans[it]+=t;
+//         for(auto v:adj[it]){
+//             ans[v]+=ans[it];
+//             q.push(v);
+//         }
+//         q.pop();
+//     }
+//     for(int i=1;i<=n;i++){cout<<ans[i]<<' ';}
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
 
 
 
 
 
-#include <bits/stdc++.h>
-#define int long long
-#define endl "\n"
-using namespace std;
-   void solve() {
-    int n,k;
-    cin>>n>>k;
-    string a;
-    string b;
-    cin>>a;
-    cin>>b;
-    int a10=0;
-    int a11=0;
-    int b10=0;
-    int b11=0;
-    int ab1=0;
-    int ab0=0;
 
-    for(char i:a){if(i=='1')a11++; else a10++;}
-    for(char i:b){if(i=='1')b11++; else b10++;}
-    for(int i=0;i<n;i++){
-        char t1=a[i];
-        char t2=b[i];
-        if(t1==t2)ab0++;
-        else ab1++;
-    }
-    int po=(1<<k)+1;
-    int cnt1=(a10*a11)*((po-1)/3 +1);
-    int cnt2=(b10*b11)*((po-2)/3 +1);
-    int cnt3=(ab0*ab1)*(po/3);
-    cout<<cnt1+cnt2+cnt3<<endl;
-}
-    signed main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    long long t;
-    if (cin >> t) {
-        while (t--) {
-            solve();
-        }
-    }
-    return 0;
-}
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// #define int long long
+// const int MOD = 1e9+7;
+// void solve() {
+//     int n;
+//     cin >> n;
+//     vector<vector<int>> adj(n + 1);
+//     vector<int> par(n + 1, -1);
+//     for(int i = 1; i <= n; ++i) {
+//         int l, r;
+//         cin >> l >> r;
+//         if(l) {
+//             adj[i].push_back(l);
+//             adj[i].push_back(r);
+//             par[l] = par[r] = i;
+//         }
+//     }
+//     vector<int> f(n + 1), ans(n + 1);
+//     function<void(int)> dfs1 = [&](int u) {
+//         if(adj[u].empty()) {
+//             f[u] = 1;
+//             return;
+//         }
+//         int l = adj[u][0];
+//         int r = adj[u][1];
+//         dfs1(l);
+//         dfs1(r);
+//         f[u] = (f[l] + f[r] + 3) % MOD;// 1 for par to above , 2 for both child to till me 
+//     };
+//     dfs1(1);
+//     function<void(int)> dfs2 = [&](int u) {
+//         for(int v : adj[u]) {
+//             ans[v] = (ans[u] + f[v]) % MOD;
+//             dfs2(v);
+//         }
+//     };
+//     ans[1] = f[1];
+//     dfs2(1);
+//     for(int i = 1; i <= n; ++i)
+//         cout << ans[i] << ' ';
+//     cout << '\n';
+// }
+
+// int32_t main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int T;
+//     cin >> T;
+//     while(T--) solve();
+// }
+
+
+// class Solution {
+// public:
+//     const int mod=1e9+7;
+//     int zigZagArrays(int n, int l, int r) {
+//         int m=r-l+1;
+//         int t[2001][2001][2];
+//         memset(t, 0, sizeof(t));
+//         for(int i=1;i<=m;i++){
+//             t[n][i][0]=1;
+//             t[n][i][1]=1;
+//         }
+//         for(int i=n-1;i>=0;i--){
+//             vector<int>cumi(m+1,0);
+//             vector<int>cumd(m+1,0);
+//             for(int prev=1;prev<=m;prev++){
+//                 cumi[prev]+=cumi[prev-1]+t[i+1][prev][0];
+//                 cumd[prev]+=cumd[prev-1]+t[i+1][prev][1];
+//             }
+//             for(int prev=1;prev<=m;prev++){
+//                     t[i][prev][1]=cumi[m]-cumi[prev];
+//                     t[i][prev][0]=cumd[prev-1];
+//             }
+//         }
+//         int res=0;
+//         for(int r=1;r<=m;r++){
+//             res=res+t[1][r][0];
+//             res=res+t[1][r][1];
+//         }
+//         return res;
+//     }
+// };
+
+// int main(){
+//     Solution s;
+//    cout<<s.zigZagArrays(3,2,4);
+// }
+
+
+
+// Example
+// InputCopy
+// 6
+// 8
+// 3 2 2 3 7 3 6 7
+// 5
+// 1 2 3 4 5
+// 3
+// 1 1 1
+// 10
+// 2 1 2 1 3 5 5 7 7 7
+// 4
+// 1 1 2 2
+// 1
+// 1
+// OutputCopy
+// -1 1 1 2 -1 1 1 3
+// 1 1 1 1 1
+// 1 -1 -1
+// 1 1 1 2 1 2 1 3 2 2
+// 1 1 -1 2
+// 1
+
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>dp(n+1,inf);
+//     for(int i=1;i<=n;i++){
+//         int c;
+//         cin>>c;
+//         dp[c]=1;
+//     }
+//     for(int i=1;i<=n;i++){
+//         for(int j=i;j<=n;j+=i){
+//             dp[j]=min(dp[j],dp[i]+dp[j/i]);// i will try from priority queue because ther can be intitution 
+//         }
+//     }
+//     for(int i=1;i<=n;i++){
+//         if(dp[i]==inf)cout<<-1<<" "; else cout<<dp[i]<<" ";
+//     }
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+
+// void solve(){
+//     int n,h,k;
+//     cin>>n>>h>>k;
+//     vector<int>hea(n);
+//     int sum=0;
+//     for(int i=0;i<n;i++){cin>>hea[i]; sum+=hea[i];}
+//     int di=h/sum;
+//     int cnt=(di)*(n+k);
+//     h=h%sum;
+//     if(h==0){cout<<cnt-k; return;}
+//     vector<int>premins(n+1,1e9);
+//     premins[1]=hea[0];
+//     for(int i=2;i<=n;i++)premins[i]=min(premins[i-1],hea[i-1]);
+//     vector<int>sufmaxs(n+2,0);
+//     sufmaxs[n]=hea[n-1];
+//     for(int i=n-1;i>=1;i--){sufmaxs[i]=max(sufmaxs[i+1],hea[i-1]);}
+//     int t=0;
+//     for(int i=1;i<=n;i++){
+//         t+=hea[i-1];
+//         int m=t;
+//         if(i<n){
+//             int p=sufmaxs[i+1]-premins[i];
+//             m+=max(0LL,p);
+//         }
+//         if(m>=h){cout<<i+cnt; return ;}
+//     }
+//     cout<<cnt;
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// const int N = 1e6 + 10;
+// const int inf = 1e15;
+// const int mod = 998244353;
+
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> a(n);
+//     vector<int> b(n);
+//     vector<int> c(n);
+//     for (auto &it : a)
+//         cin >> it;
+//     for (auto &it : b)
+//         cin >> it;
+//     for (auto &it : c)
+//         cin >> it;
+//     int cnt = 0;
+    
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             if (a[i] >= b[j]) continue;
+//             for (int k = 0; k < n; k++)
+//             {
+//                 if (b[j] < c[k])
+//                 {
+//                     int steps = 0;
+//                     int i1 = i, j1 = j, k1 = k;
+//                     do
+//                     {
+//                         i1 = (i1 + 1) % n;
+//                         j1 = (j1 + 1) % n;
+//                         k1 = (k1 + 1) % n;
+//                         steps++;
+//                         if (!(a[i1] < b[j1] && b[j1] < c[k1])) break;
+//                     } while (steps < n);
+                    
+//                     if (steps == n)
+//                         cnt++;
+//                 }
+//             }
+//         }
+//     }
+//     cout << cnt;
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// #pragma GCC optimize("O3")
+// using namespace std;
+// #define int long long
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> a(n), b(n), c(n);
+//     for (auto &it : a) cin >> it;
+//     for (auto &it : b) cin >> it;
+//     for (auto &it : c) cin >> it;
+//     int valid_x = 0;
+//     for (int x = 0; x < n; x++) {
+//         bool ok = true;
+//         for (int p = 0; p < n; p++) {
+//             if (a[p] >= b[(p + x) % n]) {
+//                 ok = false;
+//                 break;
+//             }
+//         }
+//         if (ok) valid_x++;
+//     }
+//     int valid_y = 0;
+//     for (int y = 0; y < n; y++) {
+//         bool ok = true;
+//         for (int q = 0; q < n; q++) {
+//             if (b[q] >= c[(q + y) % n]) {
+//                 ok = false;
+//                 break;
+//             }
+//         }
+//         if (ok) valid_y++;
+//     }
+//     int ans = valid_x * valid_y * n;
+//     // because ai<bi for one combination and there exits validy no of  bi<ci so in totel both are multiplited anf
+//     // n are no of ways of i in a1,a2 a3 a4 ,t his is waht i understood
+
+//     cout << ans;
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+// odd process 1070 c
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define  print  cout<<
+// #define vvi vector<vector<int>>
+// #define vi vector<int>
+// #define pi pair<int,int>
+// #define int long long
+// #define  vvpi vector<vector<pair<int,int>>>
+// void solve()
+// {
+//    int n;
+//    cin>>n;
+//    vi ve;
+//    vi vo;
+//    int sum=0;
+//    for(int i=0;i<n;i++){
+//     int x;
+//     cin>>x;
+//     sum+=x;
+//     if(x&1)vo.push_back(x);
+//     else ve.push_back(x);
+//    }
+//    sort(ve.begin(),ve.end());
+//    sort(vo.begin(),vo.end());
+//    if(ve.size()==n){
+//     for(int i=1;i<=n;i++){cout<<0<<' ';}
+//     return;
+//    }
+//    if(vo.size()==n){
+//     for(int i=1;i<=n;i++){
+//         if(i&1)cout<<vo.back()<<" ";
+//         else cout<<0<<" ";
+//     }
+//     return ;
+//    }
+//    vi  ans(n+1);
+//    ans[1]=vo.back();
+//    for(int k=2;k<=n;k++){
+//     if(ve.size()==0)ans[k]=ans[k-2];
+//     else {ans[k]=ans[k-1]+ve.back(); ve.pop_back(); }
+//    }
+
+//    if(sum%2==0)ans[n]=0;
+//    for(int i=1;i<=n;i++)cout<<ans[i]<<' ';
+// }
+
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+
 

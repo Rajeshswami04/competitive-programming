@@ -154,9 +154,37 @@ using namespace std;
 //     cout << total_weight << endl;
 // }
 
+// graph coloring problem
+// vector<int>vis;
+// int cnt1=0;
+// int cnt2=0;
+// bool dfs(int c,int i, int p,vector<vector<int>>&adj){
+//     vis[i]=c;
+//     cnt1+=(c==0);
+//     cnt2+=(c==1);
+//     for(auto it:adj[i]){
+//         if(it!=p){
+//             if(vis[it]==c)return 0;
+//             if(vis[it]==-1){
+//             if(dfs(c^1,it,i,adj)==0)return 0;
+//         }
+//     }
+//     }
+//     return 1;
+// }
+// int main(){
+//     int n;
+//     cin>>n;
+//     vector<vector<int>>a={{1,2,4,5},{0,3},{0},{1,4},{0,3},{0}};
+//     vis.assign(n,-1);
+//     dfs(0,0,-1,a);
+//     cout<<max(cnt1,cnt2);
+// }
 
-
-
+// you are given map of a colony , some houses know each other, whenever there is thieft they inform all their neighbours , 
+// a thief want to take maximum gold from colony in one night, neighbours are given by array neighbours , total houses are given by n , '
+// and gold in each house given by goldi array,
+// plan max benifit as a branded thief.
 
 
 
@@ -255,3 +283,5 @@ using namespace std;
 //         return ans;
 //     }
 // };
+
+

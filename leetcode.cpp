@@ -684,34 +684,204 @@ using namespace std;
 //         string s=sortVowels("baeiou");
 //         cout<<s;
 //     } 
-bool check(int i,vector<int>&nums){
-        int maxi=0; bool b=0;
-        for(int j=0;j<i;j++){
-            maxi=max(nums[j],maxi);
-            if(maxi>=nums[i]){b=1; break;}
-        }
-        if(b==0)return 1;
-        if(b==1){
-            b=0;
-            maxi=0;
-            for(int j=nums.size()-1;j>i;j--){
-                maxi=max(maxi,nums[j]);
-                if(nums[i]<=maxi){b=1; break;}
-            }
-        }
-        if(b==1)return 0;
-        return 1;
-    }
-    vector<int> findValidElements(vector<int> nums) {
-        vector<int>ans;
-        int n=nums.size();
-        if(n==1)return nums;
-        for(int i=0;i<n;i++){
-            if(check(i,nums)){ans.push_back(nums[i]);}
-        }
-        return ans;
-    }
-    int main(){
-        vector<int>a=findValidElements({1,2,4,2,3,2});
-        for(auto it:a){cout<<it<<" ";}
-    }
+// bool check(int i,vector<int>&nums){
+//         int maxi=0; bool b=0;
+//         for(int j=0;j<i;j++){
+//             maxi=max(nums[j],maxi);
+//             if(maxi>=nums[i]){b=1; break;}
+//         }
+//         if(b==0)return 1;
+//         if(b==1){
+//             b=0;
+//             maxi=0;
+//             for(int j=nums.size()-1;j>i;j--){
+//                 maxi=max(maxi,nums[j]);
+//                 if(nums[i]<=maxi){b=1; break;}
+//             }
+//         }
+//         if(b==1)return 0;
+//         return 1;
+//     }
+//     vector<int> findValidElements(vector<int> nums) {
+//         vector<int>ans;
+//         int n=nums.size();
+//         if(n==1)return nums;
+//         for(int i=0;i<n;i++){
+//             if(check(i,nums)){ans.push_back(nums[i]);}
+//         }
+//         return ans;
+//     }
+//     int main(){
+//         vector<int>a=findValidElements({1,2,4,2,3,2});
+//         for(auto it:a){cout<<it<<" ";}
+//     }
+
+// hard 3699
+
+// class Solution {
+// public:
+//     const int mod=1e9+7;
+//     int zigZagArrays(int n, int l, int r) {
+//         int m=r-l+1;
+//         vector<int>dp(m,1);
+//         for(int i=2;i<=n;i++){
+//             reverse(dp.begin(),dp.end());
+//             int sum=0;
+//             for(auto &it:dp){
+//                 sum=(sum+exchange(it,sum))%mod;
+//             }
+//         }
+//         int t=0;
+//         for(int i:dp){
+//             t=(t+i)%mod;
+//         }
+//         return (t<<1)%mod;
+//     }
+// };
+
+
+// good point to notice here find a number in set between numsi-valdiff,numsi+valdiff
+// that why put a lower bound search on numbi-diff , ensure it is le to numsi+valdiff
+//hehe return answer now
+//220
+// bool containsNearbyAlmostDuplicate(vector<int>& nums, int indexDiff, int valueDiff) {
+//       int n=nums.size();
+//       set<int>st;
+//       for(int i=0;i<n;i++){
+//         auto it=st.lower_bound(nums[i]-valueDiff);
+//         if(it!=st.end()&&(*it<=nums[i]+valueDiff))return 1;
+//         st.insert(nums[i]);
+//         if(i>=indexDiff){
+//             st.erase(nums[i-indexDiff]);
+//         }
+//       }  
+//       return  0;
+//     }
+
+//835 leetcode googli
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define  print  cout<<
+// #define vvi vector<vector<int>>
+// #define vi vector<int>
+// #define pi pair<int,int>
+// #define  vvpi vector<vector<pair<int,int>>>
+// int maxoverloaps(vvi&a,vvi&b)
+// {
+//     int n=a.size();
+//     int ans=0;
+//     for(int xoff=1-n;xoff<n;xoff++){
+//         for(int yoff=1-n;yoff<n;yoff++){
+//             int cnt=0;
+//             for(int i=0;i<n;i++){
+//                 for(int j=0;j<n;j++){
+//                     if(i+xoff<0||j+yoff<0||i+xoff>=n||j+yoff>=n)continue;
+//                     cnt+=(a[i][j]*b[i+xoff][j+yoff]);
+//                 }
+//             }
+//             ans=max(ans,cnt);
+//         }
+//     }
+//     return ans;
+// }
+// int main(){
+//     vvi a={{1,1,0},{0,0,1},{1,0,1}};
+//     vvi b={{0,0,0},{1,1,0},{0,0,1}};
+//     cout<<maxoverloaps(a,b);
+// }
+
+
+
+// class Solution {
+// public:
+//     long long countMajoritySubarrays(vector<int>& nums, int target) {
+//         unordered_map<int,int>mp;
+//         int currsum=0;
+//         int validleft=0;
+//         int res=0;
+//         mp[0]++;
+//         for(int i:nums){
+//             if(i==target){
+//                 validleft+=mp[currsum];
+//                 currsum++;
+//             }else{
+//                 currsum--;
+//                 validleft-=mp[currsum];
+//             }
+//             mp[currsum]++;
+//             res+=validleft;
+//         }
+//         return res;
+//     }
+// };
+
+
+#include<bits/stdc++.h>
+using namespace std;
+// vector<string>ans;
+//     int n; int t;
+//     void solve(int i,int cnt,int prev,string s){
+//         if(i==n){ans.push_back(s); return;}
+//         if(prev==1){
+//             s+='0';
+//             solve(i+1,cnt,0,s);
+//             s.pop_back();
+//             }
+//         else{
+//            s+='0';
+//             solve(i+1,cnt,0,s);
+//             s.pop_back();
+//             if(cnt+i<=t){
+//                 s+='1';
+//                 solve(i+1,cnt+i,1,s);
+//                 s.pop_back();
+//             }
+//         }
+//     }
+//     void generateValidStrings(int p, int k) {
+//         t=k;
+//         n=p;
+//         string s="";
+//         solve(0,0,-1,s);
+//         for(auto it:ans)cout<<it<<" ";
+//     }
+
+
+
+// 1293. Shortest Path in a Grid with Obstacles Elimination
+// #define vvi vector<vector<int>>
+// #define vi vector<int>
+// #define pi pair<int,int>
+// // #define int long long
+// #define  vvpi vector<vector<pair<int,int>>>
+// class Solution {
+// public:
+//     int shortestPath(vector<vector<int>>& grid, int k) {
+//        priority_queue<vi,vector<vi>,greater<vi>>pq;
+//        pq.push({0,0,0,k});
+//        vvi dir={{0,1},{1,0},{-1,0},{0,-1}};
+//        int m=grid.size();
+//        int n=grid[0].size();
+//        vector<vector<vector<int>>>vis(m,vvi(n,vi(k+1,1e9)));
+//        vis[0][0][k]=0;
+//        while(!pq.empty()){
+//         auto it=pq.top(); pq.pop();
+//         int x=it[1];
+//         int y=it[2]; int st=it[0]; int kk=it[3];
+//        if (x == m - 1 && y == n - 1) return st;
+//         for(auto d:dir){
+//             int i=x+d[0]; int j=y+d[1];
+//             if(i>=0&&j>=0&&i<m&&j<n){
+//                 int nk=kk-grid[i][j];
+//                 if(nk>=0){
+//                 if(st+1<vis[i][j][nk]){
+//                     pq.push({st+1,i,j,nk});vis[i][j][nk]=st+1; }
+//                 }
+//                 }
+//             }
+//         }
+       
+//         return -1;
+//     }
+// };
