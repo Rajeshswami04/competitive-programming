@@ -1547,45 +1547,59 @@ using namespace std;
 // #include <bits/stdc++.h>
 // #define int long long
 // using namespace std;
-//    void solve() {
+// void solve()
+// {
 //     int n;
-//     cin>>n;
-//     vector<int>v;
-//     map<int,int>mp;
-//     for(int i=0;i<n;i++){
+//     cin >> n;
+//     vector<int> v;
+//     map<int, int> mp;
+//     for (int i = 0; i < n; i++)
+//     {
 //         int c;
-//         cin>>c;
-//         mp[c]++;}
+//         cin >> c;
+//         mp[c]++;
+//     }
 //     v.push_back(prev(mp.end())->first);
-//   mp[prev(mp.end())->first]--;
-//     for (auto &it : mp) {
-//         if(it.second > 0){
-//         v.push_back(it.first);
-//         it.second--;}
+//     mp[prev(mp.end())->first]--;
+//     for (auto &it : mp)
+//     {
+//         if (it.second > 0)
+//         {
+//             v.push_back(it.first);
+//             it.second--;
+//         }
 //     }
-//     for (auto &it : mp) {
-//     while (it.second > 0) {
-//         v.push_back(it.first);
-//         it.second--;}
+//     for (auto &it : mp)
+//     {
+//         while (it.second > 0)
+//         {
+//             v.push_back(it.first);
+//             it.second--;
+//         }
 //     }
-//     int sum=0;
-//     int prevmax=0;
-//     int cnt=0;
-//     unordered_map<int,int>freq;
-// for (int i = 0; i < n; i++) {
-//     freq[v[i]]++;
-//     while (freq.count(cnt)) cnt++;
-//     prevmax = max(prevmax, v[i]);
-//     sum += prevmax + cnt;
+//     int sum = 0;
+//     int prevmax = 0;
+//     int cnt = 0;
+//     unordered_map<int, int> freq;
+//     for (int i = 0; i < n; i++)
+//     {
+//         freq[v[i]]++;
+//         while (freq.count(cnt))
+//             cnt++;
+//         prevmax = max(prevmax, v[i]);
+//         sum += prevmax + cnt;
+//     }
+//     cout << sum << '\n';
 // }
-//     cout<<sum<<'\n';
-// }
-//     signed main() {
+// signed main()
+// {
 //     ios::sync_with_stdio(false);
 //     cin.tie(nullptr);
 //     long long t;
-//     if (cin >> t) {
-//         while (t--) {
+//     if (cin >> t)
+//     {
+//         while (t--)
+//         {
 //             solve();
 //         }
 //     }
@@ -1724,6 +1738,7 @@ using namespace std;
 
 // alternating path
 //  beautiful verties
+// it is matching related problem of graph coloring version
 //  #include <bits/stdc++.h>
 //  #define int long long
 //  #define endl "\n"
@@ -1898,8 +1913,7 @@ using namespace std;
 //     return 0;
 // }
 
-
-//interactive one
+// interactive one
 
 // #include <bits/stdc++.h>
 // #define int long long
@@ -1956,7 +1970,7 @@ using namespace std;
 //             }
 //         }
 //     }
-//     vector<int> vis(n), ans;                     
+//     vector<int> vis(n), ans;
 //     set<int> st;
 //     for(int k = 0; k < n;k += 1){
 //         int ind = -1;
@@ -2022,7 +2036,6 @@ using namespace std;
 // 1 3 2 4
 // 1 4 3 2 5 6 7
 
-
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
 // using namespace std;
@@ -2045,7 +2058,7 @@ using namespace std;
 //     //     if(b==3){bb=1; break;}
 //     //     b/=2;
 //     // }
-    
+
 //     if(aa){cout<<"Bob\n";}else cout<<"Alice\n";
 // }
 
@@ -2062,32 +2075,31 @@ using namespace std;
 //     return 0;
 // }
 
-
-//math based relation pure
-// #include <bits/stdc++.h>
-// #pragma GCC optimize("O3")
-// using namespace std;
-// #define int long long
-// const int N = 1e6 + 10;
-// const int inf = 1e15;
-// const int mod = 998244353;
-// void solve(){
-//     int n;
-//     cin>>n;
-//     vector<int>v(n);
-//     for(auto &it:v)cin>>it;
-//     vector<int>ans(n);
-//     for(int i=1;i<n-1;i++){
-//         ans[i]=(v[i-1]+v[i+1]-2*v[i])>>1;
-//     }
-//     ans[n-1]=v[0];// diff process for last and first element
-//     for(int i=1;i<n-1;i++)ans[n-1]-=(i*ans[i]);
-//     ans[n-1]=ans[n-1]/(n-1);
-//     ans[0]=v[n-1];
-//     for(int i=1;i<n-1;i++)ans[0]-=((n-1-i)*ans[i]);
-//     ans[0]=ans[0]/(n-1);
-//     for(auto it:ans)cout<<it<<" ";
-// }
+// math based relation pure
+//  #include <bits/stdc++.h>
+//  #pragma GCC optimize("O3")
+//  using namespace std;
+//  #define int long long
+//  const int N = 1e6 + 10;
+//  const int inf = 1e15;
+//  const int mod = 998244353;
+//  void solve(){
+//      int n;
+//      cin>>n;
+//      vector<int>v(n);
+//      for(auto &it:v)cin>>it;
+//      vector<int>ans(n);
+//      for(int i=1;i<n-1;i++){
+//          ans[i]=(v[i-1]+v[i+1]-2*v[i])>>1;
+//      }
+//      ans[n-1]=v[0];// diff process for last and first element
+//      for(int i=1;i<n-1;i++)ans[n-1]-=(i*ans[i]);
+//      ans[n-1]=ans[n-1]/(n-1);
+//      ans[0]=v[n-1];
+//      for(int i=1;i<n-1;i++)ans[0]-=((n-1-i)*ans[i]);
+//      ans[0]=ans[0]/(n-1);
+//      for(auto it:ans)cout<<it<<" ";
+//  }
 
 // int32_t main(){
 //     ios_base::sync_with_stdio(false);
@@ -2102,12 +2114,11 @@ using namespace std;
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
 // using namespace std;
 // #define int long long
-// // informity minimiation string 
+// // informity minimiation string
 // void solve(){
 //     int n, k;
 //     cin >> n >> k;
@@ -2120,21 +2131,21 @@ using namespace std;
 //         }
 //     }
 //     for(int len = 1; len <= n; len++){
-//         if(n % len != 0) continue;   
+//         if(n % len != 0) continue;
 //         string pat = "";
 //         bool possi = true;
-//         for(int j = 0; j < len; j++){
+//         for(int j = 0; j < len; j++){ // it is trying to match like a is exits for all next patterns a..a..a for whole pattern weather it is abc
 //             char match = '0';
 //             for(char c = 'a'; c <= 'z'; c++){
 //                 bool ok = 1;
 //                 for(int k = j; k < n; k += len){
 //                     if(v[k][c - 'a'] == 0){
-//                         ok = 0; 
-//                         break; // propageated effeect 
+//                         ok = 0;
+//                         break; // propageated effeect
 //                     }
 //                 }
 //                 if(ok){
-//                     match = c; 
+//                     match = c;
 //                     break; // propagated effect
 //                 }
 //             }
@@ -2167,8 +2178,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
@@ -2229,9 +2238,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
 // using namespace std;
@@ -2291,12 +2297,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
-
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 
@@ -2326,7 +2326,7 @@ using namespace std;
 //         int r = adj[u][1];
 //         dfs1(l);
 //         dfs1(r);
-//         f[u] = (f[l] + f[r] + 3) % MOD;// 1 for par to above , 2 for both child to till me 
+//         f[u] = (f[l] + f[r] + 3) % MOD;// 3 for par and two childs to above
 //     };
 //     dfs1(1);
 //     function<void(int)> dfs2 = [&](int u) {
@@ -2350,7 +2350,6 @@ using namespace std;
 //     cin >> T;
 //     while(T--) solve();
 // }
-
 
 // class Solution {
 // public:
@@ -2389,8 +2388,6 @@ using namespace std;
 //    cout<<s.zigZagArrays(3,2,4);
 // }
 
-
-
 // Example
 // InputCopy
 // 6
@@ -2414,8 +2411,6 @@ using namespace std;
 // 1 1 -1 2
 // 1
 
-
-
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
 // using namespace std;
@@ -2435,7 +2430,7 @@ using namespace std;
 //     }
 //     for(int i=1;i<=n;i++){
 //         for(int j=i;j<=n;j+=i){
-//             dp[j]=min(dp[j],dp[i]+dp[j/i]);// i will try from priority queue because ther can be intitution 
+//             dp[j]=min(dp[j],dp[i]+dp[j/i]);// i will try from priority queue because ther can be intitution
 //         }
 //     }
 //     for(int i=1;i<=n;i++){
@@ -2455,9 +2450,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
-
 
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
@@ -2509,10 +2501,6 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
-
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
 // using namespace std;
@@ -2535,7 +2523,7 @@ using namespace std;
 //     for (auto &it : c)
 //         cin >> it;
 //     int cnt = 0;
-    
+
 //     for (int i = 0; i < n; i++)
 //     {
 //         for (int j = 0; j < n; j++)
@@ -2555,7 +2543,7 @@ using namespace std;
 //                         steps++;
 //                         if (!(a[i1] < b[j1] && b[j1] < c[k1])) break;
 //                     } while (steps < n);
-                    
+
 //                     if (steps == n)
 //                         cnt++;
 //                 }
@@ -2576,8 +2564,6 @@ using namespace std;
 //     }
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // #pragma GCC optimize("O3")
@@ -2693,7 +2679,8 @@ using namespace std;
 //     return 0;
 // }
 
-
-
-
-
+//  there can be second problem of it in which we cat empty if sum is odd , in that version if all odd then 0 else all even then sum of k elements
+// else if even is empty then put k-1 value, because one odd can be put and empty by cat ,
+//  1 3 4 6 =>ans will be 6 10 10 10
+// 2 4 6 => ans will be 6 10 12
+// 1 3 5 =>ans will be 0 0 0 hehe

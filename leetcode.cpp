@@ -433,7 +433,6 @@ using namespace std;
 //             }
 //             return true;
 //         };
-
 //         for (int i = 0; i < n; i++) {
 //             for (int j = i + 1; j < n; j++) {
 //                 int len = j - i + 1;
@@ -758,8 +757,7 @@ using namespace std;
 //       return  0;
 //     }
 
-//835 leetcode googli
-
+// //835 leetcode googli
 // #include<bits/stdc++.h>
 // using namespace std;
 // #define  print  cout<<
@@ -791,8 +789,6 @@ using namespace std;
 //     cout<<maxoverloaps(a,b);
 // }
 
-
-
 // class Solution {
 // public:
 //     long long countMajoritySubarrays(vector<int>& nums, int target) {
@@ -817,8 +813,8 @@ using namespace std;
 // };
 
 
-#include<bits/stdc++.h>
-using namespace std;
+// #include<bits/stdc++.h>
+// using namespace std;
 // vector<string>ans;
 //     int n; int t;
 //     void solve(int i,int cnt,int prev,string s){
@@ -885,3 +881,31 @@ using namespace std;
 //         return -1;
 //     }
 // };
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+//     vector<int> largestsubarrayDivByK(vector<int>& nums, int k) {
+//     unordered_map<int,int>mp;
+//     int cnt=0;
+//     int n=nums.size();
+//     int sum=0;
+//     int len=0;
+//     int x,y=-1;
+//     mp[0]=-1;
+//     for(int i=0;i<n;i++){
+//         sum+=nums[i];
+//         int mod = (sum % k + k) % k;
+//         if(mp.count(mod)){if(i-mp[mod]>len){len=i-mp[mod]; x=1+mp[mod]; y=i;}}
+//         else mp[mod]=i;
+//     }    
+//     cout<<len<<"\n";
+//     return  {x,y};
+//     }
+//     int main(){
+//         vector<int>nums={-3,-2,-1,3,2};
+//         vector<int>ans=largestsubarrayDivByK(nums,3);
+//         cout<<ans[0]<<" "<<ans[1];
+//     }
