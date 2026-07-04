@@ -874,6 +874,8 @@
 // }
 
 
+// inversion problem
+// alice starts first and erases as many as inversion subseq,cont this
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -916,51 +918,6 @@
 //     }
 //     return 0;
 // }
-
-
-
-
-// // #include <bits/stdc++.h>
-// // using namespace std;
-// // using ll = long long;
-// // int main() {
-// 	ios_base::sync_with_stdio(false); cin.tie(0);
-// 	int tc; cin >> tc;
-// 	while(tc--) {
-// 		int n; cin >> n;
-// 		vector<vector<int>> a(2, vector<int>(n));
-// 		for(auto &aa : a) for(auto &x : aa) cin >> x;
-// 		vector<int> suf_mx = a[1], suf_mn = a[1];
-// 		for(int j = n-2; j >= 0; j--) {
-// 			suf_mn[j] = min(suf_mn[j], suf_mn[j+1]);
-// 			suf_mx[j] = max(suf_mx[j], suf_mx[j+1]);
-// 		}
-// 		vector<int> anss(2*n, 2*n);
-// 		int pref_mn = a[0][0], pref_mx = a[0][0];
-// 		for(int j = 0; j < n; j++) {
-// 			pref_mn = min(pref_mn, a[0][j]);
-// 			pref_mx = max(pref_mx, a[0][j]);
-// 			int mn = min(pref_mn, suf_mn[j]);
-// 			int mx = max(pref_mx, suf_mx[j]);
-// 			// [l, r] = [mn, mx]
-// 			anss[mn-1] = min(anss[mn-1], mx-1);
-// 		}
-
-// 		for(int i = 2*n - 2; i >= 0; i--) {
-// 			anss[i] = min(anss[i], anss[i+1]); 
-// 		}
-
-// 		ll ans = 0;
-// 		for(auto x : anss) ans += (2*n - x);
-
-// 		cout << ans << "\n";
-// 	}
-
-// 	return 0;
-// }
-
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1020,4 +977,296 @@
 // }
 
 
+
+// // https://leetcode.com/problems/range-sum-query-2d-immutable/description/?envType=problem-list-v2&envId=prefix-sum
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define print cout <<
+// #define vvi vector<vector<int>>
+// #define vi vector<int>
+// #define pi pair<int, int>
+// #define int long long
+// #define vvpi vector<vector<pair<int, int>>>
+// void solve(){
+//     int n;
+//     cin>>n;
+//     int cnt=0;
+//     while(n){
+//         cnt+=(n&1);
+//         n>>=1;
+//     }
+//     if(cnt&1){
+//         print "NO";
+//     }else{
+//     cout<<"YES";}
+// }
+// // n=x^(reverse(x));
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define ll long long
+// #define ff first
+// #define ss second
+// #define endl '\n'
+// const ll inf = 4e18;
+// const ll minf = - 4e18;
+// const ll mod = 1e9 +7;
+// const ll N = 1e6 + 10;
+// const ll weird_mod = 998244353;
+// const vector<ll> dz = {0, 0, 0, 0, 1, -1};
+// const vector<ll> dx = {1, 0, -1, 0, 0, 0};
+// const vector<ll> dy = {0, 1, 0, -1, 0, 0};
+
+// void solve(){
+//     ll n, m; cin >> n >> m;
+//     multiset <ll> swr;
+//     for(ll i = 0; i < n; i++){
+//         ll x; cin >> x;
+//         swr.insert(x);
+//     }
+//     ll cnt = 0;
+//     vector<pair<ll, ll>> inc;
+//     vector<ll> n_ch, dec, b(m);
+//     /*
+//     my sword -> swr
+//     n_ch => c_i <= swr
+//     dec => ci = 0;
+//     inc => c_i > swr;
+//     */
+//     for(ll i = 0; i < m; i++) cin >> b[i];
+//     for(ll i = 0; i < m; i++){
+//         ll c; cin >> c;
+//         if(c == 0) dec.push_back(b[i]);
+//         else if(c <= b[i]) n_ch.push_back(b[i]);
+//         else inc.push_back({b[i], c});
+//     }
+//     sort(inc.begin(), inc.end());
+//     sort(dec.begin(), dec.end());
+//     sort(n_ch.begin(), n_ch.end());
+//     for(auto i : inc){
+//         ll bi = i.ff, ci = i.ss;
+//         auto it = swr.lower_bound(bi);
+//         if(it == swr.end()) break;
+//         ll v = *it;
+//         swr.erase(it);
+//         swr.insert(max(v, ci));
+//         cnt++;
+//     }
+//     for(auto i : n_ch){
+//         auto it = swr.lower_bound(i);
+//         if(it == swr.end()) break;
+//         cnt++;
+//     }
+//     for(auto i : dec){
+//         auto it = swr.lower_bound(i);
+//         if(it == swr.end()) break;
+//         swr.erase(it);
+//         cnt++;
+//     }
+//     cout << cnt << endl;
+// }
+
+// signed main() {
+//     ios_base::sync_with_stdio(false); 
+//     cin.tie(nullptr); cout.tie(nullptr);
+//     ll t = 1; 
+//     cin >> t; cin.ignore();
+//     for(ll i = 1; i <= t; i++){
+//        
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// string toBinary(unsigned long long x) {
+//     if (x == 0) return "0";
+//     string s;
+//     while (x > 0) {
+//         s += ('0' + (x & 1));
+//         x >>= 1;}
+//     reverse(s.begin(), s.end());
+//     return s;
+// }
+// int main() {
+//      ios_base::sync_with_stdio(false); 
+//     cin.tie(nullptr); cout.tie(nullptr);
+//     //seen
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         unsigned long long x;
+//         cin >> x;
+//         string n = toBinary(x);
+//         string ans = "NO";
+//         for (int i = 1; i < 64; i++) {
+//             if ((int)n.size() <= i) {
+//                 string w = string(i - n.size(), '0') + n; 
+//                 bool B = (w == string(w.rbegin(), w.rend())); 
+//                 if (i % 2 == 1) {
+//                     B = B && (w[i / 2] == '0');} // odd lenght chekc 
+//                 if (B) {
+//                     ans = "YES";}
+//             }
+//         }
+//         cout << ans << "\n";
+//     }
+//     return 0;
+// }
+
+
+// void solve(){
+//     int n,q;
+//     cin>>n>>q;
+//     string s;
+//     cin>>s;
+//     vi qq(q);
+//     vector<pair<char,int>>vp;
+//     vp.push_back({s[0],1});
+//     for(int i=1;i<n;i++){
+//         if(vp.back().first==s[i])vp.back().second++;
+//         else vp.push_back({s[i],1});
+//     }
+//     bool bb=0;
+//     for(char c:s)if(c=='B')bb=1;
+//     for(auto &it:qq){cin>>it;}
+//     int i=0;
+//     while(i<q){
+//         int cnt=0;
+//         int t=qq[i++];
+//         int j=0;
+//         while(t){
+//             if(bb==0){
+//                 cnt=t; break;
+//             }
+//             char c=vp[j].first;
+//             int po=vp[j].second;
+//             j=(j+1)%vp.size();
+//             if(c=='A'){
+//                 cnt+=min(t,po);
+//                 t-=min(t,po);
+//             }else{
+//                while(t&&po){
+//                 t>>=1;
+//                 po--;
+//                 cnt++;
+//                }
+//             }
+//         }
+//         cout<<cnt<<"\n";
+//     }
+// }
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         // cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define print cout <<
+// #define vvi vector<vector<int>>
+// #define vi vector<int>
+// #define pi pair<int, int>
+// #define int long long
+// #define vvpi vector<vector<pair<int, int>>>
+
+// void solve(){
+//    int n;
+//    cin>>n;
+//    vi v(n);
+//    int e=0,o=0;
+//    for(auto &it:v){cin>>it; if(it%2==0)e=1; if(it&1)o=1; }
+//    if(e&&o){
+//     cout<<2; return ;
+//    } // till this i got it
+//    for(int i=1;i<=63;i++){
+//     int t=(1LL<<i);
+//     set<int>st;
+//     for(auto it:v)st.insert(it%t);
+//     if(st.size()==2){
+//         cout<<t; return;
+//     }
+//    }
+// }
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+
+//     int t;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define print cout <<
+#define vvi vector<vector<int>>
+#define vi vector<int>
+#define pi pair<int, int>
+#define int long long
+#define vvpi vector<vector<pair<int, int>>>
+
+void solve(){
+   int n,x,y;
+   cin>>n>>x>>y;
+   int sum=0;
+   int xx=n/x;
+   int yy=n/y;
+   int cnt=0;
+   int t=x;
+   int lcmm=(x*y*1LL)/__gcd(x,y);
+   cnt=(n)/(lcmm);
+   xx-=cnt;
+   yy-=cnt;
+   sum-=(((yy)*(yy+1))>>1);
+   sum+=(-xx*xx+xx+2*n*xx)/2;
+cout<<sum;
+}
+int32_t main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+        cout << '\n';
+    }
+    return 0;
+}
 

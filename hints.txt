@@ -8,3 +8,4 @@ rangesum ->segment
 rangemin/max->sparse tree
 min opreations by div or multi mostly dijkstra varinat or brute laga do
 try think as  indepedent conditions 
+use prefix min max wheerver you can relate in terms of min max

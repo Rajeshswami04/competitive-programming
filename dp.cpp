@@ -1,5 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define  print  cout<<
+#define vvi vector<vector<int>>
+#define vvvi vector<vector<vector<int>>>
+#define vi vector<int>
+#define pi pair<int,int>
+#define int long long
+
 //partition dp 
 //scramble string 
 
@@ -194,14 +201,6 @@ using namespace std;
 
 
 // // house robber
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
-// #define  vvpi vector<vector<pair<int,int>>>
 // // vi dp;
 // int n;
 // // int solve(int i,vi&a){
@@ -234,14 +233,6 @@ using namespace std;
 
 
 // // // house robber2
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
-// #define  vvpi vector<vector<pair<int,int>>>
 // vi dp;
 // int n;
 // int solve(int i,vi&a,int p){
@@ -260,14 +251,6 @@ using namespace std;
 // }
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
-// #define  vvpi vector<vector<pair<int,int>>>
 // vvi dp;
 // int solve(int day,int prev,vvi&score){
 //     if(day==score.size())return 0;
@@ -311,14 +294,6 @@ using namespace std;
 //     print max({dp[0][0],dp[0][1],dp[0][2]}); 
 // }
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
-// #define  vvpi vector<vector<pair<int,int>>>
 // vvi dp;
 // int solve(int x,int y,int m,int n){
 //     if(x>=m||y>=n)return 0;
@@ -344,14 +319,6 @@ using namespace std;
 
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
-// #define  vvpi vector<vector<pair<int,int>>>
 // vvi dp;
 // int solve(int x,int y,int m,int n,vvi& mat){
 //     if(x>=m||y>=n)return 1e9;
@@ -379,14 +346,6 @@ using namespace std;
 //     print solve(0,0,m,n,mat);
 // }
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
-// #define  vvpi vector<vector<pair<int,int>>>
 // vvi dp;
 // int solve(int i,int j, vvi&mat){
 //     if(i==mat.size()-1)return mat[i][j];
@@ -422,14 +381,7 @@ using namespace std;
 
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vvvi vector<vector<vector<int>>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
+
 // #define  vvpi vector<vector<pair<int,int>>>
 // int m,n;
 // vvvi dp;
@@ -493,14 +445,7 @@ using namespace std;
 
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vvvi vector<vector<vector<int>>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
+
 // #define  vvpi vector<vector<pair<int,int>>>
 // // int solve(int i,int k,vi&a){
 //     if(i==a.size())return 0;
@@ -555,14 +500,7 @@ using namespace std;
 //     print freq[k];
 // }
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vvvi vector<vector<vector<int>>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
+
 // #define  vvpi vector<vector<pair<int,int>>>
 // int solve(int i,int k,vi&a){
 //     if(i==a.size())return 0;
@@ -593,14 +531,7 @@ using namespace std;
 // }
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vvvi vector<vector<vector<int>>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
+
 // // vi dp;
 // min number of coins problem
 // int solve(int rem,vi&v){
@@ -634,14 +565,7 @@ using namespace std;
 // }
 
 // ways of coins
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vvvi vector<vector<vector<int>>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
+
 // int solve(int rem,vi&coins){
 //     if(rem==0)return 1;
 //     if(rem<0)return 0;
@@ -662,25 +586,18 @@ using namespace std;
 // }
 
 
-#include<bits/stdc++.h>
-using namespace std;
-#define  print  cout<<
-#define vvi vector<vector<int>>
-#define vvvi vector<vector<vector<int>>>
-#define vi vector<int>
-#define pi pair<int,int>
-#define int long long
-vvi dp;
-int solve(string&a,string&b,int i,int j){
-    if(i>=a.size())return 0;
-    if(j>=b.size())return 0;
-    if(dp[i][j]!=-1)return dp[i][j];
-    int cnt=0;
-    if(a[i]==b[j])cnt=max(cnt,1+solve(a,b,i+1,j+1));
-        cnt=max(cnt,solve(a,b,i+1,j));
-        cnt=max(cnt,solve(a,b,i,j+1));
-    return dp[i][j]=cnt;
-}
+
+// vvi dp;
+// int solve(string&a,string&b,int i,int j){
+//     if(i>=a.size())return 0;
+//     if(j>=b.size())return 0;
+//     if(dp[i][j]!=-1)return dp[i][j];
+//     int cnt=0;
+//     if(a[i]==b[j])cnt=max(cnt,1+solve(a,b,i+1,j+1));
+//         cnt=max(cnt,solve(a,b,i+1,j));
+//         cnt=max(cnt,solve(a,b,i,j+1));
+//     return dp[i][j]=cnt;
+// }
 // int lcs(){
 //     string a,b;
 //     cin>>a>>b;
@@ -777,14 +694,7 @@ int solve(string&a,string&b,int i,int j){
 // }
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// #define  print  cout<<
-// #define vvi vector<vector<int>>
-// #define vvvi vector<vector<vector<int>>>
-// #define vi vector<int>
-// #define pi pair<int,int>
-// #define int long long
+
 // vvi dp;
 // int solve(int i,int j,string &bap,string &b){
 //     if(j==b.size())return 1;
@@ -795,3 +705,375 @@ int solve(string&a,string&b,int i,int j){
 //     if(bap[i]==b[j])cnt+=solve(i+1,j+1,bap,b);
 //     cnt+=solve(i+1,j,bap,b);
 // }
+
+
+
+
+
+// number of diff subseq possi when 0 ,1
+// int solve(){
+//     string s;
+//     cin>>s;
+//     int onec=0;
+//     int zeroc=0;
+//     for(char c:s){
+//         if(c=='1')onec=(onec+zeroc+1)%mod;
+//         else zeroc=(zeroc+onec)%mod;
+//     }
+//     return onec+zeroc+(zeroc||s[0]=='0');
+// }
+// signed main(){
+//     print solve();
+// }
+// n of diff subseq posible of string 
+// int solve(){
+//     string s;
+//     cin>>s;
+//     vi a(26,0);
+//     int cnt=0;
+//     int t=0;
+//     for(char c:s){
+//         if(a[c-'a']==0){a[c-'a']=cnt+1; cnt+=cnt+1;}
+//         else cnt++;
+//     }
+//     for(auto it:a){print it; print " ";}
+//     return cnt;
+    
+// }
+// signed main(){
+//     print solve();
+// }
+
+
+
+
+// int solve(int i,int j,string&src,string&dst){
+//     if(i>=src.size()) return dst.size()-j;
+//     if(j>=dst.size())return src.size()-i;
+//     if(src[i]==dst[j])return solve(i+1,j+1,src,dst);
+//     int cnt=1e9;
+//     cnt=min(cnt,1+solve(i+1,j,src,dst));// deleted
+//     cnt=min(cnt,1+solve(i,j+1,src,dst)); // inserted
+//     cnt=min(cnt,1+solve(i+1,j+1,src,dst)); //replaced
+//     return cnt;
+// }
+// signed main(){
+//     string a,b;
+//     cin>>a>>b;
+//     print(solve(0,0,a,b));
+// }
+
+
+
+
+// int solve(vi&a,int i,int status){
+//     if(i==a.size()){
+//         if(status==0)return 0;
+//         else return -1e9;
+//     }
+//     int cnt=0;
+//     if(status)cnt=max(solve(a,i+1,1),a[i]+solve(a,i+1,0));
+//     else cnt=max(-a[i]+solve(a,i+1,1),solve(a,i+1,0));
+//     return cnt; 
+// }
+// signed main(){
+//     int n;
+//     cin>>n;
+//     vi a(n);
+//     for(auto&it:a){cin>>it;}
+//     vvi dp(n+1,vi(2,0));
+//     for(int i=n-1;i>=0;i--){
+//         int cnt=0;
+//         dp[i][0]=max(-a[i]+dp[i+1][1],dp[i+1][0]);
+//         dp[i][1]=max(dp[i+1][1],a[i]+dp[i+1][0]);
+//     }
+//     for(auto it:dp){print it[0]<<" ";}
+//     // print dp[0][0];
+// }
+
+
+
+// //atmost 2 transactions
+
+// // int solve(vi&a,int i,int status){
+// //     if(status==4)return 0;
+// //     if(i==a.size()){
+// //         if(status%2)return -1e9;
+// //         else return 0;
+// //     }
+// //     int cnt=0;
+// //     if(status%2)cnt=max(solve(a,i+1,status),a[i]+solve(a,i+1,status+1));
+// //     else cnt=max(-a[i]+solve(a,i+1,status+1),solve(a,i+1,status));
+// //     return cnt; 
+// // }
+// signed main(){
+//     int n;
+//     cin>>n;
+//     vi a(n);
+//     for(auto&it:a){cin>>it;}
+//     vvi dp(n+1,vi(5,0));
+//     for(int i=n-1;i>=0;i--){
+//         for(int s=0;s<=3;s++){
+//     int cnt=0;
+//     if(s%2)cnt=max(dp[i+1][s],a[i]+dp[i+1][s+1]);
+//     else cnt=max(-a[i]+dp[i+1][s+1],dp[i+1][s]);  
+//     dp[i][s]=cnt;
+//         }
+//     }
+//     print dp[0][0];
+// }
+
+
+// atmost k transactions
+
+// signed main(){
+//     int n;
+//     cin>>n; int k; cin>>k;
+//     vi a(n);
+//     for(auto&it:a){cin>>it;}
+//     vvi dp(n+1,vi(2*k+1,0));
+//     for(int i=n-1;i>=0;i--){
+//     for(int s=0;s<=2*k-1;s++){
+//     int cnt=0;
+//     if(s%2)cnt=max(dp[i+1][s],a[i]+dp[i+1][s+1]);
+//     else cnt=max(-a[i]+dp[i+1][s+1],dp[i+1][s]);  
+//     dp[i][s]=cnt;
+//     }
+// }
+//     // for(auto it:dp){print it[0]<<" ";}
+//     print dp[0][0];
+// }
+
+// int solve(int prev,vi&a,int i){
+//     if(i==a.size())return 0;
+//     int pick=0;
+//     int notpick=0;
+//     if(prev==-1||a[i]>a[prev])pick=1+solve(i,a,i+1);
+//     notpick=solve(prev,a,i+1);
+//     return max(pick,notpick);
+// // }
+// signed main(){
+//     int n;
+//     cin>>n;
+//     vi a(n);
+//     for(auto&it:a)cin>>it;
+//     vvi dp(n+1,vi(n+1,1));
+//     for(int i=n-1;i>=0;i--){
+//     for(int prev=0;prev<=i;prev++){
+//     int pick=0;
+//     int notpick=0;
+//     if(a[i]>a[prev]){pick=1+dp[i][i+1]; }
+//     notpick=dp[prev][i+1];
+//     dp[prev][i]=max(pick,notpick); 
+//         }
+//     }
+// }
+// to print the lcs use n2 approach maintain a hash vector and a dp 
+
+// lcs using bs // o(nlogn)
+// signed main(){
+//     set<int>st;
+//     int n;
+//     cin>>n;
+//     for(int i=0;i<n;i++){
+//         int x;
+//         cin>>x;
+//         auto it=st.lower_bound(x);
+//         if(it==st.end())st.insert(x);
+//         else {
+//             st.erase(it);
+//             st.insert(x);
+//         }
+//     }
+//     cout<<st.size();
+//     cout<<endl;
+//     for(auto it:st)cout<<it<<" ";
+// }
+
+
+//longest divisble subseq
+// signed main(){
+//     int n;
+//     cin>>n;
+//     vi a(n);
+//     for(auto&it:a)cin>>it;
+//     vvi dp(n+1,vi(n+1,0));
+//     for(int i=n-1;i>=0;i--){
+//     for(int prev=0;prev<=i;prev++){
+//     int pick=0;
+//     int notpick=0;
+//     if(a[i]%a[prev]==0||a[prev]%a[i]==0){pick=1+dp[i][i+1]; }
+//     notpick=dp[prev][i+1];
+//     dp[prev][i]=max(pick,notpick); 
+//         }
+//     }
+//     print dp[0][0];
+// }
+
+
+// partition dp
+// vvi dp;
+// int mcm(vi&mat,int i,int j){
+//     if(i==j)return 0;
+//     int cnt=1e9;
+//     if(dp[i][j]!=-1)return dp[i][j];
+//     for(int k=i;k<j;k++){
+//         cnt=min(cnt,mat[i-1]*mat[k]*mat[j]+mcm(mat,i,k)+mcm(mat,k+1,j));
+//     }
+//     return dp[i][j]=cnt;
+// }
+// signed main(){
+//     vi a;
+//     int n; cin>>n;
+//     dp.assign(n,vi(n,0));
+//     for(int i=0;i<n;i++){int c; cin>>c; a.push_back(c); }
+//     for(int i=n-1;i>=1;i--){
+//         for(int j=i+1;j<n;j++){
+//             int cnt=1e9;
+//             for(int k=i;k<j;k++){
+//                 cnt=min(cnt,a[i-1]*a[k]*a[j]+dp[i][k]+dp[k+1][j]);
+//                                  }
+//      dp[i][j]=cnt;
+//         }
+// }
+//     for(auto it:dp){
+//         for(auto v:it)cout<<v<<" ";
+//         cout<<endl;
+//     }
+// }
+
+// int minimisecost(vi&costs,int i,int j){
+//     if(i>j)return 0;
+//     int cnt=1e9;
+//     for(int k=i;k<=j;k++){
+//         cnt=min(cnt,costs[j+1]-costs[i-1]+minimisecost(costs,i,k-1)+minimisecost(costs,k+1,j));
+//     }
+//     return cnt;
+// }
+
+// signed main(){
+//     vi a; int len; cin>>len;
+//     int n;cin>>n;
+//     a.push_back(0);
+//     for(int i=0;i<n;i++){int x; cin>>x; a.push_back(x);}
+//     a.push_back(len);
+//     vvi dp(n+2,vi(n+2,0));
+//     for(int i=n;i>=1;i--){
+//         for(int j=i;j<=n;j++){
+//            int cnt=1e9;
+//             for(int k=i;k<=j;k++){
+//                 cnt=min(cnt,a[j+1]-a[i-1]+dp[i][k-1]+dp[k+1][j]);
+//             } 
+//             dp[i][j]=cnt;
+//         }
+//     }
+//     print dp[1][n];
+// }
+
+//partition dp ki practise krni hai
+signed main(){
+    vi a;
+    int n;
+    cin>>n;
+    a.push_back(1);
+    for(int i=0;i<n;i++){
+        int x; cin>>x;
+        a.push_back(x);
+    }
+    a.push_back(1);
+    vvi dp(n+2,vi(n+2,0));
+    for(int i=n;i>=1;i--){
+        for(int j=i;j<=n;j++){
+            int cnt=0;
+            for(int k=i;k<=j;k++){
+                cnt=max(cnt,a[j+1]*a[k]*a[i-1]+dp[i][k-1]+dp[k+1][j]);
+            }
+        dp[i][j]=cnt;
+        }
+    }
+    print dp[1][n];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// maximise the minimum cost edge:-the minimum weight edge in path from 0 to n-1 causing total weight<=k , all intermediat node should be online
+// class Solution {
+// public:
+//     bool check(int mid, vector<vector<pair<int, int>>>& adj, vector<bool>& online, long long k) {
+//     int n = online.size();
+//     if (!online[0]) return false; // If the starting node isn't online, we can't start.
+
+//     // Min-heap to store {current_path_weight, node}
+//     priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
+//     vector<long long> dist(n, LLONG_MAX);
+
+//     pq.push({0, 0});
+//     dist[0] = 0;
+
+//     while (!pq.empty()) {
+//         auto [wt, node] = pq.top(); 
+//         pq.pop();
+
+//         if (node == n - 1) return true; // Reached the destination within budget!
+//         if (wt > dist[node]) continue;   // Stale optimization step
+
+//         for (auto& u : adj[node]) {
+//             int next_node = u.first;
+//             int edge_wt = u.second;
+
+//             // 1. Edge must satisfy the bottleneck threshold 'mid'
+//             // 2. The destination node must be online
+//             if (edge_wt >= mid && online[next_node]) {
+//                 long long nw = wt + edge_wt;
+//                 if (nw <= k && nw < dist[next_node]) {
+//                     dist[next_node] = nw;
+//                     pq.push({nw, next_node});
+//                 }
+//             }
+//         }
+//     } 
+//     return false;
+// }
+//     int findMaxPathScore(vector<vector<int>>& edges, vector<bool>& online, long long k) {
+//       int n=online.size();
+//       vector<vector<pair<int,int>>>adj(n);
+//       long long  mini=LLONG_MAX;
+//       long long maxi=LLONG_MIN;
+//       for(auto it:edges){
+//         adj[it[0]].push_back({it[1],it[2]});
+//         mini=min(mini,1LL*it[2]);
+//         maxi=max(maxi,1LL*it[2]);
+//       }  
+//       long long ans=-1;
+//       while(mini<=maxi){
+//         long long mid=(mini+maxi)>>1;
+//         if(check(mid,adj,online,k)){
+//             ans=mid; mini=mid+1;
+//         }else{
+//             maxi=mid-1;
+//         }
+//       }
+//       return ans;
+//     }
+// };
+
