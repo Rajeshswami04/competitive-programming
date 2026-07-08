@@ -971,28 +971,88 @@ using namespace std;
 // }
 
 //partition dp ki practise krni hai
-signed main(){
-    vi a;
-    int n;
-    cin>>n;
-    a.push_back(1);
-    for(int i=0;i<n;i++){
-        int x; cin>>x;
-        a.push_back(x);
-    }
-    a.push_back(1);
-    vvi dp(n+2,vi(n+2,0));
-    for(int i=n;i>=1;i--){
-        for(int j=i;j<=n;j++){
-            int cnt=0;
-            for(int k=i;k<=j;k++){
-                cnt=max(cnt,a[j+1]*a[k]*a[i-1]+dp[i][k-1]+dp[k+1][j]);
-            }
-        dp[i][j]=cnt;
-        }
-    }
-    print dp[1][n];
-}
+//burst ballaon problem
+// signed main(){
+//     vi a;
+//     int n;
+//     cin>>n;
+//     a.push_back(1);
+//     for(int i=0;i<n;i++){
+//         int x; cin>>x;
+//         a.push_back(x);
+//     }
+//     a.push_back(1);
+//     vvi dp(n+2,vi(n+2,0));
+//     for(int i=n;i>=1;i--){
+//         for(int j=i;j<=n;j++){
+//             int cnt=0;
+//             for(int k=i;k<=j;k++){
+//                 cnt=max(cnt,a[j+1]*a[k]*a[i-1]+dp[i][k-1]+dp[k+1][j]);
+//             }
+//         dp[i][j]=cnt;
+//         }
+//     }
+//     print dp[1][n];
+// }
+
+// int dp[100][100][2];
+// string s;
+// int solve(int i,int j,bool istrue){
+//     if(i>j)return 0;
+//     if(i==j){
+//         if(istrue)return s[i]=='T';
+//         else return s[i]=='F'; 
+//     }
+//     if(dp[i][j][istrue]!=-1)return dp[i][j][istrue];
+//     int ways=0;
+//     for(int k=i+1;k<=j-1;k+=2){
+//         int leftt=solve(i,k-1,1);
+//         int leftf=solve(i,k-1,0);
+//         int rightt=solve(k+1,j,1);
+//         int rightf=solve(k+1,j,0);
+//         if(s[k]=='&'){
+//             if(istrue)ways+=leftt*rightt;
+//             else ways+=leftt*rightf+rightt*leftf+leftf*rightf;
+//         }
+//         if(s[k]=='|'){
+//             if(istrue)ways+=leftt*rightt+leftt*rightf+rightt*leftf;
+//             else ways+=leftf*rightf;
+//         }
+//         if(s[k]=='^'){
+//             if(istrue)ways+=leftt*rightf+rightt*leftf;
+//             else ways+=leftt*rightt+leftf*rightf;
+//         }
+//     }
+//     return dp[i][j][istrue]=ways;
+// }
+// signed main(){
+//     s="T|F&T&T|F&T";
+//     memset(dp,-1,sizeof(dp));
+//     print solve(0,s.size()-1,1);
+// }
+
+//palindrom partioing 2
+// int dp[100];
+// int solve(int i,string &s){
+//     if(i==s.size())return 0;
+//     if(dp[i]!=-1)return dp[i];
+//     int t=1e9;
+//     int n=s.size();
+//     string temp="";
+//     for(int j=i;j<n;j++){
+//         temp+=s[j];
+//         if(temp==string(temp.rbegin(),temp.rend())){
+//             t=min(t,1+solve(j+1,s));
+//         }
+//     }
+//     return dp[i]=t;
+// }
+// signed main(){
+//     string s; 
+//     s="sajasswaimmi";
+//     memset(dp,-1,sizeof(dp));
+//     print solve(0,s);
+// }
 
 
 
@@ -1022,25 +1082,19 @@ signed main(){
 //     bool check(int mid, vector<vector<pair<int, int>>>& adj, vector<bool>& online, long long k) {
 //     int n = online.size();
 //     if (!online[0]) return false; // If the starting node isn't online, we can't start.
-
 //     // Min-heap to store {current_path_weight, node}
 //     priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
 //     vector<long long> dist(n, LLONG_MAX);
-
 //     pq.push({0, 0});
 //     dist[0] = 0;
-
 //     while (!pq.empty()) {
 //         auto [wt, node] = pq.top(); 
 //         pq.pop();
-
 //         if (node == n - 1) return true; // Reached the destination within budget!
 //         if (wt > dist[node]) continue;   // Stale optimization step
-
 //         for (auto& u : adj[node]) {
 //             int next_node = u.first;
 //             int edge_wt = u.second;
-
 //             // 1. Edge must satisfy the bottleneck threshold 'mid'
 //             // 2. The destination node must be online
 //             if (edge_wt >= mid && online[next_node]) {

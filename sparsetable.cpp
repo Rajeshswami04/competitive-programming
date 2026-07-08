@@ -7,7 +7,6 @@ using namespace std;
 
 // class Solution {
 // public:
-    
 //     vector<int>arr;
 //     vector<vector<int>>rmqm;
 //     void preprocessm(int n,int m){
@@ -24,7 +23,7 @@ using namespace std;
 //     }
 //     int qm(int l,int r){
 //         int t=r-l+1;
-//         int k=log10(t)/log10(2);
+//         int k=log2(t);
 //         return min(arr[rmqm[l][k]],arr[rmqm[l+t-pow(2,k)][k]]);
 //     }
 //     vector<vector<int>>rmqma;
@@ -42,12 +41,12 @@ using namespace std;
 //     }
 //     int qma(int l,int r){
 //         int t=r-l+1;
-//         int k=log10(t)/log10(2);
+//         int k=log2(t);
 //         return max(arr[rmqma[l][k]],arr[rmqma[l+t-pow(2,k)][k]]);
 //     }
 //     long long maxTotalValue(vector<int>& nums, int k) {
 //         int n=nums.size();
-//         int t=log10(n)/log10(2)+1;
+//         int t=log(n)+1;
 //         arr=nums;
 //         preprocessm(n,t);
 //         preprocessma(n,t);

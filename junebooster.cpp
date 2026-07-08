@@ -979,42 +979,7 @@
 
 
 // // https://leetcode.com/problems/range-sum-query-2d-immutable/description/?envType=problem-list-v2&envId=prefix-sum
-// #include <bits/stdc++.h>
-// using namespace std;
-// #define print cout <<
-// #define vvi vector<vector<int>>
-// #define vi vector<int>
-// #define pi pair<int, int>
-// #define int long long
-// #define vvpi vector<vector<pair<int, int>>>
-// void solve(){
-//     int n;
-//     cin>>n;
-//     int cnt=0;
-//     while(n){
-//         cnt+=(n&1);
-//         n>>=1;
-//     }
-//     if(cnt&1){
-//         print "NO";
-//     }else{
-//     cout<<"YES";}
-// }
-// // n=x^(reverse(x));
-// int32_t main()
-// {
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(nullptr);
 
-//     int t;
-//     cin >> t;
-//     while (t--)
-//     {
-//         solve();
-//         cout << '\n';
-//     }
-//     return 0;
-// }
 // #include <bits/stdc++.h>
 // using namespace std;
 // #define ll long long
@@ -1092,6 +1057,8 @@
 // }
 
 
+//1300rated
+// div2  x^f(x)=n find such x , f(x)is if x=1101 then fx is (1011)base2
 // #include <bits/stdc++.h>
 // using namespace std;
 // string toBinary(unsigned long long x) {
@@ -1152,7 +1119,7 @@
 //         int j=0;
 //         while(t){
 //             if(bb==0){
-//                 cnt=t; break;
+//                 cnt=t; break; // this was the main reason of tle
 //             }
 //             char c=vp[j].first;
 //             int po=vp[j].second;
@@ -1230,43 +1197,257 @@
 // }
 
 
-#include <bits/stdc++.h>
-using namespace std;
-#define print cout <<
-#define vvi vector<vector<int>>
-#define vi vector<int>
-#define pi pair<int, int>
-#define int long long
-#define vvpi vector<vector<pair<int, int>>>
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define print cout <<
+// #define vvi vector<vector<int>>
+// #define vi vector<int>
+// #define pi pair<int, int>
+// #define int long long
+// #define vvpi vector<vector<pair<int, int>>>
+// void solve() {
+//     int n;
+//     cin>>n;
+//     int k; cin>>k;
+//     map<int,vector<int>>mp;
+//     for(int i=1;i<=k;i++)mp[i].push_back(0);
+//     for(int i=0;i<n;i++){
+//         int c; cin>>c;
+//         mp[c].push_back(i+1);
+//     }
+//     for(int i=1;i<=k;i++)mp[i].push_back(n+1);
+//     vector<priority_queue<int>>pq(k+1);
+//     int ans=1e9;
+//     for(int it=1;it<=k;it++){
+//         for(int i=1;i<mp[it].size();i++){
+//             pq[it].push(mp[it][i]-mp[it][i-1]);
+//         }
+//         int tt=pq[it].top(); pq[it].pop();
+//         pq[it].push(tt-tt/2);  pq[it].push(tt/2); 
+//         ans=min(ans,pq[it].top());
+//     }
+//     cout<<ans-1;
+// }
+// signed  main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
 
-void solve(){
-   int n,x,y;
-   cin>>n>>x>>y;
-   int sum=0;
-   int xx=n/x;
-   int yy=n/y;
-   int cnt=0;
-   int t=x;
-   int lcmm=(x*y*1LL)/__gcd(x,y);
-   cnt=(n)/(lcmm);
-   xx-=cnt;
-   yy-=cnt;
-   sum-=(((yy)*(yy+1))>>1);
-   sum+=(-xx*xx+xx+2*n*xx)/2;
-cout<<sum;
-}
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//         cout<<"\n";
+//     }
+// }
 
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-        cout << '\n';
-    }
-    return 0;
-}
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//         int n;
+//         cin>>n;
+//         vector<int>v(n);
+//         int t1=0,t2=0,t3=0;
+//         for(auto&it:v)cin>>it;
 
+//         vector<int>cnt1(n);
+//         // vector<int>cnt1(n);
+//         vector<int>cnt2(n);
+//         vector<int>cnt3(n);
+//         int ans=0;
+//         for(int i=0;i<n;i++){
+
+//             cnt1[i]+=(v[i]==1);
+//             cnt2[i]+=(v[i]==2);
+//             cnt3[i]+=(v[i]==3);
+//             if(i>0){
+//                 cnt1[i]+=cnt1[i-1];
+//                 cnt2[i]+=cnt2[i-1];
+//                 cnt3[i]+=cnt3[i-1];
+//             }
+//         }
+//         t1=cnt1[n-2];
+//         t2=cnt2[n-2];
+//         t3=cnt3[n-2];
+//         int flag=0;
+//         vector<int>sf(n,0);
+//         sf[n-2]=cnt1[n-2]+cnt2[n-2]-cnt3[n-2];
+//         for(int i=n-3;i>=0;i--){
+//             sf[i]=max(sf[i+1],cnt1[i]+cnt2[i]-cnt3[i]);
+//         }
+//         for(int i=0;i<n-1;i++){
+//             int one=cnt1[i];
+//             int two=cnt2[i];
+//             int thr=cnt3[i];
+//             int rem1=t1-one;
+//             int rem2=t2-two;
+//             int rem3=t3-thr;
+//             if((one||two||thr)&&(rem1||rem2||rem3)&&(one>=two+thr )&&(sf[i+1]>=one+two-thr)){flag=1;}
+//         }
+//         if(flag)cout<<"YES";
+//         else cout<<"NO";
+//     }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n,k;
+//     cin>>n>>k;
+//     vector<vector<int>>v(n,vector<int>(k,0));
+//     for(int i=0;i<n;i++){
+//         for(int j=0;j<k;j++)cin>>v[i][j];
+//     }
+//     int diff=0;
+//     for(int i=0;i<k;i++){
+//         int sum=0;
+//         vector<int>a;
+//         for(int j=0;j<n;j++){
+//             a.push_back(v[j][i]);
+//         }
+//         sort(begin(a),end(a));
+//         for(int p=0;p<n;p++){
+//         sum+=a[p];
+//         diff+=abs((p+1)*a[p] - sum);
+//         }
+//     }
+//     cout<<diff;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); cout<<'\n';
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// // typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(int i=0;i<n;i++){cin>>v[i]; }
+//     set<int>st(begin(v),end(v));
+//     int i=0,j=n-1;
+//     while(i<j){
+//         int f=0;
+//         if(v[i]==*(prev(st.end()))||v[i]==*(st.begin())){st.erase(v[i]); i++; f=1;}
+//         if(v[j]==*(prev(st.end()))||v[j]==*(st.begin())){st.erase(v[j]); j--; f=1;}
+//         if(f==0)break;
+//     }
+//     if(i<j)cout<<i+1<<" "<<j+1;
+//     else cout<<-1;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); cout<<'\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 1e15;
+// const int mod = 998244353;
+//  void solve(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<int> v(n);
+//     for(auto &x : v) cin >> x;
+//     vector<int> mp(n + 1);
+//     for(int i = 0;i < n;){
+//         int j = i + 1;
+//         while(j < n && v[j] == v[i]){
+//             j += 1;
+//         }
+//         mp[j - i] += 1;
+//         i = j;
+//     }
+//     int ans = 0, sum = 0;
+//     int tot = 0;
+//     for(int i = n;i >= 1;i -= 1){
+//         if(mp[i] == 0) continue;
+//         sum += i * mp[i];
+//         tot += mp[i];
+//         int cur = sum - (i - 1) * tot;
+//         if(cur <= k && (k - cur) % tot == 0){
+//             ans += 1;
+//         }
+//     }
+//     cout << ans;
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     int t = 1;
+//     cin >> t;
+//     while(t--){
+//         solve();
+//         cout << '\n';
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 1e15;
+// const int mod = 998244353;
+//  void solve(){
+//    int n,r,q;
+//    cin>>n>>r>>q;
+//    vector<int>diff(200001,0);
+//    for(int i=0;i<n;i++){
+//     int x,y;
+//     cin>>x>>y;
+//     diff[x]+=1;
+//     diff[y+1]-=1;
+//    }
+//    for(int i=1;i<=200000;i++)diff[i]+=diff[i-1];
+//    for(int i=1;i<=200000;i++)if(diff[i]>=r)diff[i]=1; else diff[i]=0;
+//    for(int i=1;i<=200000;i++)diff[i]+=diff[i-1];
+//    while(q--){
+//     int a,b;
+//     cin>>a>>b;
+//     cout<<diff[b]-diff[a-1]<<'\n';
+//    }
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//         solve();
+//     return 0;
+// }

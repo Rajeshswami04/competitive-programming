@@ -909,3 +909,61 @@ using namespace std;
 //         vector<int>ans=largestsubarrayDivByK(nums,3);
 //         cout<<ans[0]<<" "<<ans[1];
 //     }
+
+
+
+class Solution {
+public:
+    vector<int> dp[102][102];
+    const int mod = 1e9 + 7;
+    vector<vector<int>> dir = {{-1, 0}, {-1, -1}, {0, -1}};
+    vector<int> solve(int i, int j, vector<string>& board) {
+        if (i == 0 && j == 0) {
+            if (board[i][j] <= '9' && board[i][j] >= '1')
+                return {board[i][j] - '0', 1};
+            return {INT_MIN, 0};
+        }
+        if (!dp[i][j].empty()) {
+            return dp[i][j];
+        }
+        vector<int> ans = {0, 1};
+        // if(board[i][j]>='0'&&board[i][j]<='9')ans[0]+=board[i][j]-'0';
+        int b = 0;
+        for (auto it : dir) {
+            int x = it[0] + i;
+            int y = it[1] + j;
+            if (x >= 0 && y >= 0 && board[x][y] != 'X') {
+                b = 1;
+                vector<int> t = solve(x, y, board);
+                if (t[0] != INT_MIN) {
+                    if (t[0] == ans[0]) {
+                        ans[1] = (ans[1] + t[1]) % mod;
+                    } else {
+                        if (t[0] > ans[0]) {
+                            ans[0] = t[0];
+                            ans[1] = t[1];
+                        }
+                    }
+                }
+            }
+        }
+        if (b == 0)
+            return {0, 0};
+        if (board[i][j] >= '0' && board[i][j] <= '9')
+            ans[0] += board[i][j] - '0';
+        return dp[i][j] = ans;
+    }
+    vector<int> pathsWithMaxScore(vector<string>& board) {
+        if (board[0][0] == 'X')
+            return {0, 0};
+        for (auto it : board) {
+            if (it == string(board[0].size(), 'X'))
+                return {0, 0};
+        }
+        for (int i = 0; i < 102; i++) {
+            for (int j = 0; j < 102; j++)
+                dp[i][j].clear();
+        }
+        return solve(board.size() - 1, board[0].size() - 1, board);
+    }
+};

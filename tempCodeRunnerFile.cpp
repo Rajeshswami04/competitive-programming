@@ -1,52 +1,39 @@
 
-
-// #include <bits/stdc++.h>
-// #pragma GCC optimize("O3")
-// using namespace std;
-// #define int long long
-// const int N = 1e6 + 10;
-// const int inf = 1e15;
-// const int mod = 998244353;
-
-// void solve(){
-//     int n;
-//     cin>>n;
-//     unordered_set<int>st;
-//     for(int i=0;i<n;i++){
-//         int x; cin>>x;
-//         st.insert(x);
-//     }
-//     if(st.find(1)==st.end()){cout<<-1<<' ';}
-//     else cout<<1<<" ";
-//     for(int i=2;i<=n;i++){
-//         int cnt=0;
-//         int t=i;
-//         if(st.find(i)!=st.end()){cout<<1<<" "; continue;}
-//         for (long long j = sqrt(t); j>= 2; j--) {
-//             if(st.find(j)==st.end())continue;
-//             if (t % j == 0) {
-//             while(t%j==0){t=t/j; cnt++;}
-//         }
-//     }
-//         if(t>1){
-//             if(st.find(t)==st.end()){cout<<-1<<" ";}
-//             else cout<<cnt+1<<" ";
-//         }else{
-//             cout<<cnt<<" ";
-//         }
-    
-//     }
-// }
-
-// int32_t main(){
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(nullptr);
-
-//     int t = 1;
-//     cin >> t;
-//     while(t--){
-//         solve();
-//         cout << '\n';
-//     }
-//     return 0;
-// }
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+void solve(){
+        int n; cin>>n;
+        vector<int>v(n);
+        for(auto &it:v)cin>>it;
+        int co=0;
+        for(int i=1;i<n;i++)co+=abs(v[i]-v[i-1]);
+        if(co==0){cout<<1; return;}
+        set<int>st(begin(v),end(v));
+        if(st.size()==1){cout<<1; return ;}
+        if(st.size()==2&&n==2){cout<<n; return;}
+        int cnt=1;
+        int val=-1;
+        int prev=*(st.begin());
+        auto it=st.begin(); it++;
+        val=*it - prev;
+        it++;
+        for(;it!=st.end();it++){
+            int diff=(*it)-prev;
+            if(diff<=val)continue;
+            else {prev= *it; diff=val; cnt++;}
+        }
+        cout<<cnt;
+}
+int main()
+{
+    cin.tie(0);cin.sync_with_stdio(0);
+    cout.tie(0);cout.sync_with_stdio(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve(); cout<<"\n";
+    }
+    return 0;
+}
