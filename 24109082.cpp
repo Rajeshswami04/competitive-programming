@@ -520,38 +520,38 @@ using namespace std;
 
 
 //01 knapsack 
-#include<bits/stdc++.h>
-using namespace std;
-int dp[1000][1000];
-int solve(vector<pair<int,int>>&arr,int i,int w){
-    if(i==arr.size())return 0;
-    if(dp[i][w]!=-1)return dp[i][w];
-    int p=0;
-        int v=arr[i].first;
-        int we=arr[i].second;
-        if(we<=w){p=v+solve(arr,i+1,w-we);}
-        p=max(p,solve(arr,i+1,w));
-    return dp[i][w]=p;
-}
-int main(){
-    int n;
-    cin>>n;
-    vector<pair<int,int>>v(n);
-    for(int i=0;i<n;i++){
-        cin>>v[i].first>>v[i].second;}
-    int w;
-    cin>>w;
-    memset(dp,0,sizeof(dp));
-    for(int i=n-1;i>=0;i--){
-        for(int j=0;j<=w;j++){
-            int val=0;
-            if(v[i].second<=j){val=v[i].first+dp[i+1][j-v[i].second];}
-            val=max(val,dp[i+1][j]);
-            dp[i][j]=val;
-        }
-    }
-    cout<<dp[0][w];
-}
+// #include<bits/stdc++.h>
+// using namespace std;
+// int dp[1000][1000];
+// int solve(vector<pair<int,int>>&arr,int i,int w){
+//     if(i==arr.size())return 0;
+//     if(dp[i][w]!=-1)return dp[i][w];
+//     int p=0;
+//         int v=arr[i].first;
+//         int we=arr[i].second;
+//         if(we<=w){p=v+solve(arr,i+1,w-we);}
+//         p=max(p,solve(arr,i+1,w));
+//     return dp[i][w]=p;
+// }
+// int main(){
+//     int n;
+//     cin>>n;
+//     vector<pair<int,int>>v(n);
+//     for(int i=0;i<n;i++){
+//         cin>>v[i].first>>v[i].second;}
+//     int w;
+//     cin>>w;
+//     memset(dp,0,sizeof(dp));
+//     for(int i=n-1;i>=0;i--){
+//         for(int j=0;j<=w;j++){
+//             int val=0;
+//             if(v[i].second<=j){val=v[i].first+dp[i+1][j-v[i].second];}
+//             val=max(val,dp[i+1][j]);
+//             dp[i][j]=val;
+//         }
+//     }
+//     cout<<dp[0][w];
+// }
 
 // 3
 // 1 1

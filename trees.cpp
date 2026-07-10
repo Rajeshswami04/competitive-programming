@@ -331,21 +331,238 @@ struct treenode
 //     return root;
 // }
 
+// treenode* rightmost(treenode*root){
+//     treenode*head=root;
+//     while(head){
+//         if(head->right)head-right;
+//         else return head;
+//     }
+//     return nullptr;
+// }
+// void morrispreord(treenode*root){
+//     treenode*head=root;
+//     while(head){
+//         if(head->left==0){
+//         cout<<head->val<<' ';
+//         head=head->right;
+//         }else{
+//         treenode*prev=head->left;
+//         while(prev->right && prev->right!=head){prev=prev->right;}
+//         if(prev->right==head){prev->right=nullptr; head=head->right; }
+//         else{
+//             prev->right=head;
+//             cout<<head->val<<' ';
+//             head=head->left;
+//         }
+//     }
+// }
+// }
+
+// void morrisinord(treenode*root){
+//     treenode*head=root;
+//     while(head){
+//         if(head->left==0){
+//         cout<<head->val<<' ';
+//         head=head->right;
+//         }else{
+//         treenode*prev=head->left;
+//         while(prev->right && prev->right!=head){prev=prev->right;}
+//         if(prev->right==head){prev->right=nullptr;  cout<<head->val<<' ';    head=head->right; }
+//         else{
+//             prev->right=head;
+//             head=head->left;
+//         }
+//     }
+// }
+// }
+
+// vector<int>ans;
+// void morrispostord(treenode*root){
+//  treenode*head=root;
+//     while(head){
+//         if(head->right==0){
+//         ans.push_back(head->val);
+//         head=head->left;
+//         }else{
+//         treenode*prev=head->right;
+//         while(prev->left && prev->left!=head){prev=prev->left;}
+//         if(prev->left==head){prev->left=nullptr; head=head->left; }
+//         else{
+//             prev->left=head;
+//             ans.push_back(head->val);
+//             head=head->right;
+//         }
+//     }
+// }
+// }
 
 
-int main()
-{
-//     // treenode *head = new treenode(1);
-//     // head->left = new treenode(2);
-//     // head->left->left = new treenode(4);
-//     // head->left->left->left= new treenode(4);
-//     // head->left->right = new treenode(6);
-//     // head->right = new treenode(3);
-//     // head->right->right = new treenode(14);
-//     // head->right->right->left = new treenode(-12);
-//     // head->right->left = new treenode(16);
-    for(int i=0;i<7;i++){ind[inorder[i]]=i;}
-    inordert(post_ino(0,6));
+// flatten into linked list
+// treenode*prev1;
+// void flatten(treenode*head){
+//     if(head){
+//         flatten(head->right);
+//         flatten(head->left);
+//         head->right=prev1;
+//         prev1=head;
+//     }
+// }
+
+/// 
+///binary search tree
+// int k=0,p=0,bk=0;
+// void inorder(treenode*root){
+//     if(root){
+        
+//         inorder(root->left);
+//         p++;
+//         if(p==k)cout<<root->val<<" ";
+//         if(p==bk)cout<<root->val;
+//         inorder(root->right);
+//     }
+// }
+
+// bool validate(int a,int b,treenode*head){
+//     if(head==0)return 1;
+//     if(head->val<=a||head->val>b)return 0;
+//     return validate(a,min(b,head->val),head->left)&&validate(max(a,head->val),b,head->right);
+// }
+
+// treenode* lca(treenode*head,treenode*h1,treenode*h2){
+//     if(head==0)return 0;
+//     if(head->val < h1->val &&head->val < h2->val)return lca(head->right,h1,h2);
+//     else if(head->val > h1->val &&head->val > h2->val)return lca(head->left,h1,h2);
+//     else return head;
+// }
+
+
+// bst tree iterator
+class BSTIterator {
+public:
+    stack<treenode*> st;
+    bool reverse;
+    BSTIterator(treenode* root,bool reverse) { this->reverse=reverse;  pushall(root); }
+    int next() {
+        if(hasNext()){
+        treenode* p = st.top();
+        int pd = p->val;
+        st.pop();
+        if (reverse) {
+            pushall(p->left);
+        } else {
+            pushall(p->right);
+        }
+        return pd;
+    } return 0;
 }
+    bool hasNext() { return !st.empty(); }
+    void pushall(treenode* root) {
+        while (root) {
+        st.push(root);
+        if (reverse) {
+            root = root->right;
+            }
+         else {
+            root = root->left;
+            }
+        }
+    }
+};
+
+
+
+// struct result {
+//     bool isValid;
+//     int minVal;
+//     int maxVal;
+//     int sum;
+// };
+// unordered_map<TreeNode*,bool>mp;
+// result validateBottomUp(TreeNode* root) {
+//     if (!root) {
+//         return {0,true, INT_MAX, INT_MIN};
+//     }
+//     result left = validateBottomUp(root->left);
+//     result right = validateBottomUp(root->right);
+//     if (!left.isValid || !right.isValid) {
+//         return mp[root]= {0,false, 0, 0};
+//     }
+//     if ((root->left && left.maxVal >= root->val) ||
+//         (root->right && right.minVal <= root->val)) {
+//         return mp[root]= {0,false, 0, 0};
+//     }
+//     int minVal = root->left ? left.minVal : root->val;
+//     int maxVal = root->right ? right.maxVal : root->val;
+//     int sum = root->val;
+//     sum+=root->right ? right.sum : 0;
+//     sum+=root->left ? left.sum : 0;
+//     return mp[root]={sum,true, minVal, maxVal};
+// }
+
+// bool isValidBST(TreeNode* root) {
+//     return validateBottomUp(root).isValid;
+// }
+
+
+// largest bst having maximum sum
+// class Solution {
+// public:
+// struct result {
+//     int sum;
+//     bool isValid;
+//     int minVal;
+//     int maxVal;
+    
+// };
+// unordered_map<TreeNode*,result>mp;
+// result validateBottomUp(TreeNode* root) {
+//     if (!root) {
+//         return {0,true, INT_MAX, INT_MIN};
+//     }
+//     result left = validateBottomUp(root->left);
+//     result right = validateBottomUp(root->right);
+//     if (!left.isValid || !right.isValid) {
+//         return mp[root]= {0,false, 0, 0};
+//     }
+//     if ((root->left && left.maxVal >= root->val) ||
+//         (root->right && right.minVal <= root->val)) {
+//         return mp[root]= {0,false, 0, 0};
+//     }
+//     int minVal = root->left ? left.minVal : root->val;
+//     int maxVal = root->right ? right.maxVal : root->val;
+//     int sum = root->val;
+//     sum+=root->right ? right.sum : 0;
+//     sum+=root->left ? left.sum : 0;
+//     return mp[root]={sum,true, minVal, maxVal};
+// }
+
+// bool isValidBST(TreeNode* root) {
+//     return validateBottomUp(root).isValid;
+// }
+//     int maxSumBST(TreeNode* root) {
+//         mp.clear();
+//         isValidBST(root);
+//         int sum=0;
+//         for(auto it:mp){
+//             if(it.second.isValid==1){sum=max(sum,it.second.sum);}
+//         }
+//         return sum;
+//     }
+// };
+
+
+// int main()
+// {
+//     treenode *head = new treenode(10);
+//     head->left = new treenode(5);
+//     head->left->left = new treenode(2);
+//     head->left->left->left= new treenode(1);
+//     head->left->right = new treenode(8);
+//     head->right = new treenode(15);
+//     head->right->right = new treenode(20);
+//     head->right->right->left = new treenode(17);
+//     head->right->left = new treenode(12);
+//     cout<<lca(head,head->left->left->left, head->left->left)->val;
+// }
 
 

@@ -62,45 +62,139 @@
 
 
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 1e15;
+// const int mod = 998244353;
+//  void solve(){
+//  string s;
+//  cin>>s;
+//  int n=s.size();
+//  if(n<=2){cout<<0; return;}
+//  if(n==3){
+//     if(s=="010"||s=="101"){cout<<1; return;}
+//     cout<<0; return;
+//  }
+//  int p0=0;
+//  int p1=0;
+//  int s0=0;
+//  int s1=0;
+//  for(char i:s){
+//     if(i=='0')s0++;
+//     else s1++;
+//  }
+//  int ans=1e9;
+//  for(char i:s){
+//     if(i=='0')p0++;
+//     else p1++;
+//     int rem0=s0-p0;
+//     int rem1=s1-p1;
+//     int aa=min(p0+rem1,p1+rem0);
+//     ans=min(ans,aa);
+//  }
+//  cout<<ans;
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     int t;
+//     cin>>t;
+//     while(t--){
+//         solve(); cout<<'\n';}
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 1e15;
+// const int mod = 998244353;
+//  void solve(){
+//    int n,k;
+//    cin>>n;
+//    cin>>k;
+//    vector<int>v(n);
+//    for(auto &it:v)cin>>it;
+//    vector<int>pref(n+1,0);
+//    for(int i=1;i<n-1;i++){if(v[i]>v[i-1]&&v[i]>v[i+1])pref[i]+=1;}
+//    for(int i=1;i<=n;i++)pref[i]+=pref[i-1];
+//    int ans=-inf; int idx=-1;
+//    for(int i=0;i<=n-k;i++){
+//       if(pref[i+k-2]-pref[i] > ans){ans=pref[i+k-2]-pref[i]; idx=i;}
+//    }
+//    cout<<ans+1<<" "<<idx+1<<'\n';
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     int t;
+//     cin>>t;
+// while(t--){        solve();}
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// const int inf = 1e15;
+// const int mod = 998244353;
+//  void solve(){
+//    string  s;
+//    cin>>s;
+//    string ans="";
+//    set<string>st;
+//    int m=s.size();
+//    for(int i=0;i<m-1;i++){
+//       int p=s[i]-'0';
+//       if(p%2==0){
+//          if(s[i]<s[m-1]){
+//          swap(s[m-1],s[i]);
+//          cout<<s; return;
+//       }
+//       }
+//    }
+//    for(int i=m-2;i>=0;i--){
+//       int p=s[i]-'0';
+//       if(p%2==0){
+//          swap(s[m-1],s[i]);
+//          cout<<s; return;
+//       }
+//    }
+//    cout<<-1;
+// }
+// int32_t main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//        solve(); cout<<'\n';
+//     return 0;
+// }
+
+
+ #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-const int inf = 1e15;
-const int mod = 998244353;
- void solve(){
- string s;
- cin>>s;
- int n=s.size();
- if(n<=2){cout<<0; return;}
- if(n==3){
-    if(s=="010"||s=="101"){cout<<1; return;}
-    cout<<0; return;
- }
- int p0=0;
- int p1=0;
- int s0=0;
- int s1=0;
- for(char i:s){
-    if(i=='0')s0++;
-    else s1++;
- }
- int ans=1e9;
- for(char i:s){
-    if(i=='0')p0++;
-    else p1++;
-    int rem0=s0-p0;
-    int rem1=s1-p1;
-    int aa=min(p0+rem1,p1+rem0);
-    ans=min(ans,aa);
- }
- cout<<ans;
-}
-int32_t main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int t;
-    cin>>t;
-    while(t--){
-        solve(); cout<<'\n';}
+
+int main(){
+    int n, k;
+    cin >> n >> k;
+    vector<int> v(n);
+    for(int i = 0; i < n; i++) cin >> v[i];
+    
+    sort(v.begin(), v.end());
+    
+    double ans = 0;
+    for(int i = 1; i < n; i++){
+        ans = max(ans, (v[i] - v[i-1]) / 2.0);
+    }
+    ans = max(ans, v[0] * 1.0);
+    ans = max(ans, (k - v[n-1]) * 1.0);
+    
+    cout << fixed << setprecision(10) << ans << "\n";
     return 0;
 }
+
+
+
+// onhold
+// https://codeforces.com/problemset/problem/1355/C

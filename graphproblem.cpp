@@ -922,3 +922,29 @@ using namespace std;
 //         return -1;
 //     }
 // };
+
+
+
+// https://leetcode.com/problems/path-existence-queries-in-a-graph-ii/
+
+// n participants of the competition were split into m teams in some manner so that 
+// each team has at least one participant. After the competition each pair of
+// participants from the same team became friends.
+// Your task is to write a program that will find the minimum and the maximum 
+// number of pairs of friends that could have formed by the end of the competition.
+// #include <bits/stdc++.h>
+// using namespace std;
+// long long pair_(long long x) {
+//     return (x * (x - 1)) / 2;
+// }
+// int main() {
+//     long long n, k;
+//     cin >> n >> k;
+//     long long share = n / k;
+//     long long rem = n % k;
+//     long long comb = share + 1;
+//     long long mini = pair_(comb) * rem + pair_(share) * (k - rem);
+//     long long maxi = pair_(n - k + 1);
+//     cout << mini << " " << maxi << endl;
+//     return 0;
+// }
