@@ -85,95 +85,203 @@ using namespace std;
 
 
 
-//3559
-class Solution {
-public:
-    long long binpow(long long a, long long b, long long m) {
-    a %= m;
-    long long res = 1;
-    while (b > 0) {
-        if (b & 1)
-            res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
-    }
-    return res;
-    }
-    vector<int> euler, depth, first;
-    // eular is tour ie preorder and storing each node while visiting each node
-    // depth stores depth of each node in tree from 0
-    // first denoted index of element in eular vector only first occurence 
-    //that is why depth of node-depth of lca is positive
-    vector<vector<int>> adj, st;
-    int LOG;
-    const int mod=1e9+7;
-    void dfs(int u, int p, int d){
-        depth[u] = d;
-        first[u] = euler.size();
-        euler.push_back(u);
-        for(auto v: adj[u]){
-            if(v == p) continue;
-            dfs(v, u, d+1);
-            euler.push_back(u);
-        }
-    }
+// //3559
+// class Solution {
+// public:
+//     long long binpow(long long a, long long b, long long m) {
+//     a %= m;
+//     long long res = 1;
+//     while (b > 0) {
+//         if (b & 1)
+//             res = res * a % m;
+//         a = a * a % m;
+//         b >>= 1;
+//     }
+//     return res;
+//     }
+//     vector<int> euler, depth, first;
+//     // eular is tour ie preorder and storing each node while visiting each node
+//     // depth stores depth of each node in tree from 0
+//     // first denoted index of element in eular vector only first occurence 
+//     //that is why depth of node-depth of lca is positive
+//     vector<vector<int>> adj, st;
+//     int LOG;
+//     const int mod=1e9+7;
+//     void dfs(int u, int p, int d){
+//         depth[u] = d;
+//         first[u] = euler.size();
+//         euler.push_back(u);
+//         for(auto v: adj[u]){
+//             if(v == p) continue;
+//             dfs(v, u, d+1);
+//             euler.push_back(u);
+//         }
+//     }
 
-    void buildSparse(){
-        int m = euler.size();
-        LOG = log2(m) + 1;
-        st.assign(m, vector<int>(LOG));
-        for(int i=0;i<m;i++)
-            st[i][0] = euler[i];
-        for(int j=1;j<LOG;j++){
-            for(int i=0;i+(1<<j)<=m;i++){
-                int x = st[i][j-1];
-                int y = st[i+(1<<(j-1))][j-1];
-                st[i][j] =
-                    (depth[x] < depth[y]) ? x : y;
-            }
-        }
-    }
-    int lca(int u,int v){
-        int l = first[u];// first denotes first occurence of element in eular tour
-        int r = first[v];
-        if(l > r) swap(l,r);
-        int k = log2(r-l+1);
-        int x = st[l][k];
-        int y = st[r-(1<<k)+1][k];
-        return depth[x] < depth[y] ? x : y;
-    }
-    vector<int> assignEdgeWeights(vector<vector<int>>& edges,
-                                  vector<vector<int>>& queries) {
-        int n = edges.size()+1;
-        adj.resize(n+1);
-        for(auto &e: edges){
-            adj[e[0]].push_back(e[1]);
-            adj[e[1]].push_back(e[0]);
-        }
-        depth.resize(n+1);
-        first.assign(n+1, -1);
-        dfs(1, -1, 0);
-        buildSparse();
-        vector<int> ans;
-        const int mod = 1e9+7;
-        for(auto &q: queries){
-            int u = q[0];
-            int v = q[1];
+//     void buildSparse(){
+//         int m = euler.size();
+//         LOG = log2(m) + 1;
+//         st.assign(m, vector<int>(LOG));
+//         for(int i=0;i<m;i++)
+//             st[i][0] = euler[i];
+//         for(int j=1;j<LOG;j++){
+//             for(int i=0;i+(1<<j)<=m;i++){
+//                 int x = st[i][j-1];
+//                 int y = st[i+(1<<(j-1))][j-1];
+//                 st[i][j] =
+//                     (depth[x] < depth[y]) ? x : y;
+//             }
+//         }
+//     }
+//     int lca(int u,int v){
+//         int l = first[u];// first denotes first occurence of element in eular tour
+//         int r = first[v];
+//         if(l > r) swap(l,r);
+//         int k = log2(r-l+1);
+//         int x = st[l][k];
+//         int y = st[r-(1<<k)+1][k];
+//         return depth[x] < depth[y] ? x : y;
+//     }
+//     vector<int> assignEdgeWeights(vector<vector<int>>& edges,
+//                                   vector<vector<int>>& queries) {
+//         int n = edges.size()+1;
+//         adj.resize(n+1);
+//         for(auto &e: edges){
+//             adj[e[0]].push_back(e[1]);
+//             adj[e[1]].push_back(e[0]);
+//         }
+//         depth.resize(n+1);
+//         first.assign(n+1, -1);
+//         dfs(1, -1, 0);
+//         buildSparse();
+//         vector<int> ans;
+//         const int mod = 1e9+7;
+//         for(auto &q: queries){
+//             int u = q[0];
+//             int v = q[1];
 
-            int L = lca(u,v);
+//             int L = lca(u,v);
 
-            int len =
-                (depth[u]-depth[L]) +
-                (depth[v]-depth[L]);
+//             int len =
+//                 (depth[u]-depth[L]) +
+//                 (depth[v]-depth[L]);
 
-            long long ways = 0;
-            if(len!=0){
-                ways=binpow(2,len-1,mod);
-            }
+//             long long ways = 0;
+//             if(len!=0){
+//                 ways=binpow(2,len-1,mod);
+//             }
             
-            ans.push_back(ways);
-        }
+//             ans.push_back(ways);
+//         }
 
-        return ans;
-    }
-};
+//         return ans;
+//     }
+// };
+
+
+// wrong approach , binary lifting is better than this
+// class Solution {
+// public:
+//     vector<int> euler, depth, first;
+//     // eular is tour ie preorder and storing each node while visiting each node
+//     // depth stores depth of each node in tree from 0
+//     // first denoted index of element in eular vector only first occurence 
+//     //that is why depth of node-depth of lca is positive
+//     vector<vector<int>> adj, st;
+//     int LOG;
+//     const int mod=1e9+7;
+//     void dfs(int u, int p, int d){
+//         depth[u] = d;
+//         first[u] = euler.size();
+//         euler.push_back(u);
+//         for(auto v: adj[u]){
+//             if(v == p) continue;
+//             dfs(v, u, d+1);
+//             euler.push_back(u);
+//         }
+//     }
+//      vector<int>dsu;
+// int find(int u){
+//     if(dsu[u]<0)return u;
+//     return dsu[u]=find(dsu[u]);
+// }
+// void unionf(int u,int v){
+//     int pu=find(u);
+//     int pv=find(v);
+//     if(pu==pv)return;
+//     if(dsu[pu]<dsu[pv]){
+//         dsu[pu]+=dsu[pv];
+//         dsu[pv]=pu;
+//     }else{
+//         dsu[pv]+=dsu[pu];
+//         dsu[pu]=pv;
+//     }
+// }
+//     void buildSparse(){
+//         int m = euler.size();
+//         LOG = log2(m) + 1;
+//         st.assign(m, vector<int>(LOG));
+//         for(int i=0;i<m;i++)
+//             st[i][0] = euler[i];
+//         for(int j=1;j<LOG;j++){
+//             for(int i=0;i+(1<<j)<=m;i++){
+//                 int x = st[i][j-1];
+//                 int y = st[i+(1<<(j-1))][j-1];
+//                 st[i][j] =
+//                     (depth[x] < depth[y]) ? x : y;
+//             }
+//         }
+//     }
+//     int lca(int u,int v){
+//         int l = first[u];// first denotes first occurence of element in eular tour
+//         int r = first[v];
+//         if(l > r) swap(l,r);
+//         int k = log2(r-l+1);
+//         int x = st[l][k];
+//         int y = st[r-(1<<k)+1][k];
+//         return depth[x] < depth[y] ? x : y;
+//     }
+//     void buildAdjFromDSU(int n){
+//     adj.resize(n);
+//     for(int u = 0; u < n; u++){
+//         if(dsu[u] >= 0){          // u is not a root, dsu[u] is its parent
+//             int p = dsu[u];
+//             adj[u].push_back(p);
+//             adj[p].push_back(u);
+//         }
+//     } }
+//      vector<int> pathExistenceQueries(int n, vector<int> nums, int maxDiff, vector<vector<int>>q) {
+        
+//         vector<vector<int>>p;
+//         for(int i=0;i<n;i++)p.push_back({nums[i],i});
+//         sort(begin(p),end(p));
+//         dsu.assign(n,-1);
+//         for(int i =1;i<n;i++){
+//             if(abs(p[i][0]-p[i-1][0])<=maxDiff)unionf(p[i][1],p[i-1][1]);
+//         }
+//         buildAdjFromDSU(n);
+//         depth.resize(n);
+//         first.resize(n,-1);
+//         for(int i=0;i<n;i++){
+//             if(first[i]==-1)dfs(i,-1,0);
+//         }
+//         buildSparse();
+//         vector<int>ans(q.size(),0);
+//         for(int i=0;i<q.size();i++)
+//         {int u = q[i][0];
+//         int v = q[i][1];
+//         if(find(u)==find(v)){
+//         int L = lca(u,v);
+//         int len =(depth[u]-depth[L]) +(depth[v]-depth[L]);
+//         ans[i]=len;}else ans[i]=-1;
+//     }
+//     return ans;
+//     }
+// };
+
+// int main(){
+//     Solution s;
+//     vector<int>ans=s.pathExistenceQueries(5,{5,3,1,9,10},2,{{0,1},{0,2},{2,3},{4,3}});
+//     for(auto it:ans)cout<<it<<' ';
+// }
+
