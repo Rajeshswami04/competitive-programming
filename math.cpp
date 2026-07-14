@@ -192,27 +192,219 @@
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(int i=0;i<n;i++){cin>>v[i];}
+//     unordered_map<int,int>mp;
+//     for(int i=0;i<n;i++){
+//         int t=__builtin_popcount(v[i]);
+//         mp[t]++;
+//     }
+//     int cnt=0;
+//     for(auto it:mp){
+//         cnt+=(it.second)*(it.second-1)/2;
+//     }
+//     cout<<cnt;
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int a,b,c,d;
+//     cin>>a>>b>>c>>d;
+//     double p=(a*1.0*d*1.0);
+//     p/=(b*d*1.0-(d-c)*(b-a)*1.0);
+//     cout<<p;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// const int mod=1000000009;
+// long long binpow(long long a, long long b) {
+//     a %= mod;
+//     long long res = 1;
+//     while (b > 0) {
+//         if (b & 1)
+//             res = res * a % mod;
+//         a = a * a % mod;
+//         b >>= 1;
+//     }
+//     return res;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int n,m;
+//     cin>>n>>m;
+//     int v=binpow(2,m);
+//     int sum=1;
+//     for(int i=1;i<=n;i++){
+//         sum=(1LL*sum*(v-i))%mod;
+//     }
+//     cout<<sum;
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//        cin>>n;
+//        if(n==2){cout<<-1<<"\n"; return;}
+//        int a=1;
+//        int b=2;
+//        cout<<1<<' ';
+//        if(n==1)break;
+//        cout<<b<<" ";
+//        int prev=3;
+//        for(int i=3;i<=n;i++){
+//         int t=prev;
+//         cout<<t<<" ";
+//         prev+=t;
+//        }
+//        cout<<"\n";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//        solve();
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// bool prime[10000001];
+// // vector<ll>primes;
+// void sieve()
+// {
+//     memset(prime, 1, sizeof(prime));
+//     prime[0] = prime[1] = 0;
+//     for (ll i = 2; i * i <= 10000001; i++)
+//     {
+//         if (prime[i])
+//         { 
+//         for (ll j = 1LL*i * i; j <= 10000001; j += i)
+//             prime[j] = 0;
+//         }
+//     }
+// }
+// void solve(){
+//     int x;
+//     cin>>x;
+//     int sum=0;
+//     for(int i=2;i<=x;i++){if(prime[i])sum+=x/i;}
+//     cout<<sum<<'\n';
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     sieve();
+//     while (t--)
+//     {
+//         solve();
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     double sum=0;
+//     for(auto &it:v){cin>>it; sum+=it;}
+//     double avg=(sum*1.0)/(n*1.0);
+//     avg=2*avg;
+//     unordered_map<double,int>mp;
+//     int cnt=0;
+//     for(int i:v){
+//         double t=avg-i;
+//         if(mp.count(t))cnt+=mp[t];
+//         mp[i]++;
+//     }
+//     cout<<cnt;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 #define int long long
+void solve(){
+    int a,b,p;
+    cin>>a>>b>>p;
+    string s;
+    cin>>s;
+    int n=s.size();
+    int i=n-1;
+    while (i>0){
+        if(s[i-1]=='A'){if(p<a){ break;} p-=a;}
+        else {if(p<b){ break;} p-=b;}
+        char c=s[i-1];
+        // int f=0;
+        while(i>0&&c==s[i-1]){i--; }
+    }
+    cout<<i+1;
+}
 signed main()
 {
     cin.tie(0);cin.sync_with_stdio(0);
     cout.tie(0);cout.sync_with_stdio(0);
-    int n;
-    cin>>n;
-    vector<int>v(n);
-    for(int i=0;i<n;i++){cin>>v[i];}
-    unordered_map<int,int>mp;
-    for(int i=0;i<n;i++){
-        int t=__builtin_popcount(v[i]);
-        mp[t]++;
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+        cout<<"\n";
     }
-    int cnt=0;
-    for(auto it:mp){
-        cnt+=(it.second)*(it.second-1)/2;
-    }
-    cout<<cnt;
     return 0;
 }
