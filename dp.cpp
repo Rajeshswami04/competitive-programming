@@ -1131,3 +1131,30 @@ using namespace std;
 //     }
 // };
 
+// class Solution {
+// public:
+//     int dp[201][201];
+//     int m,n;
+//     int solve(int i,int j,vector<vector<int>>&d){
+//         if(i==m-1&&j==n-1){
+//             return dp[i][j]=(d[i][j]>0)?1:1-d[i][j];
+//         }
+//         if(dp[i][j]!=-1)return dp[i][j];
+//         int ans=1e9;
+//         if(i+1<m){
+//         int down=solve(i+1,j,d);
+//         ans=min(ans,down);}
+//         if(j+1<n){
+//         int down=solve(i,j+1,d);
+//         ans=min(ans,down);}
+//         return dp[i][j]=max(1,ans-d[i][j]);
+//     }
+//     int calculateMinimumHP(vector<vector<int>>& dungeon) {
+//        memset(dp,-1,sizeof(dp));
+//         m=dungeon.size();
+//         n=dungeon[0].size();
+//        int ans=solve(0,0,dungeon);
+//        return ans;
+//     }
+// };
+

@@ -375,36 +375,259 @@
 // }
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int a,b,p;
+//     cin>>a>>b>>p;
+//     string s;
+//     cin>>s;
+//     int n=s.size();
+//     int i=n-1;
+//     while (i>0){
+//         if(s[i-1]=='A'){if(p<a){ break;} p-=a;}
+//         else {if(p<b){ break;} p-=b;}
+//         char c=s[i-1];
+//         // int f=0;
+//         while(i>0&&c==s[i-1]){i--; }
+//     }
+//     cout<<i+1;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n,s;
+//     cin>>n>>s;
+//     vector<int>v(n);
+//     int sum=0;
+//     for(auto &it:v){cin>>it;  sum+=it;}
+//     if(sum<=s){cout<<0;}
+//     else{
+//         vector<int>pre(n,0);
+//         // for(int i=0;i<n;i++)pre[i]=i;
+//         for(int i=1;i<n;i++){
+//             if(v[pre[i-1]]>v[i])pre[i]=pre[i-1];
+//             else pre[i]=i;
+//         }
+//         int ss=0;
+//         int idx=-1;
+//         for(int i=0;i<n;i++){
+//             ss+=v[i];
+//             if(ss-v[pre[i]]>s)break;
+//             idx=pre[i];
+//         }
+//         cout<<idx+1;
+//     }
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     string s;
+//     cin>>s;
+//     vector<int>v(n,0);
+//     for(int i=0;i<n;i++){
+//         v[i]=i+1;
+//     }
+    
+//     for(int i=0;i<n;i++){
+//         if(s[i]=='1')continue;
+//         int j=i;
+//         int k=i; while(k<n&&s[k]=='0')k++;
+//         int p=k-j;
+//         if(p<2){
+//             cout<<"No"; return;
+//         }
+//         if (p % 2 == 0) {
+//             for (int t = i; t < k; t += 2) {
+//                 swap(v[t], v[t + 1]);
+//             }
+//         } 
+//         else {
+//             for (int t = i; t < k - 3; t += 2) {
+//                 swap(v[t], v[t + 1]);
+//             }
+//             int temp = v[k - 3];
+//             v[k - 3] = v[k - 2];
+//             v[k - 2] = v[k - 1];
+//             v[k - 1] = temp;
+//         }
+//         i=k;
+//     }
+//     cout<<"YES\n";
+//     for(auto it:v){
+//         cout<<it<<" ";
+//     }
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); cout<<"\n";
+//     }
+//     return 0;
+// }
+// #include <bits/stdc++.h>
+ 
+// using namespace std;
+
+// int main() {
+//   int t;
+//   cin >> t;
+//   while (t--) {
+//     int n;
+//     cin >> n;
+//     vector<int> a(n);
+//     for (auto& x : a) cin >> x;
+//     long long ans = 0;
+//     for (int i = 0; i < n; ++i) {
+//       for (int j = 0; j < i; ++j) {
+//         int x = max(a[n - 1], 2 * a[i]) - a[i] - a[j];
+//         int k = upper_bound(a.begin(), a.begin() + j, x) - a.begin();
+//         ans += j - k;
+//       }
+//     }
+//     cout << ans << '\n';
+//   }
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//   int n,k;
+//   cin>>n>>k;
+//   vector<int>v(n);
+//   for(auto &it:v)cin>>it;
+//   map<int,int>mp;
+//   for(auto it:v)mp[it]++;
+//   int cnt=0;
+//   int tt=0;
+//   int sum=0;
+//   for(auto it:mp){
+//     int t=it.first;
+//     if((tt==0||mp.count(t-1))&&tt<k){
+//       sum+=it.second; tt++;
+//     }else{
+//       if(mp.count(t-1)){
+//       sum-=mp[t-k];
+//       sum+=it.second;
+//     }else{
+//       tt=1;
+//       sum=it.second;
+//     }
+//     }
+//     cnt=max(cnt,sum);
+//   }
+//   cout<<cnt;
+// }
+
+// int main()
+// {
+//   cin.tie(0);cin.sync_with_stdio(0);
+//   cout.tie(0);cout.sync_with_stdio(0);
+//   int t = 1;
+//   cin >> t;
+//   while (t--)
+//   {
+//     solve(); cout<<"\n";
+//   }
+//   return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//   int n;
+//   cin>>n;
+//   vector<int>v(n);
+//   for(auto &it:v)cin>>it;
+//   sort(begin(v),end(v));
+//   int w=0;
+//   int i=0;
+//   for(int r=0;r<n-1;r++){
+//     while(i<n&&(i<r+2||v[r]+v[r+1]>v[i]))i++;
+//     w=max(w,i-r);
+//   }
+//   cout<<n-w;
+// }
+// signed main()
+// {
+//   cin.tie(0);cin.sync_with_stdio(0);
+//   cout.tie(0);cout.sync_with_stdio(0);
+//   int t = 1;
+//   cin >> t;
+//   while (t--)
+//   {
+//     solve(); cout<<"\n";
+//   }
+//   return 0;
+// }
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 #define int long long
 void solve(){
-    int a,b,p;
-    cin>>a>>b>>p;
-    string s;
-    cin>>s;
-    int n=s.size();
-    int i=n-1;
-    while (i>0){
-        if(s[i-1]=='A'){if(p<a){ break;} p-=a;}
-        else {if(p<b){ break;} p-=b;}
-        char c=s[i-1];
-        // int f=0;
-        while(i>0&&c==s[i-1]){i--; }
-    }
-    cout<<i+1;
+
 }
 signed main()
 {
-    cin.tie(0);cin.sync_with_stdio(0);
-    cout.tie(0);cout.sync_with_stdio(0);
-    int t = 1;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-        cout<<"\n";
-    }
-    return 0;
+  cin.tie(0);cin.sync_with_stdio(0);
+  cout.tie(0);cout.sync_with_stdio(0);
+  int t = 1;
+  cin >> t;
+  while (t--)
+  {
+    solve();
+    cout<<"\n";
+  }
+  return 0;
 }
