@@ -24,13 +24,11 @@
 // {
 //     cin.tie(0);cin.sync_with_stdio(0);
 //     cout.tie(0);cout.sync_with_stdio(0);
-    
+
 //        solve();
-    
+
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -39,7 +37,7 @@
 // {
 //     cin.tie(0);cin.sync_with_stdio(0);
 //     cout.tie(0);cout.sync_with_stdio(0);
-    
+
 //         string s;
 //         cin>>s;
 //         int n=s.size();
@@ -52,7 +50,6 @@
 //         cout<<cnt;
 //     return 0;
 // }
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -84,7 +81,6 @@
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -102,8 +98,8 @@
 //             }
 //         }
 //     }
-// int main()
-// {
+// // int main()
+// // {
 //     cin.tie(0);cin.sync_with_stdio(0);
 //     cout.tie(0);cout.sync_with_stdio(0);
 //      int n,m;
@@ -134,8 +130,6 @@
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -163,7 +157,7 @@
 //         for (int i = 0; i < n; i++) {
 //             opt += abs(v[i] - target);
 //         }
-//         ops = (opt - abs(sum % n)) / 2 + abs(sum % n); 
+//         ops = (opt - abs(sum % n)) / 2 + abs(sum % n);
 //     }
 //     cout<<ops;
 //     return 0;
@@ -190,8 +184,6 @@
 //     return 0;
 // }
 
-
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -216,7 +208,6 @@
 //     cout<<cnt;
 //     return 0;
 // }
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -264,7 +255,6 @@
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -299,7 +289,6 @@
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -312,7 +301,7 @@
 //     for (ll i = 2; i * i <= 10000001; i++)
 //     {
 //         if (prime[i])
-//         { 
+//         {
 //         for (ll j = 1LL*i * i; j <= 10000001; j += i)
 //             prime[j] = 0;
 //         }
@@ -374,7 +363,6 @@
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -408,8 +396,6 @@
 //     }
 //     return 0;
 // }
-
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -453,7 +439,6 @@
 //     return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -467,7 +452,7 @@
 //     for(int i=0;i<n;i++){
 //         v[i]=i+1;
 //     }
-    
+
 //     for(int i=0;i<n;i++){
 //         if(s[i]=='1')continue;
 //         int j=i;
@@ -480,7 +465,7 @@
 //             for (int t = i; t < k; t += 2) {
 //                 swap(v[t], v[t + 1]);
 //             }
-//         } 
+//         }
 //         else {
 //             for (int t = i; t < k - 3; t += 2) {
 //                 swap(v[t], v[t + 1]);
@@ -510,7 +495,7 @@
 //     return 0;
 // }
 // #include <bits/stdc++.h>
- 
+
 // using namespace std;
 
 // int main() {
@@ -532,7 +517,6 @@
 //     cout << ans << '\n';
 //   }
 // }
-
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -578,7 +562,6 @@
 //   return 0;
 // }
 
-
 // #include <bits/stdc++.h>
 // using namespace std;
 // typedef long long ll;
@@ -610,24 +593,134 @@
 //   return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve()
+// {
+//   int n, k;
+//   cin >> n >> k;
+//   string s;
+//   cin >> s;
+//   unordered_set<int> st;
+//   int cnt=0;
+//   for (int i = 0; i < k && i < n; i++)
+//   {
+//     if (s[i] == 'L')
+//     { cnt++;
+//       s[i] = 'R';
+//     }
+//     st.insert(i);
+//   }
 
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-#define int long long
-void solve(){
+//   for (int i=n-k;i<n;i++)
+//   {
+//      if (st.find(i) != st.end())
+//       {
+//         cout << -1;
+//         return;
+//       }
+//     if (s[i] == 'R')
+//     {
+//        cnt++;
+//       st.insert(i);
+//     }
+//   }
+//   cout << cnt;
+// }
 
-}
-signed main()
-{
-  cin.tie(0);cin.sync_with_stdio(0);
-  cout.tie(0);cout.sync_with_stdio(0);
-  int t = 1;
-  cin >> t;
-  while (t--)
-  {
-    solve();
-    cout<<"\n";
-  }
-  return 0;
-}
+// signed main()
+// {
+//   cin.tie(0);
+//   cin.sync_with_stdio(0);
+//   cout.tie(0);
+//   cout.sync_with_stdio(0);
+//   int t = 1;
+//   cin >> t;
+//   while (t--)
+//   {
+//     solve();
+//     cout << "\n";
+//   }
+//   return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//   int n,c;
+//   cin>>n>>c;
+//   vector<int>v(n);
+//   for(auto &it:v)cin>>it;
+//   sort(begin(v),end(v));
+//   for(auto &it:v){it-=c;}
+//   int t=n/2;
+//   for(int i=0;i<n/2;i++){v[i]=max(v[i],0LL);}
+//   int sum=0;
+//   for(auto it:v)sum+=it;
+//   cout<<sum;
+// }
+// signed main()
+// {
+//   cin.tie(0);cin.sync_with_stdio(0);
+//   cout.tie(0);cout.sync_with_stdio(0);
+//   int t = 1;
+//   cin >> t;
+//   while (t--)
+//   {
+//     solve();
+//     cout<<"\n";
+//   }
+//   return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//   int n;
+//   cin>>n;
+//   map<int,int>mp;
+//   vector<int>v(n);
+//   for(auto &it:v){cin>>it; mp[it]++;}
+//   int mex=0;
+//     unordered_map<int,int>m1;
+//   for(auto it:mp){
+//     if(it.first==mex){
+//     mex++;
+//     m1[it.second]++;}}
+//     cout<<1<<" ";
+//   if(mex==n){ for(int i=mex;i>=1;i--){cout<<i<<" ";}  return;}
+//   if(mp.size()==1){
+//     for(int i=1;i<=n;i++){cout<<1<<" ";}
+//     return;
+//   }
+//   int t=n+1-mex;
+//   int prev=1;
+//   for(int i=1;i<t;i++){
+//     prev+=m1[i];
+//     cout<<prev<<" ";
+//   }
+//   for(int i=mex;i>=1;i--)cout<<i<<' ';
+// }
+// signed main()
+// {
+//   cin.tie(0);cin.sync_with_stdio(0);
+//   cout.tie(0);cout.sync_with_stdio(0);
+//   int t = 1;
+//   cin >> t;
+//   while (t--)
+//   {
+//     solve();
+//     cout<<'\n';
+//   }
+//   return 0;
+// }
+
+
