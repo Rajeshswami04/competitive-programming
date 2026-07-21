@@ -333,54 +333,217 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-#define int long long
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
 
-void solve(){
-    int n;
-    cin>>n;
-    vector<int>v(n);
-    int sum=0;
-    for(auto &it:v){cin>>it; sum+=it;}
-    sort(begin(v),end(v));
-    int m;
-    cin>>m;
-    while(m--){
-        int d,s;
-        cin>>d>>s;
-        int ans=0;
-        auto it=lower_bound(v.begin(),v.end(),d);
-        if(it!=v.end()&& *it==d){int p=sum-d; if(p<s)ans+=s-p; cout<<max(0LL,ans)<<"\n"; continue;}
-        else{
-            int pre=-1;
-            int post=-1;
-            if(it!=v.begin())pre= *prev(it);
-            if(it!=v.end())post= *it;
-                int ans1=d-pre;
-                int tt=s-sum+pre;
-                ans1+=max(0LL,tt);
-                 int ans2=0;
-                 tt=s-sum+post;
-                ans2+=max(0LL,tt);
-                if(pre==-1)ans1=LLONG_MAX;
-                if(post==-1)ans2=LLONG_MAX;
-                cout<<min(ans1,ans2)<<'\n';
-        }
-        // cout<<max(ans,0LL)<<"\n";
-    }
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     int sum=0;
+//     for(auto &it:v){cin>>it; sum+=it;}
+//     sort(begin(v),end(v));
+//     int m;
+//     cin>>m;
+//     while(m--){
+//         int d,s;
+//         cin>>d>>s;
+//         int ans=0;
+//         auto it=lower_bound(v.begin(),v.end(),d);
+//         if(it!=v.end()&& *it==d){int p=sum-d; if(p<s)ans+=s-p; cout<<max(0LL,ans)<<"\n"; continue;}
+//         else{
+//             int pre=-1;
+//             int post=-1;
+//             if(it!=v.begin())pre= *prev(it);
+//             if(it!=v.end())post= *it;
+//                 int ans1=d-pre;
+//                 int tt=s-sum+pre;
+//                 ans1+=max(0LL,tt);
+//                  int ans2=0;
+//                  tt=s-sum+post;
+//                 ans2+=max(0LL,tt);
+//                 if(pre==-1)ans1=LLONG_MAX;
+//                 if(post==-1)ans2=LLONG_MAX;
+//                 cout<<min(ans1,ans2)<<'\n';
+//         }
+//         // cout<<max(ans,0LL)<<"\n";
+//     }
 
-}
+// }
 
-signed main()
-{
-    cin.tie(0); cin.sync_with_stdio(0);
-    int t = 1;
-    // cin >> t;
+// signed main()
+// {
+//     cin.tie(0); cin.sync_with_stdio(0);
+//     int t = 1;
+//     // cin >> t;
     
-        solve();
-        // cout << "\n";
+//         solve();
+//         // cout << "\n";
     
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     int low=0;
+//     int high=1e9;
+//     for(auto &it:v){cin>>it; }
+//     sort(begin(v),end(v));
+//     int ans=-1;
+//     while(low<=high){
+//         int mid=(high-low)/2 + low;
+//         int cnt=1;
+//         int st=v[0];
+//         for(int i=1;i<n;i++){
+//             if(v[i]>((2*mid+st))){
+//                 cnt++;
+//                 st=v[i];
+//             }
+//         }
+//         if(cnt<=3){ans=mid; high=mid-1;}
+//         else low=mid+1;
+//     }
+//     cout<<ans;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void solve() {
+//     int n, m, L;
+//     cin >> n >> m >> L;
+
+//     vector<pair<int, int>> h(n);
+//     for (int i = 0; i < n; i++) {
+//         cin >> h[i].first >> h[i].second; // [l, r]
+//     }
+
+//     vector<pair<int, int>> p(m);
+//     for (int i = 0; i < m; i++) {
+//         cin >> p[i].first >> p[i].second; // [x, v]
+//     }
+
+//     priority_queue<int> pq; // Max-heap to store available power-up values
+//     long long k = 1;        // Initial jump power
+//     int p_idx = 0;          // Pointer to current power-up
+//     int cnt = 0;            // Number of power-ups taken
+
+//     for (int i = 0; i < n; i++) {
+//         int l = h[i].first;
+//         int r = h[i].second;
+
+//         // Add all power-ups that appear before or at position l - 1
+//         while (p_idx < m && p[p_idx].first < l) {
+//             pq.push(p[p_idx].second);
+//             p_idx++;
+//         }
+
+//         // Jump length needed to clear hurdle [l, r]
+//         int req_k = r - l + 2;
+
+//         // Greedily pick the largest power-ups until k >= req_k
+//         while (k < req_k && !pq.empty()) {
+//             k += pq.top();
+//             pq.pop();
+//             cnt++;
+//         }
+
+//         // If we still can't clear the hurdle
+//         if (k < req_k) {
+//             cout << -1;
+//             return;
+//         }
+//     }
+
+//     cout << cnt;
+// }
+
+// int main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//         cout << "\n";
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// struct custom_hash {
+//     static uint64_t splitmix64(uint64_t x) {
+//         x += 0x9e3779b97f4a7c15;
+//         x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+//         x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+//         return x ^ (x >> 31);
+//     }
+
+//     size_t operator()(uint64_t x) const {
+//         static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+//         return splitmix64(x + FIXED_RANDOM);
+//     }
+// };
+// typedef long long ll;
+// void solve(){
+//     int n,k;
+//     cin>>n>>k;
+//     unordered_map<int,int,custom_hash>mp;
+//     vector<int>v;
+//     int c;
+//     for(int i=0;i<n;i++){
+//         cin>>c; mp[c]++;
+//         if(mp[c]==k)v.push_back(c);
+//     }
+//     int left=0; int right =0;
+//     if(v.size()==0){cout<<-1; return;}
+//     sort(begin(v),end(v));
+//     int t=v[0]; int tt=v[0];
+//     for(int i=1;i<v.size();i++){
+//         if(right-left+1<=tt-t+1){left=t; right=tt;}
+//         if(v[i]==tt+1){tt=v[i];}
+//         else {t=v[i]; tt=v[i];}
+//     }
+//     if(right-left+1<=tt-t+1){left=t; right=tt;}
+
+//     cout<<left<<" "<<right;
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); if(t!=0)cout<<"\n";
+//     }
+//     return 0;
+// }
+

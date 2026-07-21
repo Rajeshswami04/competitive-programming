@@ -948,3 +948,196 @@ using namespace std;
 //     cout << mini << " " << maxi << endl;
 //     return 0;
 // }
+
+// int dfs(int i,vector<int>&vis,vector<vector<int>>&adj){
+//     if(vis[i]>0)return 0;
+//     vis[i]=1;
+//     int cnt=0;
+//     for(auto it:adj[i]){
+//         cnt=max(cnt,1+dfs(it,vis,adj));
+//     }
+//     return cnt;
+// }
+// int maximumInvitations(vector<int> f) {
+//     int n=f.size();
+//     vector<vector<int>>adj(n);
+//     vector<int>indeg(n,0);
+//     for(int i=0;i<n;i++){adj[i].push_back(f[i]); indeg[f[i]]++;}
+//     int cnt=0;
+//     for(int i=0;i<n;i++)if(indeg[i]==0)cnt++;
+//     int ans=n-cnt;
+//     vector<int>vis(n,0);
+//     for(int i=0;i<n;i++){
+//         if(adj[i].size()==1&&vis[i]==0){
+//             ans=max(ans,dfs(i,vis,adj));
+//         }
+//     }
+//     return ans;
+// }
+// int main(){
+    // cout<<maximumInvitations({3,0,1,4,1});
+// }
+
+
+// #include <vector>
+// #include <queue>
+// #include <algorithm>
+// leetcode 2127
+// using namespace std;
+
+// class Solution {
+// public:
+//     int maximumInvitations(vector<int>& favorite) {
+//         int n = favorite.size();
+//         vector<int> indegree(n, 0);
+        
+//         for (int i = 0; i < n; ++i) {
+//             indegree[favorite[i]]++;
+//         }
+        
+//         // Step 1: Kahn's algorithm to trim trees and find longest paths to cycles
+//         queue<int> q;
+//         vector<int> depth(n, 1); // Longest chain length ending at node i
+        
+//         for (int i = 0; i < n; ++i) {
+//             if (indegree[i] == 0) {
+//                 q.push(i);
+//             }
+//         }
+        
+//         while (!q.empty()) {
+//             int u = q.front();
+//             q.pop();
+//             int v = favorite[u];
+//             depth[v] = max(depth[v], depth[u] + 1);
+//             if (--indegree[v] == 0) {
+//                 q.push(v);
+//             }
+//         }
+//         int max_large_cycle = 0;
+//         int sum_2_cycles = 0;
+//         // Step 2: Process remaining nodes in cycles
+//         for (int i = 0; i < n; ++i) {
+//             if (indegree[i] > 0) { // Node is part of a cycle
+//                 int cycle_length = 0;
+//                 int curr = i;
+                
+//                 while (indegree[curr] > 0) {
+//                     indegree[curr] = 0; // Mark as visited
+//                     cycle_length++;
+//                     curr = favorite[curr];
+//                 }
+                
+//                 if (cycle_length == 2) {
+//                     // Combine 2-cycle with its longest incoming chains
+//                     sum_2_cycles += depth[i] + depth[favorite[i]];
+//                 } else {
+//                     max_large_cycle = max(max_large_cycle, cycle_length);
+//                 }
+//             }
+//         }
+//         return max(max_large_cycle, sum_2_cycles);
+//     }
+// };
+    
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// vector<int>ans;
+// vector<int>mini;
+// void dfs(int i,int p,vector<vector<int>>&adj,vector<int>&v){
+//     if(p!=-1)ans[i]=max({v[i],v[i]-mini[p]});
+//     if(p!=-1)mini[i]=min(mini[i],v[i]-ans[p]);
+//     for(auto it:adj[i]){
+//         if(it!=p){
+            
+//             dfs(it,i,adj,v);
+//         }
+//     }
+// }
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     vector<vector<int>>adj(n);
+//     for(int i=1;i<=n-1;i++){
+//         int x,y;
+//         cin>>x>>y;
+//         adj[x-1].push_back(y-1);
+//         adj[y-1].push_back(x-1);
+//     }
+//     ans.assign(n,LLONG_MIN);
+//     mini.assign(n,LLONG_MAX);
+//     mini[0]=v[0];
+//     ans[0]=v[0];
+//     dfs(0,-1,adj,v);
+//     for(int i:ans)cout<<i<<" ";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<vector<int>>e(n-1,vector<int>(4,0));
+//     for(auto &it:e){
+//         cin>>it[0]>>it[1]>>it[2]>>it[3];
+//     }
+//     vector<int>ans(n,0);
+//     vector<vector<int>>adj(n);
+//     vector<int>ind(n,0);
+//     for(auto &it:e){
+//         int u=it[0]; int v=it[1]; int pu=it[2]; int pv=it[3];
+//         if(pu<pv){adj[v-1].push_back(u-1); ind[u-1]++;}
+//         else {adj[u-1].push_back(v-1); ind[v-1]++;}
+//     }
+//     queue<int>q;
+//     int t=n;
+//     for(int i=0;i<n;i++){if(ind[i]==0)q.push(i);}
+//     while(!q.empty()){
+//         auto it=q.front(); q.pop();
+//         ans[it]=t--;
+//         for(auto u:adj[it]){
+//             ind[u]--;
+//             if(ind[u]==0)q.push(u);
+//         }
+//     }
+//     for(auto it:ans)cout<<it<<' ';
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
