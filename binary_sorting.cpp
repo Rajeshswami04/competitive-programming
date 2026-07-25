@@ -547,3 +547,164 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n,k;
+//     cin>>n>>k;
+//     vector<int>a(n);
+//     vector<int>c(k);
+//     for(auto &it:a){cin>>it;}
+//     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+//     for(auto &it:c){cin>>it;}
+//     vector<pair<int,int>>v;
+//     for(int i=0;i<n;i++){v.push_back({a[i]-1,i}); }
+//     int t=0;
+//     sort(rbegin(v),rend(v));
+//     while(t<=v[0].first){pq.push({c[t++],t});}
+//     int sum=0;
+//     for(auto &it:v){
+//         int i=it.second;
+//         int p=it.first;
+//         while(!pq.empty()&&pq.top().second>p)pq.pop();
+//         if(!pq.empty()&&pq.top().first<c[p]){sum+=pq.top().first; pq.pop();}
+//         else sum+=c[p];
+//     }
+//     cout<<sum;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n,k;
+//     cin>>n>>k;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     int cnt=0;
+//     int j=1; int i=0;
+//     while(j<n){
+//         if((v[j]<<1)<=v[j-1]){i=j; j++; continue;}
+//         if(j-i+1==k+1){cnt++;}
+//         j++;
+//         if(j-i+1>k+1)i++;
+//     }
+//     cout<<cnt;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// int dfs(int u,vector<pair<int,int>>&adj,string &s){
+//     if(adj[u].first==-1&&adj[u].second==-1)return 0;
+//     int cnt=1e15;
+//     if(adj[u].first!=-1){if(s[u]=='R')cnt=min(cnt,1+dfs(adj[u].first,adj,s));
+//     else if(s[u]=='L')cnt=min(cnt,dfs(adj[u].first,adj,s));
+//     else cnt=min(cnt,1+dfs(adj[u].first,adj,s));}
+//     if(adj[u].second!=-1){if(s[u]=='L')cnt=min(cnt,1+dfs(adj[u].second,adj,s));
+//     else if(s[u]=='R')cnt=min(cnt,dfs(adj[u].second,adj,s));
+//     else cnt=min(cnt,1+dfs(adj[u].second,adj,s));}
+//     return cnt;
+// }
+// void solve(){
+//     int n;
+//     cin>>n;
+//     string s;
+//     cin>>s;
+//     vector<pair<int,int>>adj(n);
+//     int a,b;
+//     for(auto &it:adj)cin>>it.first>>it.second;
+//     for(auto &it:adj){it.first-=1; it.second-=1;}
+//     int ans=dfs(0,adj,s);
+//     cout<<ans;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve(); cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+void solve(){
+    int n,m;
+    cin>>n>>m;
+    vector<int>a(n);
+    vector<int>b(m);
+    for(auto &it:a)cin>>it;
+    for(auto &it:b)cin>>it;
+    priority_queue<int>pqa;
+    priority_queue<int>pqb;
+    for(auto &it:a)pqa.push(it);
+    for(auto &it:b)pqb.push(it);
+    int t=1;
+    while(!pqa.empty()&&!pqb.empty()){
+        auto ita=pqa.top(); auto itb=pqb.top(); pqa.pop(); pqb.pop();
+        if(t){
+            if(ita>=itb){pqa.push(ita);}
+            else {pqa.push(ita); pqb.push(itb-ita);}
+        }else{
+             if(itb>=ita){pqb.push(itb); }
+            else {pqb.push(itb); pqa.push(ita-itb);}
+        }
+        if(pqb.empty()&&t){cout<<"Alice";}
+        else if(pqa.empty()&&t==0)cout<<"Bob";
+        t^=1;
+    }
+    
+}
+int main()
+{
+    cin.tie(0);cin.sync_with_stdio(0);
+    cout.tie(0);cout.sync_with_stdio(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+        cout<<"\n";
+    }
+    return 0;
+}

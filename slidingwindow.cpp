@@ -1,5 +1,4 @@
-#include<bits/stdc++.h>
-using namespace std++;
+// #include<bits/stdc++.h>/
 // vector<int> maxSlidingWindow(vector<int>& nums, int k) {
 //         deque<int>dq;
 //         int l=0; int n=nums.size();
@@ -175,3 +174,140 @@ using namespace std++;
 //       return a;
 //     }
 // };
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n,k,l,r;
+//     cin>>n>>k>>l>>r;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     int cnt=0;
+//     unordered_map<int,int>mp;
+//     int i=0;
+//     int j=0;
+//     for( j=0;j<n;j++){
+//         mp[v[j]]++;
+//         if(j-i+1>=r&&mp.size()==k){
+//             int p=i;
+//             while(i<j&&mp.size()==k&&j-i+1>=l)i++;
+//             cnt+=i-p+1;
+//             i--;
+//         }
+//     }
+//     while(i<n&&j-i+1<=r&&j-i+1>=l&&mp.size()==k){
+//         cnt++;
+//         mp[v[i]]--; if(mp[v[i]]==0)mp.erase(v[i]); i++;
+//     }
+//     cout<<cnt;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// using ll = long long;
+// ll countAtMostK(const vector<int>& a, int n, int k, int l, int r) {
+//     if (k <= 0) return 0
+//     ll count = 0;
+//     unordered_map<int, int> freq;
+//     int distinct = 0;
+//     int left = 0;
+//     for (int right = 0; right < n; ++right) {
+//         if (freq[a[right]] == 0) {
+//             distinct++;
+//         }
+//         freq[a[right]]++;
+//         while (distinct > k) {
+//             freq[a[left]]--;
+//             if (freq[a[left]] == 0) {
+//                 distinct--;
+//             }
+//             left++;
+//         }
+//         int min_i = max(right - r + 1, left);
+//         int max_i = right - l + 1;
+//         if (min_i <= max_i) {
+//             count += (max_i - min_i + 1);
+//         }
+//     }
+//     return count;
+// }
+// void solve() {
+//     int n, k, l, r;
+//     cin >> n >> k >> l >> r;
+//     vector<int> a(n);
+//     for (int i = 0; i < n; ++i) {
+//         cin >> a[i];
+//     }
+//     ll ans = countAtMostK(a, n, k, l, r) - countAtMostK(a, n, k - 1, l, r);
+//     cout << ans << "\n";
+// }
+
+// int main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define int long long
+void solve(){
+    int n;
+    cin>>n;
+    vector<int>v(n);
+    for(auto &it:v)cin>>it;
+    for(int i=1;i<n/2;i++){
+            int f=n-i-1;
+                int t=0;
+                if(i-1>=0&&v[i]==v[i-1])t++;
+                if(f+1<n&&v[f]==v[f+1])t++;
+                swap(v[i],v[f]); 
+                int nex=0;
+                if(i-1>=0&&v[i]==v[i-1])nex++;
+                if(f+1<n&&v[f]==v[f+1])nex++;
+                if(nex<t){}
+                else{swap(v[i],v[f]);}
+    }
+    int cnt=0;
+    for(int i=0;i<n-1;i++){if(v[i]==v[i+1])cnt++;}
+    cout<<cnt;
+}
+signed main()
+{
+    cin.tie(0);cin.sync_with_stdio(0);
+    cout.tie(0);cout.sync_with_stdio(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+        cout<<'\n';
+    }
+    return 0;
+}

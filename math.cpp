@@ -723,4 +723,115 @@
 //   return 0;
 // }
 
-
+// class Solution {
+// public:
+//      vector<int> nge(vector<int>nums){
+//         int n=nums.size();
+//         vector<int>ans(n,n);
+//         stack<int>st;
+//         for(int i=n-1;i>=0;i--){
+//             while(!st.empty()&&nums[st.top()]<nums[i]){st.pop(); }
+//             if(!st.empty()){ans[i]=st.top();}
+//             st.push(i);
+//         }
+//         return ans;
+//      }
+//       vector<int> pge(vector<int>nums){
+//         int n=nums.size();
+//         vector<int>ans(n,-1);
+//         stack<int>st;
+//         for(int i=0;i<n;i++){
+//             while(!st.empty()&&nums[st.top()]<=nums[i]){st.pop(); }
+//             if(!st.empty()){ans[i]=st.top();}
+//             st.push(i);
+//         }
+//         return ans;
+//      }
+//      vector<int> nse(vector<int>nums){
+//         int n=nums.size();
+//         vector<int>ans(n,n);
+//         stack<int>st;
+//         for(int i=n-1;i>=0;i--){
+//             while(!st.empty() && nums[st.top()]>nums[i]){st.pop();}
+//             if(!st.empty()){ans[i]=st.top();}
+//             st.push(i);
+//         } return ans;
+//      }
+//       vector<int> pse(vector<int>nums){
+//         int n=nums.size();
+//         vector<int>ans(n,-1);
+//         stack<int>st;
+//         for(int i=0;i<n;i++){
+//             while(!st.empty() && nums[st.top()]>=nums[i]){st.pop();}
+//             if(!st.empty()){ans[i]=st.top();}
+//             st.push(i);
+//         } return ans;
+//      }
+//     long long subArrayRanges(vector<int>& nums) {
+//         vector<int>nges=nge(nums);
+//         vector<int>pges=pge(nums);
+//         vector<int>pses=pse(nums);
+//         vector<int>nses=nse(nums);
+//         long long  summax=0; long long  summin=0;
+//         for(int i=0;i<nums.size();i++){
+//             int ng=nges[i]-i;
+//             int ns=nses[i]-i;
+//             int ps=i-pses[i];
+//             int pg=i-pges[i];
+//             summin=(summin+(ns*ps*1ll*nums[i]));
+//             summax=(summax+(ng*pg*1ll*nums[i]));
+//         }
+//         return summax-summin;
+//     }
+// };
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+int merge(string& s) {
+    int n = s.size();
+    if (n == 2) return stoi(s);
+        if (n == 3) {
+        int v1 = (s[0] - '0') + stoi(s.substr(1, 2));
+        int v2 = (s[0] - '0') * stoi(s.substr(1, 2));
+        int v3 = stoi(s.substr(0, 2)) + (s[2] - '0');
+        int v4 = stoi(s.substr(0, 2)) * (s[2] - '0');
+        return min({v1, v2, v3, v4});
+    }
+    int ans = INT_MAX;
+    for (int i = 0; i < n - 1; i++) {
+        vector<int> nums;
+        for (int j = 0; j < n; j++) {
+            if (j == i) {
+                nums.push_back(stoi(s.substr(j, 2)));
+                j++; 
+            } else {
+                nums.push_back(s[j] - '0');
+            }
+        }
+        bool has_zero = false;
+        for (int x : nums) {
+            if (x == 0) {
+                has_zero = true;
+                break;
+            }
+        }
+        if (has_zero) return 0;
+        int current_sum = 0;
+        for (int x : nums) {
+            if (x != 1) {
+                current_sum += x;
+            }
+        }
+        if (current_sum == 0) current_sum = 1;
+        ans = min(ans, current_sum);
+    }
+    return ans;
+}
+int main() {
+    string s = "1111111";
+    cout << merge(s) << endl; // Output: 11
+    return 0;
+}

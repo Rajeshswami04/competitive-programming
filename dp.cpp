@@ -1159,48 +1159,48 @@ using namespace std;
 // };
 
 
-#include <vector>
-#include <string>
-#include <unordered_map>
+// #include <vector>
+// #include <string>
+// #include <unordered_map>
 
-class Solution {
-private:
-    std::unordered_map<std::string, std::vector<int>> memo;
+// class Solution {
+// private:
+//     std::unordered_map<std::string, std::vector<int>> memo;
 
-public:
-    std::vector<int> diffWaysToCompute(std::string expression) {
-        if (memo.count(expression)) {
-            return memo[expression];
-        }
-        std::vector<int> results;
-        for (int i = 0; i < expression.length(); i++) {
-            char c = expression[i];
-                if (c == '+' || c == '-' || c == '*') {
-                std::vector<int> left = diffWaysToCompute(expression.substr(0, i));
-                std::vector<int> right = diffWaysToCompute(expression.substr(i + 1));
-                for (int l : left) {
-                    for (int r : right) {
-                        if (c == '+') {
-                            results.push_back(l + r);
-                        } else if (c == '-') {
-                            results.push_back(l - r);
-                        } else if (c == '*') {
-                            results.push_back(l * r);
-                        }
-                    }
-                }
-            }
-        }
-        if (results.empty()) {
-            results.push_back(std::stoi(expression));
-        }
-        return memo[expression] = results;
-    }
-};    signed main(){
-        string s="2*3-4*5";
-        diffWaysToCompute(s);
-        for(auto it:ans){
-            cout<<it<<" ";
-        }
-        return 0;
-    }
+// public:
+//     std::vector<int> diffWaysToCompute(std::string expression) {
+//         if (memo.count(expression)) {
+//             return memo[expression];
+//         }
+//         std::vector<int> results;
+//         for (int i = 0; i < expression.length(); i++) {
+//             char c = expression[i];
+//                 if (c == '+' || c == '-' || c == '*') {
+//                 std::vector<int> left = diffWaysToCompute(expression.substr(0, i));
+//                 std::vector<int> right = diffWaysToCompute(expression.substr(i + 1));
+//                 for (int l : left) {
+//                     for (int r : right) {
+//                         if (c == '+') {
+//                             results.push_back(l + r);
+//                         } else if (c == '-') {
+//                             results.push_back(l - r);
+//                         } else if (c == '*') {
+//                             results.push_back(l * r);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         if (results.empty()) {
+//             results.push_back(std::stoi(expression));
+//         }
+//         return memo[expression] = results;
+//     }
+// };    signed main(){
+//         string s="2*3-4*5";
+//         diffWaysToCompute(s);
+//         for(auto it:ans){
+//             cout<<it<<" ";
+//         }
+//         return 0;
+//     }

@@ -978,68 +978,84 @@ using namespace std;
     // cout<<maximumInvitations({3,0,1,4,1});
 // }
 
-
-// #include <vector>
-// #include <queue>
-// #include <algorithm>
-// leetcode 2127
-// using namespace std;
-
 // class Solution {
 // public:
+
+//     int BFS(int start, unordered_map<int, vector<int>>& adj, vector<bool>& visited) {
+//         queue<pair<int, int>> que; //{node, path length}
+//         que.push({start, 0});
+//         int maxDistance = 0;
+
+//         while(!que.empty()) {
+//             auto[currNode, dist] = que.front();
+//             que.pop();
+
+//             for(auto &ngbr : adj[currNode]) {
+//                 if(!visited[ngbr]) {
+//                     visited[ngbr] = true;
+//                     que.push({ngbr, dist+1});
+//                     maxDistance = max(maxDistance, dist+1);
+//                 }
+//             }
+//         }
+
+//         return maxDistance;
+//     }
+
 //     int maximumInvitations(vector<int>& favorite) {
 //         int n = favorite.size();
-//         vector<int> indegree(n, 0);
-        
-//         for (int i = 0; i < n; ++i) {
-//             indegree[favorite[i]]++;
+//         unordered_map<int, vector<int>> adj;
+
+//         for(int i = 0; i < n; i++) {
+//             int u = i;
+//             int v = favorite[i];
+//             // u --> v
+//             adj[v].push_back(u); //reversed graph - so that we can find the path length after traversal
 //         }
-        
-//         // Step 1: Kahn's algorithm to trim trees and find longest paths to cycles
-//         queue<int> q;
-//         vector<int> depth(n, 1); // Longest chain length ending at node i
-        
-//         for (int i = 0; i < n; ++i) {
-//             if (indegree[i] == 0) {
-//                 q.push(i);
-//             }
-//         }
-        
-//         while (!q.empty()) {
-//             int u = q.front();
-//             q.pop();
-//             int v = favorite[u];
-//             depth[v] = max(depth[v], depth[u] + 1);
-//             if (--indegree[v] == 0) {
-//                 q.push(v);
-//             }
-//         }
-//         int max_large_cycle = 0;
-//         int sum_2_cycles = 0;
-//         // Step 2: Process remaining nodes in cycles
-//         for (int i = 0; i < n; ++i) {
-//             if (indegree[i] > 0) { // Node is part of a cycle
-//                 int cycle_length = 0;
-//                 int curr = i;
-                
-//                 while (indegree[curr] > 0) {
-//                     indegree[curr] = 0; // Mark as visited
-//                     cycle_length++;
-//                     curr = favorite[curr];
+
+//         int longestCycleEmplCount = 0;
+//         int happyCoupleEmplCount  = 0; //cycle length = 2 waalo se kitna milpaega total
+
+//         vector<bool> visited(n, false);
+
+//         for(int i = 0; i < n; i++) {
+
+//             if(!visited[i]) {
+//                 //{node, abtak ka node count}
+//                 unordered_map<int, int> mp;
+
+//                 int currNode      = i;
+//                 int currNodeCount = 0;
+
+//                 while(!visited[currNode]) { //until cycle is not detected
+//                     visited[currNode] = true;
+//                     mp[currNode] = currNodeCount;
+
+//                     int nextNode = favorite[currNode]; //favorite node of curr node
+//                     currNodeCount += 1;
+
+//                     if(mp.count(nextNode)) { //already visited hai ye. Matlab cycle detect hogaya hai
+//                         int cycleLength = currNodeCount - mp[nextNode];
+//                         longestCycleEmplCount = max(longestCycleEmplCount, cycleLength);
+
+//                         if(cycleLength == 2) { //happy couple case
+//                             //currNode <-> nextNode = 2 nodes
+//                             vector<bool> visitedNodes(n, false);
+//                             visitedNodes[currNode] = true;
+//                             visitedNodes[nextNode] = true;
+//                             happyCoupleEmplCount += 2 + BFS(currNode, adj, visitedNodes) + BFS(nextNode, adj, visitedNodes);
+//                         }
+//                         break;
+//                     }
+//                     currNode = nextNode;
 //                 }
-                
-//                 if (cycle_length == 2) {
-//                     // Combine 2-cycle with its longest incoming chains
-//                     sum_2_cycles += depth[i] + depth[favorite[i]];
-//                 } else {
-//                     max_large_cycle = max(max_large_cycle, cycle_length);
-//                 }
 //             }
 //         }
-//         return max(max_large_cycle, sum_2_cycles);
+
+//         return max(happyCoupleEmplCount, longestCycleEmplCount);
+
 //     }
 // };
-    
 
 
 
@@ -1140,4 +1156,101 @@ using namespace std;
 //     }
 //     return 0;
 // }
+
+// #include <vector>
+
+// class Solution {
+// public:
+//     std::vector<int> findRedundantDirectedConnection(std::vector<std::vector<int>>& edges) {
+//         int n = edges.size();
+//         std::vector<int> parent(n + 1, 0);
+//         int first = -1, second = -1;
+//         // Step 1: Check if any node has two parents
+//         for (int i = 0; i < n; i++) {
+//             int u = edges[i][0], v = edges[i][1];
+//             if (parent[v] != 0) {
+//                 first = parent[v] - 1; // Index of the first edge
+//                 second = i;             // Index of the second edge
+//                 break;
+//             }
+//             parent[v] = i + 1; // Store 1-based index of edge
+//         }
+        
+//         // Step 2: DSU to detect cycles
+//         std::vector<int> ds(n + 1, 0);
+//         for (int i = 0; i < n; i++) {
+//             // Skip the second candidate edge to test if removing it resolves issues
+//             if (i == second) continue;
+//             int u = edges[i][0], v = edges[i][1];
+//             int rootU = find(ds, u);
+//             int rootV = find(ds, v);
+//             // If a cycle is detected
+//             if (rootU == rootV) {
+//                 // If there was no node with 2 parents, return this cycle-creating edge
+//                 if (second == -1) return edges[i];
+//                 // If there was a node with 2 parents, removing 'second' didn't fix the cycle,
+//                 // so 'first' must be the redundant edge
+//                 return edges[first];
+//             }
+//             ds[rootV] = rootU;
+//         }
+//         // If no cycle was detected after skipping 'second', then 'second' was indeed the redundant edge
+//         return edges[second];
+//     }
+// private:
+//     int find(std::vector<int>& ds, int i) {
+//         return ds[i] == 0 ? i : (ds[i] = find(ds, ds[i]));
+//     }
+// };
+
+
+// class Solution {
+// public:
+    
+// vector<int>dsu;
+// int find(int u){
+//     if(dsu[u]<0)return u;
+//     return dsu[u]=find(dsu[u]);
+// }
+// void unionf(int u,int v){
+//     int pu=find(u);
+//     int pv=find(v);
+//     if(pu==pv)return;
+//     if(dsu[pu]<dsu[pv]){
+//         dsu[pu]+=dsu[pv];
+//         dsu[pv]=pu;
+//     }else{
+//         dsu[pv]+=dsu[pu];
+//         dsu[pu]=pv;
+//     }
+// }
+// int minMalwareSpread(vector<vector<int>>&graph, vector<int>&initial) {
+//      int n=graph.size();
+//      dsu.assign(n,-1);
+//     for(int i=0;i<n;i++){
+//         for(int j=i;j<n;j++){
+//             if(graph[i][j]){unionf(i,j);}
+//         }
+//     }   
+//     sort(begin(initial),end(initial));
+//     unordered_map<int,int>mp;
+//     for(int i=0;i<n;i++){mp[find(i)]++;}
+//     int ans=-1;
+//     int maxi=-1;
+//     int m=initial.size();
+//     for(auto it:initial){
+//         int cnt=mp[find(it)];
+//         for(auto v:initial){
+//             if(it!=v){if(find(it)==find(v)){cnt=0;}}
+//         }
+//         if(cnt>maxi){maxi=cnt; ans=it;}
+//     }
+//     return ans;
+// }
+// };
+
+
+
+// https://github.com/MAZHARMIK/Interview_DS_Algo/blob/master/Graph/Topological%20Sorting/Sort%20Items%20by%20Groups%20Respecting%20Dependencies.cpp
+
 
