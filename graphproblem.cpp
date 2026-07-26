@@ -1254,3 +1254,163 @@ using namespace std;
 // https://github.com/MAZHARMIK/Interview_DS_Algo/blob/master/Graph/Topological%20Sorting/Sort%20Items%20by%20Groups%20Respecting%20Dependencies.cpp
 
 
+// vector<int>topo(vector<vector<int>>&adj,vector<int>&indeg){
+//     int n=indeg.size();
+//     queue<int>q;
+//     for(int i=0;i<n;i++){
+//         if(indeg[i]==0)q.push(i);
+//     }
+//     vector<int>ans;
+//     while(!q.empty()){
+//         auto it=q.front();
+//         q.pop();
+//         ans.push_back(it);
+//         for(auto u:adj[it]){
+//             indeg[u]--;
+//             if(indeg[u]==0)q.push(u);
+//         }
+//     }
+//     return (ans.size()==n)?ans:vector<int>();
+// }
+
+// vector<int> sortItems(int n, int m, vector<int>& group, vector<vector<int>>& before) {
+//     for(int i=0;i<n;i++){
+//         if(group[i]==-1)group[i]=m++;}
+//     vector<int>inditem(n);
+//     vector<int>indgrp(m);
+//     vector<vector<int>>adjitems(n);
+//     vector<vector<int>>adjgroup(m);
+//     for(int i=0;i<n;i++){
+//         for(int j:before[i]){
+//             adjitems[j].push_back(i);
+//             inditem[i]++;
+//             if(group[i]!=group[j]){
+//                 adjgroup[group[j]].push_back(group[i]);
+//                 indgrp[group[i]]++;
+//             }
+//         }
+//     }
+//     vector<int>topoitem=topo(adjitems,inditem);
+//     vector<int>topograph=topo(adjgroup,indgrp);
+//     if(topoitem.size()==0||topograph.size()==0){return {};}
+//     unordered_map<int,vector<int>>mp;
+//     for(int i:topoitem){
+//         mp[group[i]].push_back(i);
+//     }
+//     vector<int>res;
+//     for(int i:topograph){
+//         for(auto it:mp[i])res.push_back(it);
+//     }
+//     return res;
+// }
+// int main(){
+//     vector<int>s=sortgraph({-1,-1,1,0,0,1,0,-1},8,2,{{},{6},{5},{6},{3},{},{4},{}});
+//     for(int i:s)cout<<i<<' ';
+// }
+
+//most profitable path in tree
+// class Solution {
+// public:
+   
+// int dfs(int step,int i,vector<vector<int>>&adj,vector<int>&bob,int par){
+//     if(i==0){
+//          bob[i]=step;
+//          return 1;
+//         }
+//     int a=0;
+//     for(auto it:adj[i]){
+//         if(it!=par){
+//             a|=dfs(step+1,it,adj,bob,i);
+            
+//         }
+//     }
+//     if(a)bob[i]=step;
+//     return a;
+// }
+// int mostProfitablePath(vector<vector<int>>& edges, int bob, vector<int>& amount) {
+//         int n=edges.size()+1;
+//         vector<vector<int>>adj(n);
+//         for(auto &it:edges){
+//             adj[it[0]].push_back(it[1]);
+//             adj[it[1]].push_back(it[0]);
+//         }
+//         vector<int>bobstep(n,1e9);
+//         dfs(0,bob,adj,bobstep,-1);
+//         int ans=INT_MIN;
+//         queue<pair<int,int>>q;
+//         q.push({0,amount[0]});
+//         vector<int>vis(n,0);
+//         vis[0]=1;
+//         int s=1;
+//         while (!q.empty())
+//         {   int m=q.size();
+//             for(int j=0;j<m;j++){
+//             auto it=q.front(); q.pop();
+//             int b=0;
+//             for(auto u:adj[it.first]){
+//                 if(vis[u])continue;
+//                 b=1;
+//                 if(s==bobstep[u]){
+//                     q.push({u,it.second+amount[u]/2});
+//                     vis[u]=1;
+//                 }else if(s>bobstep[u]){
+//                     q.push({u,it.second});
+//                     vis[u]=1;
+//                 }else{
+//                      q.push({u,it.second+amount[u]});
+//                      vis[u]=1;
+//                 }
+//             }
+//             if(b==0)ans=max(ans,it.second);
+//         }
+//             s++;
+//         }
+//         return ans;
+// }
+// };
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<vector<int>>adj(n);
+//     vector<int>ind(n);
+//     for(int i=0;i<n-1;i++){
+//         int a,b; cin>>a>>b;
+//         adj[a-1].push_back(b-1);
+//         adj[b-1].push_back(a-1);
+//         ind[a-1]++; ind[b-1]++;
+//     }
+//     vector<int>c(n);
+//     int cnt=0;
+//     for(int i=0;i<n;i++){
+//         if(ind[i]==1)cnt++;
+//         for(auto it:adj[i]){
+//             if(ind[it]==1)c[i]++;
+//         }
+//     }
+//     int mini=1e9;
+//     for(int i=0;i<n;i++){
+//         if(ind[i]==1)continue;
+//         int val=cnt-c[i];
+//         if(val<mini){
+//             mini=val;
+//         }
+//     }
+//     if(mini==1e9)mini=0;
+//     cout<<mini;
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
