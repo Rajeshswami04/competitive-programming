@@ -1,16 +1,16 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define  print  cout<<
-#define vvi vector<vector<int>>
-#define vvvi vector<vector<vector<int>>>
-#define vi vector<int>
-#define pi pair<int,int>
-#define int long long
+// #include<bits/stdc++.h>
+// using namespace std;
+// #define  print  cout<<
+// #define vvi vector<vector<int>>
+// #define vvvi vector<vector<vector<int>>>
+// #define vi vector<int>
+// #define pi pair<int,int>
+// #define int long long
 
-//partition dp 
-//scramble string 
+// partition dp
+// scramble string
 
-// unordered_map<string,int>mp;
+// "NO"dered_map<string,int>mp;
 // bool solve(string &s1,string &s2){
 //     if(s1==s2)return 1;
 //     if(s1.length()!=s2.length())return 0;
@@ -37,7 +37,6 @@ using namespace std;
 //     cout<<" ";
 //     cout<<mp.size();
 // }
-
 
 // leetcode 1444
 // class Solution {
@@ -91,8 +90,7 @@ using namespace std;
 //     }
 // };
 
-
-//2218
+// 2218
 
 // class Solution {
 // public:
@@ -194,11 +192,10 @@ using namespace std;
 //       for(int t=1;t<=k;t++){
 //         if(i+t<n)pick1=min(pick1,abs(v[i]-v[i+t])+dp[i+t]);
 //                         }
-//         dp[i]=pick1;  
+//         dp[i]=pick1;
 //     }
 //     cout<<dp[0];
 // }
-
 
 // // house robber
 // // vi dp;
@@ -230,8 +227,6 @@ using namespace std;
 // print fp;
 // }
 
-
-
 // // // house robber2
 // vi dp;
 // int n;
@@ -250,7 +245,6 @@ using namespace std;
 // print max(solve(0,a,n-1),solve(1,a,n));
 // }
 
-
 // vvi dp;
 // int solve(int day,int prev,vvi&score){
 //     if(day==score.size())return 0;
@@ -263,7 +257,6 @@ using namespace std;
 //     }
 //     return dp[day][prev+1]=maxi;
 // }
-
 
 // signed main(){
 //     int m;
@@ -291,7 +284,7 @@ using namespace std;
 //          }
 //     }
 //     int ans=0;
-//     print max({dp[0][0],dp[0][1],dp[0][2]}); 
+//     print max({dp[0][0],dp[0][1],dp[0][2]});
 // }
 
 // vvi dp;
@@ -316,8 +309,6 @@ using namespace std;
 //     }
 //     print dp[0][0];
 // }
-
-
 
 // vvi dp;
 // int solve(int x,int y,int m,int n,vvi& mat){
@@ -378,9 +369,6 @@ using namespace std;
 //     }
 //     print onedp[0];
 // }
-
-
-
 
 // #define  vvpi vector<vector<pair<int,int>>>
 // int m,n;
@@ -443,9 +431,6 @@ using namespace std;
 //     cout<<cherrypickup(mat);
 // }
 
-
-
-
 // #define  vvpi vector<vector<pair<int,int>>>
 // // int solve(int i,int k,vi&a){
 //     if(i==a.size())return 0;
@@ -459,14 +444,14 @@ using namespace std;
 //     int n,k;
 //     cin>>n>>k;
 //     vi v(n);
-//     unordered_map<int,unordered_map<int,int>>dp;
+//     "NO"dered_map<int,"NO"dered_map<int,int>>dp;
 //     for(int i=0;i<n;i++)dp[i][0]=1;
 //     for(int i=0;i<n;i++)cin>>v[i];
 //     dp[n-1][v[n-1]]=1;
 //     for(int i=n-2;i>=0;i--){
 //         for(int t=min(0LL,k);t<=abs(k);t++){
 //             int pick=0;
-        
+
 //             pick=dp[i+1][t-v[i]];
 //             int npotpick=dp[i+1][t];
 //             dp[i][t] =pick+npotpick;
@@ -475,8 +460,8 @@ using namespace std;
 //     print dp[0][k];
 // }
 // // work for only positives sums//
-// // now it works for neg as well
-// but it is not working with 0 properly
+// //"NO" it works for neg as well
+// but it is"NO" working with 0 properly
 
 // to handle zeros and neg and all ints
 // signed main(){
@@ -486,20 +471,19 @@ using namespace std;
 //     cin>>k;
 //     vi v(n);
 //     for(int i=0;i<n;i++)cin>>v[i];
-//     unordered_map<int,int>freq;
+//     "NO"dered_map<int,int>freq;
 //     freq[0]++;
 //     for(int i:v){
-//         unordered_map<int,int>temp;
+//         "NO"dered_map<int,int>temp;
 //         for(auto &it:freq){
 //             freq[it.first+i]+=it.second;
-//         }    
+//         }
 //         freq.clear();
 //         freq.move
 //         for(auto it:temp)freq[it.first]=it.second;
 //     }
 //     print freq[k];
 // }
-
 
 // #define  vvpi vector<vector<pair<int,int>>>
 // int solve(int i,int k,vi&a){
@@ -514,14 +498,14 @@ using namespace std;
 //     int n,k;
 //     cin>>n>>k;
 //     vi v(n);
-//     unordered_map<int,unordered_map<int,int>>dp;
+//     "NO"dered_map<int,"NO"dered_map<int,int>>dp;
 //     for(int i=0;i<n;i++)dp[i][0]=1;
 //     for(int i=0;i<n;i++)cin>>v[i];
 //     dp[n-1][v[n-1]]=1;
 //     for(int i=n-2;i>=0;i--){
 //         for(int t=min(0LL,k);t<=abs(k);t++){
 //             int pick=0;
-        
+
 //             pick=dp[i+1][t-v[i]];
 //             int npotpick=dp[i+1][t];
 //             dp[i][t] =pick+npotpick;
@@ -529,8 +513,6 @@ using namespace std;
 //     }
 //     print dp[0][k];
 // }
-
-
 
 // // vi dp;
 // min number of coins problem
@@ -578,14 +560,12 @@ using namespace std;
 // signed main(){
 //     int n;
 //     cin>>n;
-//     int amt; 
+//     int amt;
 //     cin>>amt;
 //     vi v(n);
 //     for(auto &it:v)cin>>it;
 //     print solve(amt,v);
 // }
-
-
 
 // vvi dp;
 // int solve(string&a,string&b,int i,int j){
@@ -693,8 +673,6 @@ using namespace std;
 //     shortestsuperseq();
 // }
 
-
-
 // vvi dp;
 // int solve(int i,int j,string &bap,string &b){
 //     if(j==b.size())return 1;
@@ -705,10 +683,6 @@ using namespace std;
 //     if(bap[i]==b[j])cnt+=solve(i+1,j+1,bap,b);
 //     cnt+=solve(i+1,j,bap,b);
 // }
-
-
-
-
 
 // number of diff subseq possi when 0 ,1
 // int solve(){
@@ -725,7 +699,7 @@ using namespace std;
 // signed main(){
 //     print solve();
 // }
-// n of diff subseq posible of string 
+// n of diff subseq posible of string
 // int solve(){
 //     string s;
 //     cin>>s;
@@ -738,14 +712,11 @@ using namespace std;
 //     }
 //     for(auto it:a){print it; print " ";}
 //     return cnt;
-    
+
 // }
 // signed main(){
 //     print solve();
 // }
-
-
-
 
 // int solve(int i,int j,string&src,string&dst){
 //     if(i>=src.size()) return dst.size()-j;
@@ -763,9 +734,6 @@ using namespace std;
 //     print(solve(0,0,a,b));
 // }
 
-
-
-
 // int solve(vi&a,int i,int status){
 //     if(i==a.size()){
 //         if(status==0)return 0;
@@ -774,7 +742,7 @@ using namespace std;
 //     int cnt=0;
 //     if(status)cnt=max(solve(a,i+1,1),a[i]+solve(a,i+1,0));
 //     else cnt=max(-a[i]+solve(a,i+1,1),solve(a,i+1,0));
-//     return cnt; 
+//     return cnt;
 // }
 // signed main(){
 //     int n;
@@ -791,8 +759,6 @@ using namespace std;
 //     // print dp[0][0];
 // }
 
-
-
 // //atmost 2 transactions
 
 // // int solve(vi&a,int i,int status){
@@ -804,7 +770,7 @@ using namespace std;
 // //     int cnt=0;
 // //     if(status%2)cnt=max(solve(a,i+1,status),a[i]+solve(a,i+1,status+1));
 // //     else cnt=max(-a[i]+solve(a,i+1,status+1),solve(a,i+1,status));
-// //     return cnt; 
+// //     return cnt;
 // // }
 // signed main(){
 //     int n;
@@ -816,13 +782,12 @@ using namespace std;
 //         for(int s=0;s<=3;s++){
 //     int cnt=0;
 //     if(s%2)cnt=max(dp[i+1][s],a[i]+dp[i+1][s+1]);
-//     else cnt=max(-a[i]+dp[i+1][s+1],dp[i+1][s]);  
+//     else cnt=max(-a[i]+dp[i+1][s+1],dp[i+1][s]);
 //     dp[i][s]=cnt;
 //         }
 //     }
 //     print dp[0][0];
 // }
-
 
 // atmost k transactions
 
@@ -836,7 +801,7 @@ using namespace std;
 //     for(int s=0;s<=2*k-1;s++){
 //     int cnt=0;
 //     if(s%2)cnt=max(dp[i+1][s],a[i]+dp[i+1][s+1]);
-//     else cnt=max(-a[i]+dp[i+1][s+1],dp[i+1][s]);  
+//     else cnt=max(-a[i]+dp[i+1][s+1],dp[i+1][s]);
 //     dp[i][s]=cnt;
 //     }
 // }
@@ -847,10 +812,10 @@ using namespace std;
 // int solve(int prev,vi&a,int i){
 //     if(i==a.size())return 0;
 //     int pick=0;
-//     int notpick=0;
+//     int"NO"pick=0;
 //     if(prev==-1||a[i]>a[prev])pick=1+solve(i,a,i+1);
-//     notpick=solve(prev,a,i+1);
-//     return max(pick,notpick);
+//    "NO"pick=solve(prev,a,i+1);
+//     return max(pick"NO"pick);
 // // }
 // signed main(){
 //     int n;
@@ -861,14 +826,14 @@ using namespace std;
 //     for(int i=n-1;i>=0;i--){
 //     for(int prev=0;prev<=i;prev++){
 //     int pick=0;
-//     int notpick=0;
+//     int"NO"pick=0;
 //     if(a[i]>a[prev]){pick=1+dp[i][i+1]; }
-//     notpick=dp[prev][i+1];
-//     dp[prev][i]=max(pick,notpick); 
+//    "NO"pick=dp[prev][i+1];
+//     dp[prev][i]=max(pick"NO"pick);
 //         }
 //     }
 // }
-// to print the lcs use n2 approach maintain a hash vector and a dp 
+// to print the lcs use n2 approach maintain a hash vector and a dp
 
 // lcs using bs // o(nlogn)
 // signed main(){
@@ -890,26 +855,24 @@ using namespace std;
 //     for(auto it:st)cout<<it<<" ";
 // }
 
-
-//longest divisble subseq
-// signed main(){
-//     int n;
-//     cin>>n;
-//     vi a(n);
-//     for(auto&it:a)cin>>it;
-//     vvi dp(n+1,vi(n+1,0));
-//     for(int i=n-1;i>=0;i--){
-//     for(int prev=0;prev<=i;prev++){
-//     int pick=0;
-//     int notpick=0;
-//     if(a[i]%a[prev]==0||a[prev]%a[i]==0){pick=1+dp[i][i+1]; }
-//     notpick=dp[prev][i+1];
-//     dp[prev][i]=max(pick,notpick); 
-//         }
-//     }
-//     print dp[0][0];
-// }
-
+// longest divisble subseq
+//  signed main(){
+//      int n;
+//      cin>>n;
+//      vi a(n);
+//      for(auto&it:a)cin>>it;
+//      vvi dp(n+1,vi(n+1,0));
+//      for(int i=n-1;i>=0;i--){
+//      for(int prev=0;prev<=i;prev++){
+//      int pick=0;
+//      int"NO"pick=0;
+//      if(a[i]%a[prev]==0||a[prev]%a[i]==0){pick=1+dp[i][i+1]; }
+//     "NO"pick=dp[prev][i+1];
+//      dp[prev][i]=max(pick"NO"pick);
+//          }
+//      }
+//      print dp[0][0];
+//  }
 
 // partition dp
 // vvi dp;
@@ -963,37 +926,37 @@ using namespace std;
 //            int cnt=1e9;
 //             for(int k=i;k<=j;k++){
 //                 cnt=min(cnt,a[j+1]-a[i-1]+dp[i][k-1]+dp[k+1][j]);
-//             } 
+//             }
 //             dp[i][j]=cnt;
 //         }
 //     }
 //     print dp[1][n];
 // }
 
-//partition dp ki practise krni hai
-//burst ballaon problem
-// signed main(){
-//     vi a;
-//     int n;
-//     cin>>n;
-//     a.push_back(1);
-//     for(int i=0;i<n;i++){
-//         int x; cin>>x;
-//         a.push_back(x);
-//     }
-//     a.push_back(1);
-//     vvi dp(n+2,vi(n+2,0));
-//     for(int i=n;i>=1;i--){
-//         for(int j=i;j<=n;j++){
-//             int cnt=0;
-//             for(int k=i;k<=j;k++){
-//                 cnt=max(cnt,a[j+1]*a[k]*a[i-1]+dp[i][k-1]+dp[k+1][j]);
-//             }
-//         dp[i][j]=cnt;
-//         }
-//     }
-//     print dp[1][n];
-// }
+// partition dp ki practise krni hai
+// burst ballaon problem
+//  signed main(){
+//      vi a;
+//      int n;
+//      cin>>n;
+//      a.push_back(1);
+//      for(int i=0;i<n;i++){
+//          int x; cin>>x;
+//          a.push_back(x);
+//      }
+//      a.push_back(1);
+//      vvi dp(n+2,vi(n+2,0));
+//      for(int i=n;i>=1;i--){
+//          for(int j=i;j<=n;j++){
+//              int cnt=0;
+//              for(int k=i;k<=j;k++){
+//                  cnt=max(cnt,a[j+1]*a[k]*a[i-1]+dp[i][k-1]+dp[k+1][j]);
+//              }
+//          dp[i][j]=cnt;
+//          }
+//      }
+//      print dp[1][n];
+//  }
 
 // int dp[100][100][2];
 // string s;
@@ -1001,7 +964,7 @@ using namespace std;
 //     if(i>j)return 0;
 //     if(i==j){
 //         if(istrue)return s[i]=='T';
-//         else return s[i]=='F'; 
+//         else return s[i]=='F';
 //     }
 //     if(dp[i][j][istrue]!=-1)return dp[i][j][istrue];
 //     int ways=0;
@@ -1031,81 +994,59 @@ using namespace std;
 //     print solve(0,s.size()-1,1);
 // }
 
-//palindrom partioing 2
-// int dp[100];
-// int solve(int i,string &s){
-//     if(i==s.size())return 0;
-//     if(dp[i]!=-1)return dp[i];
-//     int t=1e9;
-//     int n=s.size();
-//     string temp="";
-//     for(int j=i;j<n;j++){
-//         temp+=s[j];
-//         if(temp==string(temp.rbegin(),temp.rend())){
-//             t=min(t,1+solve(j+1,s));
-//         }
-//     }
-//     return dp[i]=t;
-// }
-// signed main(){
-//     string s; 
-//     s="sajasswaimmi";
-//     memset(dp,-1,sizeof(dp));
-//     print solve(0,s);
-// }
+// palindrom partioing 2
+//  int dp[100];
+//  int solve(int i,string &s){
+//      if(i==s.size())return 0;
+//      if(dp[i]!=-1)return dp[i];
+//      int t=1e9;
+//      int n=s.size();
+//      string temp="";
+//      for(int j=i;j<n;j++){
+//          temp+=s[j];
+//          if(temp==string(temp.rbegin(),temp.rend())){
+//              t=min(t,1+solve(j+1,s));
+//          }
+//      }
+//      return dp[i]=t;
+//  }
+//  signed main(){
+//      string s;
+//      s="sajasswaimmi";
+//      memset(dp,-1,sizeof(dp));
+//      print solve(0,s);
+//  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// maximise the minimum cost edge:-the minimum weight edge in path from 0 to n-1 causing total weight<=k , all intermediat node should be online
+// maximise the minimum cost edge:-the minimum weight edge in path from 0 to n-1 causing total weight<=k , all intermediat"NO"e should be online
 // class Solution {
 // public:
 //     bool check(int mid, vector<vector<pair<int, int>>>& adj, vector<bool>& online, long long k) {
 //     int n = online.size();
-//     if (!online[0]) return false; // If the starting node isn't online, we can't start.
-//     // Min-heap to store {current_path_weight, node}
+//     if (!online[0]) return false; // If the starting"NO"e isn't online, we can't start.
+//     // Min-heap to store {current_path_weight,"NO"e}
 //     priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
 //     vector<long long> dist(n, LLONG_MAX);
 //     pq.push({0, 0});
 //     dist[0] = 0;
 //     while (!pq.empty()) {
-//         auto [wt, node] = pq.top(); 
+//         auto [wt,"NO"e] = pq.top();
 //         pq.pop();
-//         if (node == n - 1) return true; // Reached the destination within budget!
-//         if (wt > dist[node]) continue;   // Stale optimization step
-//         for (auto& u : adj[node]) {
-//             int next_node = u.first;
+//         if "NO"e == n - 1) return true; // Reached the destination within budget!
+//         if (wt > dist"NO"e]) continue;   // Stale optimization step
+//         for (auto& u : adj"NO"e]) {
+//             int next"NO"e = u.first;
 //             int edge_wt = u.second;
 //             // 1. Edge must satisfy the bottleneck threshold 'mid'
-//             // 2. The destination node must be online
-//             if (edge_wt >= mid && online[next_node]) {
+//             // 2. The destination"NO"e must be online
+//             if (edge_wt >= mid && online[next"NO"e]) {
 //                 long long nw = wt + edge_wt;
-//                 if (nw <= k && nw < dist[next_node]) {
-//                     dist[next_node] = nw;
-//                     pq.push({nw, next_node});
+//                 if (nw <= k && nw < dist[next"NO"e]) {
+//                     dist[next"NO"e] = nw;
+//                     pq.push({nw, next"NO"e});
 //                 }
 //             }
 //         }
-//     } 
+//     }
 //     return false;
 // }
 //     int findMaxPathScore(vector<vector<int>>& edges, vector<bool>& online, long long k) {
@@ -1117,7 +1058,7 @@ using namespace std;
 //         adj[it[0]].push_back({it[1],it[2]});
 //         mini=min(mini,1LL*it[2]);
 //         maxi=max(maxi,1LL*it[2]);
-//       }  
+//       }
 //       long long ans=-1;
 //       while(mini<=maxi){
 //         long long mid=(mini+maxi)>>1;
@@ -1158,14 +1099,13 @@ using namespace std;
 //     }
 // };
 
-
 // #include <vector>
 // #include <string>
-// #include <unordered_map>
+// #include <"NO"dered_map>
 
 // class Solution {
 // private:
-//     std::unordered_map<std::string, std::vector<int>> memo;
+//     std::"NO"dered_map<std::string, std::vector<int>> memo;
 
 // public:
 //     std::vector<int> diffWaysToCompute(std::string expression) {
@@ -1204,3 +1144,287 @@ using namespace std;
 //         }
 //         return 0;
 //     }
+
+// vector<string>d={"rgy","ryg","rgr","ryr","gry","gyr","gyg","grg","yry","ygy","yrg","ygr"};
+// int dp[5001][13];
+// int mod=1e9+7;
+// int solve(int n,int prev){
+//     if(n==0){
+//         return 1;
+//     }
+//     if(dp[n][prev]!=-1)return dp[n][prev];
+//     string pr=d[prev];
+//     int cnt=0;
+//     for(int j=0;j<12;j++){
+//         int b=0;
+//         for(int c=0;c<3;c++){
+//             if(pr[c]==d[j][c]){b=1; break;}
+//         }
+//         if(b==0)cnt=(cnt+solve(n-1,j))%mod;
+//     }
+//     return dp[n][prev]=cnt;
+// }
+// int main(){
+//     memset(dp,-1,sizeof(dp));
+//     int cnt=0;
+//     for(int i=0;i<12;i++){
+//         cnt=(cnt+solve(n-1,i))%mod;
+//     }
+//     return cnt;
+// }
+// signed main(){
+//     cout<<count();
+// }
+
+// class Solution {
+// public:
+//     vector<string>d;
+//     int mod=1e9+7;
+//     vector<char>c={'r','g','b'};
+//     void make(int i,int m,string &s){
+//         if(i==m){d.push_back(s); return;}
+//         for(char t:c){
+//             if(i==0||s.back()!=t){
+//                 s+=t;
+//                 make(i+1,m,s);
+//                 s.pop_back();
+//             }
+//         }
+//     }
+//     int size;
+//     vector<vector<int>>dp;
+//     int solve(int r,int prev,int n,int m){
+//         if(r==0)return 1;
+//         if(dp[r][prev]!=-1)return dp[r][prev];
+//         int cnt=0;
+//         string p=d[prev];
+//         for(int i=0;i<size;i++){
+//             int b=0;
+//             for(int j=0;j<m;j++){
+//                 if(p[j]==d[i][j]){b=1; break;}
+//             }
+//             if(b==0)cnt=(cnt+solve(r-1,i,n,m))%mod;
+//         }
+//         return dp[r][prev]=cnt;
+//     }
+//     int colorTheGrid(int m, int n) {
+
+//         d.clear();
+//        string s="";
+//        make(0,m,s);
+//        size=d.size();
+//        dp.assign(1001,vector<int>(size+1,-1));
+//        int cnt=0;
+//        for(int i=0;i<size;i++){
+//         cnt=(cnt+solve(n-1,i,n,m))%mod;
+//        }
+//        return cnt;
+//     }
+// };
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// int kadane(vector<int>& nums) {
+//     int maxSum = nums[0];
+//     int curSum = 0;
+
+//     for (int n : nums) {
+//         curSum = max(curSum, 0LL);
+//         curSum += n;
+//         maxSum = max(maxSum, curSum);
+//     }
+//     return maxSum;
+// }
+
+// void solve(){
+//     int n,k;
+//     cin>>n>>k;
+//     vector<int>a(n);
+//     vector<int>b(n);
+//     for(auto &it:a)cin>>it;
+//     for(auto &it:b)cin>>it;
+//     if(k&1){
+//         vector<long long> pref(n), suff(n);
+//     pref[0] = a[0];
+//     for (int i = 1; i < n; i++) {
+//     pref[i] = max(a[i], pref[i - 1] + a[i]);
+//     }
+//     suff[n - 1] = a[n - 1];
+//     for (int i = n - 2; i >= 0; i--) {
+//     suff[i] = max(a[i], suff[i + 1] + a[i]);
+//     }
+//     int ans=LLONG_MIN;
+//     for(int i=0;i<n;i++){
+//         ans=max(ans,pref[i]+suff[i]-a[i]+b[i]);
+//     }
+//     cout<<ans;
+//     return ;
+//     }
+//     cout<<kadane(a);
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void solve() {
+//     int n;
+//     cin >> n;
+//     vector<int> a(n), b(n);
+//     for (int i = 0; i < n; i++) cin >> a[i];
+//     for (int i = 0; i < n; i++) cin >> b[i];
+//     "NO"dered_map<int, int> prime_cnt;
+//     auto get_prime_factors = [](int x) {
+//         vector<int> factors;
+//         for (int p = 2; p * p <= x; p++) {
+//             if (x % p == 0) {
+//                 factors.push_back(p);
+//                 while (x % p == 0) x /= p;
+//             }
+//         }
+//         if (x > 1) factors.push_back(x);
+//         return factors;
+//     };
+//     for (int x : a) {
+//         vector<int> pfs = get_prime_factors(x);
+//         for (int p : pfs) {
+//             prime_cnt[p]++;
+//         }
+//     }
+//     for (auto& [p, count] : prime_cnt) {
+//         if (count > 1) {
+//             cout << 0 << "\n";
+//             return;
+//         }
+//     }
+
+//     for (int x : a) {
+//         vector<int> cur_pfs = get_prime_factors(x);
+//         for (int p : cur_pfs) prime_cnt[p]--;
+//         vector<int> next_pfs = get_prime_factors(x + 1);
+//         for (int p : next_pfs) {
+//             if (prime_cnt[p] > 0) {
+//                 cout << 1 << "\n";
+//                 return;
+//             }
+//         }
+//         for (int p : cur_pfs) prime_cnt[p]++;
+//     }
+//     cout << 2 << "\n";
+// }
+
+// int main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         solve();
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define int long long
+// void solve()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> a(n);
+//     vector<int> b(n);
+//     for (auto &it : a) cin >> it;
+//     for (auto &it : b) cin >> it;
+//     if (a[n - 1] != b[n - 1])
+//     {
+//         cout << "NO";
+//         return;
+//     }
+//     vector<int>xores(n);
+//     for (int i = n - 2; i >= 0; i--)
+//     {   bool f1=0,f2=0;
+//         if (a[i] != b[i])
+//         {   if((a[i] ^ a[i + 1]) == b[i])f1=1;
+//             else if(((a[i]^xores[i+1])== b[i]))f2=1;
+//            else{ cout << "NO";
+//             return;}
+//         }
+//         if(f1&& a[i]!=b[i])xores[i]=(a[i]^a[i+1]);
+//         if(f2&& a[i]!=b[i])xores[i]=(a[i]^xores[i+1]);
+//     }
+//     cout <<"YES";
+// }
+// signed main()
+// {
+//     cin.tie(0);
+//     cin.sync_with_stdio(0);
+//     cout.tie(0);
+//     cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//    while (t--)
+//     {
+//         solve();
+//         cout << "\n";
+        
+//     }
+// return 0;
+// }
+
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+const int NMAX = 2e5+5;
+int dp[NMAX], id[NMAX];
+vector<pair<int,int>> edg[NMAX];
+void dfs(int u){
+    for(auto it : edg[u]){
+        if(dp[it.first] == 0){
+            dp[it.first] = dp[u] + (it.second <= id[u]);
+            id[it.first] = it.second;
+            dfs(it.first);
+        }
+    }
+}
+void tc(){
+    int n;
+    cin>>n;
+    for(int i=1; i<=n; i++) dp[i] = id[i] = 0, edg[i].clear();
+    for(int i=1; i<n; i++){
+        int u,v;
+        cin>>u>>v;
+        edg[u].push_back({v,i});
+        edg[v].push_back({u,i});
+    }
+    dp[1] = 1;
+    dfs(1);
+    int ans = 0;
+    for(int i=1; i<=n; i++) ans=max(ans,dp[i]);
+    cout<<ans<<'\n';
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    int t;
+    cin>>t;
+    while(t--)
+        tc();
+    return 0;
+}

@@ -38,6 +38,7 @@ using namespace std;
 // }
 // }
 
+
 // const int MOD = 1e9 + 7;
 // typedef vector<vector<long long>> Matrix;
 // // Function to multiply two matrices
@@ -115,3 +116,4 @@ using namespace std;
 // long long ncr(long long n, long long r, long long p) {
 // 	return fac[n] * inv[r] % p * inv[n - r] % p;
 // }
+
