@@ -665,35 +665,126 @@
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//     int n,m;
+//     cin>>n>>m;
+//     vector<int>a(n);
+//     vector<int>b(m);
+//     for(auto &it:a)cin>>it;
+//     for(auto &it:b)cin>>it;
+//     priority_queue<int>pqa;
+//     priority_queue<int>pqb;
+//     for(auto &it:a)pqa.push(it);
+//     for(auto &it:b)pqb.push(it);
+//     int t=1;
+//     while(!pqa.empty()&&!pqb.empty()){
+//         auto ita=pqa.top(); auto itb=pqb.top(); pqa.pop(); pqb.pop();
+//         if(t){
+//             if(ita>=itb){pqa.push(ita);}
+//             else {pqa.push(ita); pqb.push(itb-ita);}
+//         }else{
+//              if(itb>=ita){pqb.push(itb); }
+//             else {pqb.push(itb); pqa.push(ita-itb);}
+//         }
+//         if(pqb.empty()&&t){cout<<"Alice";}
+//         else if(pqa.empty()&&t==0)cout<<"Bob";
+//         t^=1;
+//     }
+    
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// ll pw3[40];
+// ll costLevel(int x) {
+//     if (x == 0) return 3;
+//     return pw3[x+1] + (ll)x * pw3[x-1];
+// }
+// int main(){
+//     pw3[0] = 1;
+//     for (int i = 1; i < 40; i++) pw3[i] = pw3[i-1] * 3;
+//     int t;
+//     scanf("%d", &t);
+//     while (t--) {
+//         ll n, k;
+//         scanf("%lld %lld", &n, &k);
+//         vector<ll> digits;
+//         ll x = n;
+//         while (x > 0) {
+//             digits.push_back(x % 3);
+//             x /= 3;
+//         }
+//         if (digits.empty()) digits.push_back(0); 
+//         ll S = 0;
+//         for (ll d : digits) S += d;
+//         if (k < S) {
+//             printf("-1\n");
+//             continue;
+//         }
+//         ll cost0 = 0;
+//         for (int i = 0; i < (int)digits.size(); i++) {
+//             cost0 += digits[i] * costLevel(i);
+//         }
+//         ll m = min((n - S) / 2, (k - S) / 2);
+//         ll reduction = 0;
+//         ll carry = 0;
+//         ll remaining = m;
+//         for (int level = (int)digits.size() - 1; level >= 1 && remaining > 0; level--) {
+//             ll units = digits[level] + carry;
+//             ll p = pw3[level - 1]; // reduction per split at this level
+//             if (units <= remaining) {
+//                 reduction += units * p;
+//                 remaining -= units;
+//                 carry = 3 * units;
+//             } else {
+//                 reduction += remaining * p;
+//                 remaining = 0;
+//                 carry = 0;
+//             }
+//         }
+
+//         printf("%lld\n", cost0 - reduction);
+//     }
+//     return 0;
+// }
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 void solve(){
-    int n,m;
-    cin>>n>>m;
-    vector<int>a(n);
-    vector<int>b(m);
-    for(auto &it:a)cin>>it;
-    for(auto &it:b)cin>>it;
-    priority_queue<int>pqa;
-    priority_queue<int>pqb;
-    for(auto &it:a)pqa.push(it);
-    for(auto &it:b)pqb.push(it);
-    int t=1;
-    while(!pqa.empty()&&!pqb.empty()){
-        auto ita=pqa.top(); auto itb=pqb.top(); pqa.pop(); pqb.pop();
-        if(t){
-            if(ita>=itb){pqa.push(ita);}
-            else {pqa.push(ita); pqb.push(itb-ita);}
-        }else{
-             if(itb>=ita){pqb.push(itb); }
-            else {pqb.push(itb); pqa.push(ita-itb);}
+    int n; cin>>n;
+    vector<vector<int>>v(n,vector<int>(3,0)); int i=1;
+    for(auto &it:v){cin>>it[0]>>it[1];  it[2]=i; i++;}
+    vector<int>ans;
+    sort(begin(v),end(v));
+    vector<int>vis(2*n,0);
+    for(auto &it:v){
+        int f=0;
+        int a=it[0]-1; int b=it[1]-1;
+        for(int j=a;j<=b;j++){
+            if(vis[j]==0){vis[j]=1; f=1;}
         }
-        if(pqb.empty()&&t){cout<<"Alice";}
-        else if(pqa.empty()&&t==0)cout<<"Bob";
-        t^=1;
+        if(f)ans.push_back(it[2]);
     }
-    
+    cout<<ans.size()<<'\n'; for(auto it:ans)cout<<it<<" ";
 }
 int main()
 {
@@ -704,7 +795,7 @@ int main()
     while (t--)
     {
         solve();
-        cout<<"\n";
+        cout<<'\n';
     }
     return 0;
 }

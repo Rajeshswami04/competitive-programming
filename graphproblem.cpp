@@ -985,11 +985,9 @@ using namespace std;
 //         queue<pair<int, int>> que; //{node, path length}
 //         que.push({start, 0});
 //         int maxDistance = 0;
-
 //         while(!que.empty()) {
 //             auto[currNode, dist] = que.front();
 //             que.pop();
-
 //             for(auto &ngbr : adj[currNode]) {
 //                 if(!visited[ngbr]) {
 //                     visited[ngbr] = true;
@@ -998,46 +996,34 @@ using namespace std;
 //                 }
 //             }
 //         }
-
 //         return maxDistance;
 //     }
-
 //     int maximumInvitations(vector<int>& favorite) {
 //         int n = favorite.size();
 //         unordered_map<int, vector<int>> adj;
-
 //         for(int i = 0; i < n; i++) {
 //             int u = i;
 //             int v = favorite[i];
 //             // u --> v
 //             adj[v].push_back(u); //reversed graph - so that we can find the path length after traversal
 //         }
-
 //         int longestCycleEmplCount = 0;
 //         int happyCoupleEmplCount  = 0; //cycle length = 2 waalo se kitna milpaega total
-
 //         vector<bool> visited(n, false);
-
 //         for(int i = 0; i < n; i++) {
-
 //             if(!visited[i]) {
 //                 //{node, abtak ka node count}
 //                 unordered_map<int, int> mp;
-
 //                 int currNode      = i;
 //                 int currNodeCount = 0;
-
 //                 while(!visited[currNode]) { //until cycle is not detected
 //                     visited[currNode] = true;
 //                     mp[currNode] = currNodeCount;
-
 //                     int nextNode = favorite[currNode]; //favorite node of curr node
 //                     currNodeCount += 1;
-
 //                     if(mp.count(nextNode)) { //already visited hai ye. Matlab cycle detect hogaya hai
 //                         int cycleLength = currNodeCount - mp[nextNode];
 //                         longestCycleEmplCount = max(longestCycleEmplCount, cycleLength);
-
 //                         if(cycleLength == 2) { //happy couple case
 //                             //currNode <-> nextNode = 2 nodes
 //                             vector<bool> visitedNodes(n, false);
@@ -1411,6 +1397,57 @@ using namespace std;
 //     {
 //         solve();
 //         cout<<'\n';
+//     }
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// int  solve1(vector<int>&v,int s,int m,int l,int h){
+//     if(h-l<=1)return 0;
+//     int t=(s+m)/2;
+//     bool f=0;
+//     bool f1=0;
+//     int mid=(h+l)/2;
+//     for(int i=l;i<mid;i++){
+//         if(v[i]<=t)f=1;
+//         if(v[i]>t)f1=1;
+//     }
+//     if(f&&f1){
+//          return -1 ;
+//     }
+//     if(f1){
+//     int left =solve1(v,t,m,l,mid);
+//     int right=solve1(v,s,t,mid,h);
+//     if(left==-1||right==-1)return -1;
+//     return left+right+1;
+// }else{
+//     int left=solve1(v,s,t,l,mid);
+//     int right=solve1(v,t,m,mid,h);
+//     if(left==-1||right==-1)return -1;
+//     return left+right;   
+//     }
+//     return 0;
+// }
+// void solve(){
+//     int m;
+//     cin>>m;
+//     vector<int>v(m);
+//     for(auto &it:v)cin>>it;
+//     int cnt=solve1(v,1,m,0,m);
+//     cout<<cnt;
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
 //     }
 //     return 0;
 // }
