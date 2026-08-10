@@ -133,65 +133,65 @@ using namespace std;
 //second question
 
 
-// void bfs(vector<vector<int>> &adj, int src)
-// {
-//     int n = adj.size();
-//     queue<int>q;
-//     vector<int> vis(n, 0);
-//     q.push(src);
-//     vis[src] = 1;
-//     int l=0;
-//     while (!q.empty())
-//     {
-//         int p = q.size();
-//         if(l>=3)return;
-//         cout<<"\nlevel "<<l+1<<" people:";
-//         l++;
-//         for (int i = 0; i < p; i++)
-//         {
-//             auto it = q.front();
-//             q.pop();
-//             for (auto v : adj[it])
-//             {
-//                 if (vis[v] == 0)
-//                 {
-//                     cout<<v<<" ";
-//                     q.push(v);
-//                     vis[v] = 1;
-//                 }
-//             }
-//         }
-//     }
-// }
-// int main()
-// {
-//     int v;
-//     cout<<"enter number of people:";
-//     cin >> v;
-//     int n;
-//     cout<<"enter connections between friends which are friends:";
-//     cin>>n;
-//     vector<vector<int>> edges(n, vector<int>(2, 0));
-//     for (auto &it : edges)
-//         cin >> it[0] >> it[1];
-//     vector<vector<int>> adj(v);
-//     for (auto &it : edges)
-//     {
-//         adj[it[0]].push_back(it[1]);
-//         adj[it[1]].push_back(it[0]);
-//     }
-//     vector<int>vis(v,0);
-//     bfs(adj, 0);
-// }
-// enter number of people:7
-// enter connections between friends which are friends:6
-// 0 1
-// 1 2
-// 2 6
-// 2 5
-// 2 3
-// 3 4
+void bfs(vector<vector<int>> &adj, int src)
+{
+    int n = adj.size();
+    queue<int>q;
+    vector<int> vis(n, 0);
+    q.push(src);
+    vis[src] = 1;
+    int l=0;
+    while (!q.empty())
+    {
+        int p = q.size();
+        if(l>=3)return;
+        cout<<"\nlevel "<<l+1<<" people:";
+        l++;
+        for (int i = 0; i < p; i++)
+        {
+            auto it = q.front();
+            q.pop();
+            for (auto v : adj[it])
+            {
+                if (vis[v] == 0)
+                {
+                    cout<<v<<" ";
+                    q.push(v);
+                    vis[v] = 1;
+                }
+            }
+        }
+    }
+}
+int main()
+{
+    int v;
+    cout<<"enter number of people:";
+    cin >> v;
+    int n;
+    cout<<"enter connections between friends which are friends:";
+    cin>>n;
+    vector<vector<int>> edges(n, vector<int>(2, 0));
+    for (auto &it : edges)
+        cin >> it[0] >> it[1];
+    vector<vector<int>> adj(v);
+    for (auto &it : edges)
+    {
+        adj[it[0]].push_back(it[1]);
+        adj[it[1]].push_back(it[0]);
+    }
+    vector<int>vis(v,0);
+    bfs(adj, 0);
+}
+enter number of people:7
+enter connections between friends which are friends:6
+0 1
+1 2
+2 6
+2 5
+2 3
+3 4
 
-// level 1 people:1 
-// level 2 people:2 
-// level 3 people:6 5 3 
+level 1 people:1 
+level 2 people:2 
+level 3 people:6 5 3 

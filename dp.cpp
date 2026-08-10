@@ -1431,3 +1431,64 @@
 
 
 
+// class Solution {
+// public:
+//     int dp[51][100100];
+//     int solve(int i,int diff,vector<int>&rods){
+//         if(i==rods.size()){
+//             if(diff==0)return 0;
+//             return -1e9;
+//         }
+//         if(dp[i][diff+5000]!=-1)return dp[i][diff+5000];
+//         int nott=solve(i+1,diff,rods);
+//         int takeinone=rods[i]+solve(i+1,diff+rods[i],rods);
+//         int takeinnot=rods[i]+solve(i+1,diff-rods[i],rods);
+//         return dp[i][diff+5000]=max({nott,takeinone,takeinnot});
+
+//     }
+//     int tallestBillboard(vector<int>& rods) {
+//         int n=rods.size();
+//         memset(dp,-1,sizeof(dp));
+//         return solve(0,0,rods)/2;
+//     }
+// };
+
+
+
+// class Solution {
+// public:
+//     set<int>st;
+//     int dp[100001][2];
+//     bool solve(int a,int t){
+//         if(a==0&&t==1)return 0;
+//         if(a==0&&t==0)return 1;
+//         if(dp[a][t]!=-1)return dp[a][t];
+//         if(t){
+//             bool b=0;
+//             auto it=st.upper_bound(a);
+//             for(auto u=st.begin();u!=it;u++){
+
+//                 if(a-(*u)>=0)b|=(solve(a-(*u),t^1));
+//             }
+//             return dp[a][t]=b;
+//         }else{
+//             bool b=1;
+//             auto it=st.upper_bound(a);
+//             for(auto u=st.begin();u!=it;u++){
+//                 if(a-(*u)>=0)b&=(solve(a-(*u),t^1));
+//             }
+//             return dp[a][t]=b;
+//         }
+//          return dp[a][t]=0;
+//     }
+//     bool winnerSquareGame(int n) {
+//        if(n==1)return true;
+//        if(n==2)return false;
+//        if(n==3)return true;
+//        for(int i=1;i*i<=100000;i++){
+//         st.insert(i*i);
+//        } 
+//        memset(dp,-1,sizeof(dp));
+//        return solve(n,1);
+//     }
+// };
