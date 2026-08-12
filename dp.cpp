@@ -1492,3 +1492,227 @@
 //        return solve(n,1);
 //     }
 // };
+//simple program
+//simple program
+// first ques
+//second ques
+//simple astar
+//three questions in different assignments
+// total 8 assigne
+//included in index
+#include<bits/stdc++.h>
+using namespace std;
+
+// void astar(){
+//     int n;
+//     cout<<"enter number of nodes:";
+//     cin>>n;
+//     vector<int>h(n);
+//     cout<<"enter heuristic values for each node;";
+//     for(auto &it:h)cin>>it;
+//     int m;
+//     cout<<"enter number of edges and cost";
+//     cin>>m;
+//     vector<vector<int>>e(m,vector<int>(3,0));
+//     cout<<"enter edges ";
+//     for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
+//     vector<vector<pair<int,int>>>adj(n);
+//     for(auto it:e){adj[it[0]].push_back({it[1],it[2]}); adj[it[1]].push_back({it[0],it[2]});}
+//     vector<int>dis(n,1e9);
+//     dis[0]=0;
+//     priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+//     pq.push({h[0],0,0});
+//     while(!pq.empty()){
+//         auto it=pq.top();
+//         pq.pop();
+//         int u=it[2];
+//         int hh=it[0]+dis[u];  int ac=it[1];
+//         for(auto v:adj[u]){
+//             int newh=dis[v.first]+h[v.first];
+//             int cost=ac+v.second;
+//             if(dis[v.first]>cost){
+//                 dis[v.first]=cost;
+//                 pq.push({newh,cost,v.first});
+//             }
+//         }
+//     }
+//     cout<<"cost is "<<dis[n-1];
+// }
+// int main(){
+//     astar();
+// }
+
+// enter heuristic values for each node;10 15 5 5 10 0
+// enter number of edges and cost8
+// enter edges 0 1 10
+// 1 4 11
+// 2 4 11
+// 0 2 12
+// 0 3 5
+// 2 3 6
+// 3 5 14
+// 2 5 8
+// cost is 19
+
+
+
+// void transportastar(){
+//     int n;
+//     cout<<"enter number of nodes:";
+//     cin>>n;
+//     vector<int>h(n);
+//     cout<<"enter constraints in terms of time  for each node;";
+//     for(auto &it:h)cin>>it;
+//     int m;
+//     cout<<"enter number of edges ";
+//     cin>>m;
+//     vector<vector<int>>e(m,vector<int>(3,0));
+//     cout<<"enter edges and time ";
+//     for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
+//     cout<<"enter target node:";
+//     int t;
+//     cin>>t;
+//     vector<vector<pair<int,int>>>adj(n);
+//     for(auto it:e){adj[it[0]].push_back({it[1],it[2]}); adj[it[1]].push_back({it[0],it[2]});}
+//     vector<int>dis(n,1e9);
+//     dis[0]=0;
+//     priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+//     pq.push({h[0],0,0});
+//     while(!pq.empty()){
+//         auto it=pq.top();
+//         pq.pop();
+//         int u=it[2];
+//         int hh=it[0]+dis[u];  int ac=it[1];
+//         for(auto v:adj[u]){
+//             int newh=dis[v.first]+h[v.first];
+//             int cost=ac+v.second;
+//             if(dis[v.first]>cost){
+//                 dis[v.first]=cost;
+//                 pq.push({newh,cost,v.first});
+//             }
+//         }
+//     }
+//     cout<<"time requiered to trauma centre "<<dis[t];
+// }
+// int main(){
+//     transportastar();
+// }
+// enter number of nodes:6
+// enter constraints in terms of time  for each node;10 15 5 5 10 0
+// enter number of edges 8
+// enter edges and time 
+// 0 1 10
+// 1 4 11
+// 2 4 11
+// 0 2 12
+// 0 3 5
+// 2 3 6
+// 3 5 14
+// 2 5 8
+// enter target node:5
+// time requiered to trauma centre 19
+
+
+
+
+// // 1819
+// class Solution {
+// public:
+//     int countDifferentSubsequenceGCDs(vector<int>& nums) {
+//         vector<int>mark(200001);
+//         for(int i:nums)mark[i]=1;
+//         sort(begin(nums),end(nums));
+//         int cnt=0;
+//         for(int i=1;i<200001;i++){
+//             int g=0;
+//             for(int x=i;x<200001;x+=i){
+//                 if(mark[x])g=gcd(g,x);
+//             }
+//             if(g==i)cnt++;
+//         }
+//         return cnt;
+//     }
+// };
+
+// 3739
+// vector<int>pref;
+// int merge(vector<int>& arr, int left, 
+//                      int mid, int right){
+                         
+//     int n1 = mid - left + 1;
+//     int n2 = right - mid;
+//     int cnt=0;
+//     int j=mid;
+//     for(int i=low;i<mid;i++){
+//         while(j<right&&pref[j]-pref[i]>0)cnt+=j-mid;
+//     }
+    
+//     vector<int> L(n1), R(n2);
+//     for (int i = 0; i < n1; i++)
+//         L[i] = arr[left + i];
+//     for (int j = 0; j < n2; j++)
+//         R[j] = arr[mid + 1 + j];
+//     int i = 0, j = 0;
+//     int k = left;
+//     while (i < n1 && j < n2) {
+//         if (L[i] <= R[j]) {
+//             arr[k] = L[i];
+//             i++;
+//         }
+//         else {
+//             arr[k] = R[j];
+//             j++;
+//         }
+//         k++;
+//     }
+//     while (i < n1) {
+//         arr[k] = L[i];
+//         i++;
+//         k++;
+//     }
+//     while (j < n2) {
+//         arr[k] = R[j];
+//         j++;
+//         k++;
+//     }
+//     return cnt;
+// }
+// int mergeSort(vector<int>& arr, int left, int right){
+//     if (left >= right)
+//         return 0;
+//     int s=0;
+//     int mid = left + (right - left) / 2;
+//     mergeSort(arr, left, mid);
+//     mergeSort(arr, mid + 1, right);
+//     s+=merge(arr, left, mid, right);
+//     return s;
+// }
+//  long long countMajoritySubarrays(vector<int>& nums, int target) {
+//        int n=nums.size();
+//        pref.assign(n+1);
+//        for(int i=0;i<n;i++)pref[i+1]=pref[i]+nums[i];
+//        int cnt=mergeSort(nums,0,n-1);
+//        return cnt;
+//     }
+
+//3196
+// class Solution {
+// public:
+//     long long maximumTotalCost(vector<int>& nums) {
+//       int n=nums.size();
+//       vector<vector<long long>>dp(n,vector<long long>(2,0));
+//       dp[0][0]=nums[0]; //+
+//       dp[0][1]=nums[0];// -
+//       for(int i=1;i<n;i++){
+//         if(nums[i]>=0){
+//             dp[i][0]=max(dp[i-1][0]+nums[i],dp[i-1][1]+nums[i]);
+//             dp[i][1]=dp[i-1][0]-nums[i];
+//         }
+//         else{
+//             dp[i][1]=dp[i-1][0]+abs(nums[i]);
+//             dp[i][0]=max(dp[i-1][1]+nums[i],dp[i-1][0]+nums[i]);
+//         }
+//         }
+//       return max(dp[n-1][0],dp[n-1][1]);  
+//     }
+// };

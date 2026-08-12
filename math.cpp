@@ -784,54 +784,87 @@
 //         return summax-summin;
 //     }
 // };
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <climits>
-using namespace std;
-int merge(string& s) {
-    int n = s.size();
-    if (n == 2) return stoi(s);
-        if (n == 3) {
-        int v1 = (s[0] - '0') + stoi(s.substr(1, 2));
-        int v2 = (s[0] - '0') * stoi(s.substr(1, 2));
-        int v3 = stoi(s.substr(0, 2)) + (s[2] - '0');
-        int v4 = stoi(s.substr(0, 2)) * (s[2] - '0');
-        return min({v1, v2, v3, v4});
-    }
-    int ans = INT_MAX;
-    for (int i = 0; i < n - 1; i++) {
-        vector<int> nums;
-        for (int j = 0; j < n; j++) {
-            if (j == i) {
-                nums.push_back(stoi(s.substr(j, 2)));
-                j++; 
-            } else {
-                nums.push_back(s[j] - '0');
-            }
-        }
-        bool has_zero = false;
-        for (int x : nums) {
-            if (x == 0) {
-                has_zero = true;
-                break;
-            }
-        }
-        if (has_zero) return 0;
-        int current_sum = 0;
-        for (int x : nums) {
-            if (x != 1) {
-                current_sum += x;
-            }
-        }
-        if (current_sum == 0) current_sum = 1;
-        ans = min(ans, current_sum);
-    }
-    return ans;
-}
-int main() {
-    string s = "1111111";
-    cout << merge(s) << endl; // Output: 11
-    return 0;
-}
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// #include <algorithm>
+// #include <climits>
+// using namespace std;
+// int merge(string& s) {
+//     int n = s.size();
+//     if (n == 2) return stoi(s);
+//         if (n == 3) {
+//         int v1 = (s[0] - '0') + stoi(s.substr(1, 2));
+//         int v2 = (s[0] - '0') * stoi(s.substr(1, 2));
+//         int v3 = stoi(s.substr(0, 2)) + (s[2] - '0');
+//         int v4 = stoi(s.substr(0, 2)) * (s[2] - '0');
+//         return min({v1, v2, v3, v4});
+//     }
+//     int ans = INT_MAX;
+//     for (int i = 0; i < n - 1; i++) {
+//         vector<int> nums;
+//         for (int j = 0; j < n; j++) {
+//             if (j == i) {
+//                 nums.push_back(stoi(s.substr(j, 2)));
+//                 j++; 
+//             } else {
+//                 nums.push_back(s[j] - '0');
+//             }
+//         }
+//         bool has_zero = false;
+//         for (int x : nums) {
+//             if (x == 0) {
+//                 has_zero = true;
+//                 break;
+//             }
+//         }
+//         if (has_zero) return 0;
+//         int current_sum = 0;
+//         for (int x : nums) {
+//             if (x != 1) {
+//                 current_sum += x;
+//             }
+//         }
+//         if (current_sum == 0) current_sum = 1;
+//         ans = min(ans, current_sum);
+//     }
+//     return ans;
+// }
+// int main() {
+//     string s = "1111111";
+//     cout << merge(s) << endl; // Output: 11
+//     return 0;
+// }
+
+
+//835
+// class Solution {
+// public:
+//     int countoverlaps(vector<vector<int>>& img1, vector<vector<int>>& img2,int r,int c){
+//         int n=img1.size();
+//         int cnt=0;
+//         for(int i=0;i<n;i++){
+//             for(int j=0;j<n;j++){
+//                 int row=r+i; int col=c+j;
+//                 if(row<0||col<0||row>=n||col>=n)continue;
+//                 cnt+=img1[i][j]&&img2[row][col];
+//             }
+//         }
+//         return cnt;
+//     }
+//     int largestOverlap(vector<vector<int>>& img1, vector<vector<int>>& img2) {
+//      int n=img1.size();
+//      int ans=0;
+//      for(int r=-n+1;r<=n-1;r++){
+//         for(int c=-n+1;c<=n-1;c++){
+//             ans=max(ans,countoverlaps(img1,img2,r,c));
+//         }
+//      }   
+//      for(int r=-n+1;r<=n-1;r++){
+//         for(int c=-n+1;c<=n-1;c++){
+//             ans=max(ans,countoverlaps(img2,img1,r,c));
+//         }
+//      }   
+//      return ans;
+//     }
+// };

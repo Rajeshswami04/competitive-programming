@@ -133,65 +133,362 @@ using namespace std;
 //second question
 
 
-void bfs(vector<vector<int>> &adj, int src)
-{
-    int n = adj.size();
-    queue<int>q;
-    vector<int> vis(n, 0);
-    q.push(src);
-    vis[src] = 1;
-    int l=0;
-    while (!q.empty())
-    {
-        int p = q.size();
-        if(l>=3)return;
-        cout<<"\nlevel "<<l+1<<" people:";
-        l++;
-        for (int i = 0; i < p; i++)
-        {
-            auto it = q.front();
-            q.pop();
-            for (auto v : adj[it])
-            {
-                if (vis[v] == 0)
-                {
-                    cout<<v<<" ";
-                    q.push(v);
-                    vis[v] = 1;
-                }
+// void bfs(vector<vector<int>> &adj, int src)
+// {
+//     int n = adj.size();
+//     queue<int>q;
+//     vector<int> vis(n, 0);
+//     q.push(src);
+//     vis[src] = 1;
+//     int l=0;
+//     while (!q.empty())
+//     {
+//         int p = q.size();
+//         if(l>=3)return;
+//         cout<<"\nlevel "<<l+1<<" people:";
+//         l++;
+//         for (int i = 0; i < p; i++)
+//         {
+//             auto it = q.front();
+//             q.pop();
+//             for (auto v : adj[it])
+//             {
+//                 if (vis[v] == 0)
+//                 {
+//                     cout<<v<<" ";
+//                     q.push(v);
+//                     vis[v] = 1;
+//                 }
+//             }
+//         }
+//     }
+// }
+// int main()
+// {
+//     int v;
+//     cout<<"enter number of people:";
+//     cin >> v;
+//     int n;
+//     cout<<"enter connections between friends which are friends:";
+//     cin>>n;
+//     vector<vector<int>> edges(n, vector<int>(2, 0));
+//     for (auto &it : edges)
+//         cin >> it[0] >> it[1];
+//     vector<vector<int>> adj(v);
+//     for (auto &it : edges)
+//     {
+//         adj[it[0]].push_back(it[1]);
+//         adj[it[1]].push_back(it[0]);
+//     }
+//     vector<int>vis(v,0);
+//     bfs(adj, 0);
+// }
+// enter number of people:7
+// enter connections between friends which are friends:6
+// 0 1
+// 1 2
+// 2 6
+// 2 5
+// 2 3
+// 3 4
+
+// level 1 people:1 
+// level 2 people:2 
+// level 3 people:6 5 3 
+
+
+//simple program
+//simple program
+// first ques
+//second ques
+//simple astar
+//three questions in different assignments
+// total 8 assigne
+//included in index
+#include<bits/stdc++.h>
+using namespace std;
+
+void astar(){
+    int n;
+    cout<<"enter number of nodes:";
+    cin>>n;
+    vector<int>h(n);
+    cout<<"enter heuristic values for each node;";
+    for(auto &it:h)cin>>it;
+    int m;
+    cout<<"enter number of edges and cost";
+    cin>>m;
+    vector<vector<int>>e(m,vector<int>(3,0));
+    cout<<"enter edges ";
+    for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
+    vector<vector<pair<int,int>>>adj(n);
+    for(auto it:e){adj[it[0]].push_back({it[1],it[2]}); adj[it[1]].push_back({it[0],it[2]});}
+    vector<int>dis(n,1e9);
+    dis[0]=0;
+    priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+    pq.push({h[0],0,0});
+    vector<int>path(n,-1);
+    while(!pq.empty()){
+        auto it=pq.top();
+        pq.pop();
+        int u=it[2];
+        int hh=it[0]+dis[u];  int ac=it[1];
+        for(auto v:adj[u]){
+            int newh=dis[v.first]+h[v.first];
+            int cost=ac+v.second;
+            if(dis[v.first]>cost){
+                path[v.first]=u;
+                dis[v.first]=cost;
+                pq.push({newh,cost,v.first});
             }
         }
     }
+    cout<<"cost is "<<dis[n-1]<<endl;
+    int i=n-1;
+    vector<int>ans;
+    cout<<"path is:"; while(i!=-1){ans.push_back(i); i=path[i];}
+    reverse(begin(ans),end(ans));
+    for(int i:ans)cout<<i<<" ";
 }
-int main()
-{
-    int v;
-    cout<<"enter number of people:";
-    cin >> v;
-    int n;
-    cout<<"enter connections between friends which are friends:";
-    cin>>n;
-    vector<vector<int>> edges(n, vector<int>(2, 0));
-    for (auto &it : edges)
-        cin >> it[0] >> it[1];
-    vector<vector<int>> adj(v);
-    for (auto &it : edges)
-    {
-        adj[it[0]].push_back(it[1]);
-        adj[it[1]].push_back(it[0]);
-    }
-    vector<int>vis(v,0);
-    bfs(adj, 0);
-}
-enter number of people:7
-enter connections between friends which are friends:6
-0 1
-1 2
-2 6
-2 5
-2 3
-3 4
+// int main(){
+//     astar();
+// }
+// enter number of nodes:6
+// enter heuristic values for each node;10 15 5 5 10 0
+// enter number of edges and cost 8
+// enter edges 
+// 0 1 10
+// 1 4 11
+// 2 4 11
+// 0 2 12
+// 0 3 5
+// 2 3 6
+// 3 5 14
+// 2 5 8
+// cost is 19
+// path is:0 3 5 
 
-level 1 people:1 
-level 2 people:2 
-level 3 people:6 5 3 
+
+// void transportastar(){
+//     int n;
+//     cout<<"enter number of nodes:";
+//     cin>>n;
+//     vector<int>h(n);
+//     cout<<"enter constraints in terms of time  for each node;";
+//     for(auto &it:h)cin>>it;
+//     int m;
+//     cout<<"enter number of edges ";
+//     cin>>m;
+//     vector<vector<int>>e(m,vector<int>(3,0));
+//     cout<<"enter edges and time ";
+//     for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
+//     cout<<"enter target node:";
+//     int t;
+//     cin>>t;
+//     vector<vector<pair<int,int>>>adj(n);
+//     for(auto it:e){adj[it[0]].push_back({it[1],it[2]}); adj[it[1]].push_back({it[0],it[2]});}
+//     vector<int>dis(n,1e9);
+//     dis[0]=0;
+//     priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+//     pq.push({h[0],0,0});
+//     while(!pq.empty()){
+//         auto it=pq.top();
+//         pq.pop();
+//         int u=it[2];
+//         int hh=it[0]+dis[u];  int ac=it[1];
+//         for(auto v:adj[u]){
+//             int newh=dis[v.first]+h[v.first];
+//             int cost=ac+v.second;
+//             if(dis[v.first]>cost){
+//                 dis[v.first]=cost;
+//                 pq.push({newh,cost,v.first});
+//             }
+//         }
+//     }
+//     cout<<"time requiered to trauma centre "<<dis[t];
+// }
+// int main(){
+//     transportastar();
+// }
+// enter number of nodes:6
+// enter constraints in terms of time  for each node;10 15 5 5 10 0
+// enter number of edges 8
+// enter edges and time 
+// 0 1 10
+// 1 4 11
+// 2 4 11
+// 0 2 12
+// 0 3 5
+// 2 3 6
+// 3 5 14
+// 2 5 8
+// enter target node:5
+// time requiered to trauma centre 19
+
+
+
+
+
+void robotautonoumus(){
+    int m,n; 
+    cout<<"enter number of rows:"; 
+    cin>>m;
+    cout<<"enter number of cols:";
+    cin>>n;
+    vector<vector<int>>mat(m,vector<int>(n,0));
+    cout<<"enter matrix values their costs and -1 for blocks:";
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            cin>>mat[i][j];
+        }
+    }
+    vector<vector<int>>h(m,vector<int>(n,0));
+    cout<<"enter matrix values for heuritstic costs ";
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            cin>>h[i][j];
+        }
+    }
+    cout<<"enter target node coordinate:";
+    int tx,ty;
+    cin>>tx>>ty;
+    if(tx<0||tx>=m||ty<0||ty>=n){cout<<"invalid target "; return;}
+    if(mat[0][0]==-1){cout<<0; return;}
+    vector<vector<int>>dir={{-1,0},{0,-1},{0,1},{1,0}};
+    vector<vector<int>>dis(m,vector<int>(n,1e9));
+    dis[0][0]=mat[0][0];
+    priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+    pq.push({h[0][0],mat[0][0],0,0});
+    unordered_map<int,unordered_map<int,pair<int,int>>>par;
+    par[0][0]={-1,-1};
+    while(!pq.empty()){
+        auto it=pq.top();
+        pq.pop();
+        int x=it[2]; int y=it[3];
+        int ac=it[1];
+        for(auto d:dir){
+            int x1=x+d[0];
+            int y1=y+d[1];
+            if(x1<0|y1<0||y1>=n||x1>=m||mat[x1][y1]==-1)continue;
+            int newh=ac+mat[x1][y1]+h[x1][y1];
+            int cost=ac+mat[x1][y1];
+            if(dis[x1][y1]>cost){
+                par[x1][y1]={x,y};
+                dis[x1][y1]=cost;
+                pq.push({newh,cost,x1,y1});
+            }
+        }
+    }
+    cout<<"shortes cost:"<<dis[tx][ty]<<endl;
+    cout<<"path is:";
+    int ttx=tx; int tty=ty;
+    vector<vector<int>>p;
+    while(ttx!=-1){
+        p.push_back({ttx,tty});
+        ttx=par[ttx][tty].first;
+        tty=par[ttx][tty].second;
+    }
+    reverse(begin(p),end(p));
+    for(auto it:p){
+        cout<<it[0]<< " "<<it[1]<<endl;
+    }
+}
+// int main(){
+//     robotautonoumus();
+// }
+// // enter number of rows:3
+// enter number of cols:3
+// enter matrix values their costs and -1 for blocks:
+// 1 2 3
+// -1 0 -1
+// 3 5 6
+// enter matrix values for heuritstic costs 
+// 3 5 2
+// 3 2 5
+// 4 2 3
+// enter target node coordinate:2 2
+// shortes cost:14
+// path is:0 0
+// 1 1
+// 2 1
+// 2 2
+
+
+
+
+
+
+
+
+// void dronsupply(){
+//     int n;
+//     cout<<"enter number of nodes:";
+//     cin>>n;
+//     vector<int>h(n);
+//     cout<<"enter flight cost in terms of time  for each node;";
+//     for(auto &it:h)cin>>it;
+//     int m;
+//     cout<<"enter number of edges ";
+//     cin>>m;
+//     vector<vector<int>>e(m,vector<int>(3,0));
+//     cout<<"enter edges and cost of flight  ";
+//     for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
+//     cout<<"enter target node:";
+//     int t;
+//     cin>>t;
+//     vector<vector<pair<int,int>>>adj(n);
+//     for(auto it:e){adj[it[0]].push_back({it[1],it[2]}); adj[it[1]].push_back({it[0],it[2]});}
+//     vector<int>dis(n,1e9);
+//     dis[0]=0;
+//     priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
+//     pq.push({h[0],0,0});
+//      vector<int>path(n,-1);
+//     while(!pq.empty()){
+//         auto it=pq.top();
+//         pq.pop();
+//         int u=it[2];
+//         int hh=it[0]+dis[u];  int ac=it[1];
+//         for(auto v:adj[u]){
+//             int newh=dis[v.first]+h[v.first];
+//             int cost=ac+v.second;
+//             if(dis[v.first]>cost){
+//                 path[v.first]=u;
+//                 dis[v.first]=cost;
+//                 pq.push({newh,cost,v.first});
+//             }
+//         }
+//     }
+//     cout<<"cost is "<<dis[n-1]<<endl;
+//     int i=n-1;
+//     vector<int>ans;
+//     cout<<"path is:"; while(i!=-1){ans.push_back(i); i=path[i];}
+//     reverse(begin(ans),end(ans));
+//     for(int i:ans)cout<<i<<" ";
+// }
+// int main(){
+//     dronsupply();
+// }
+// // enter number of nodes:6
+// // enter flight cost in terms of time  for each node;10 15 5 5 10 0
+// // enter number of edges 8
+// // enter edges and cost of flight   0 1 10
+// // 1 4 11
+// // 2 4 11
+// // 0 2 12
+// // 0 3 5
+// // 2 3 6
+// // 3 5 14
+// // 2 5 8
+// // enter target node:5
+// // cost is 19
+// // path is:0 3 5 
+
+int* create() {
+    return new int(42);
+}
+
+int main() {
+    int* p = create();
+    // Do I delete this? Who owns it? Must check documentation/convention!
+    delete p;
+}

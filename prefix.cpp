@@ -172,29 +172,65 @@
 // }
 
 
- #include <bits/stdc++.h>
-using namespace std;
+//  #include <bits/stdc++.h>
+// using namespace std;
 
-int main(){
-    int n, k;
-    cin >> n >> k;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++) cin >> v[i];
+// int main(){
+//     int n, k;
+//     cin >> n >> k;
+//     vector<int> v(n);
+//     for(int i = 0; i < n; i++) cin >> v[i];
     
-    sort(v.begin(), v.end());
+//     sort(v.begin(), v.end());
     
-    double ans = 0;
-    for(int i = 1; i < n; i++){
-        ans = max(ans, (v[i] - v[i-1]) / 2.0);
-    }
-    ans = max(ans, v[0] * 1.0);
-    ans = max(ans, (k - v[n-1]) * 1.0);
+//     double ans = 0;
+//     for(int i = 1; i < n; i++){
+//         ans = max(ans, (v[i] - v[i-1]) / 2.0);
+//     }
+//     ans = max(ans, v[0] * 1.0);
+//     ans = max(ans, (k - v[n-1]) * 1.0);
     
-    cout << fixed << setprecision(10) << ans << "\n";
-    return 0;
-}
+//     cout << fixed << setprecision(10) << ans << "\n";
+//     return 0;
+// }
 
 
 
-// onhold
+// // onhold
 // https://codeforces.com/problemset/problem/1355/C
+
+
+// class Solution {
+// public:
+//     int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
+//         int m = matrix.size();
+//         int n = matrix[0].size();
+//         vector<vector<int>> pref(m + 1, vector<int>(n + 1, 0));
+//         int ans = INT_MIN;
+//         for (int i = 0; i < m; i++) {
+//             for (int j = 0; j < n; j++) {
+//                 if (matrix[i][j] <= k)
+//                     ans = max(ans, matrix[i][j]);
+//                 pref[i + 1][j + 1] =
+//                     matrix[i][j] + pref[i + 1][j] + pref[i][j + 1] - pref[i][j];
+//             }
+//         }
+//         //   for(int d=1;d<=min(m,n);d++){
+//         for (int x = 1; x <= m; x++) {
+//             for (int y = 1; y <= n; y++) {
+//                 for (int i = 0; i <= m - x; i++) {
+//                     for (int j = 0; j <= n - y; j++) {
+//                         int s = pref[i + x][j + y] - pref[i + x][j] -
+//                                 pref[i][j + y] + pref[i][j];
+//                         if (s <= k)
+//                             ans = max(ans, s);
+//                     }
+//                 }
+//                 // int s=pref[i][j];
+//                 // if(s<=k)ans=max(ans,s);
+//             }
+//         }
+
+//         return ans;
+//     }
+// };
