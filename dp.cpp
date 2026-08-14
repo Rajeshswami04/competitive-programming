@@ -1716,3 +1716,38 @@ using namespace std;
 //       return max(dp[n-1][0],dp[n-1][1]);  
 //     }
 // };
+
+
+//artihemtic slices
+// class Solution {
+// public:
+    
+//     long long dp[2][1001][1001];
+//     long long solve(long long f,long long i,long long prev,vector<int>&nums){
+//         if(i>=nums.size()){
+//             return f;
+//         }
+//         if(dp[f][i][prev+1]!=-1)return dp[f][i][prev+1];
+//         long long cnt=f;
+//         if(prev==-1){
+//             cnt+=solve(0,i+1,prev,nums);
+//             for(long long j=i+1;j<nums.size();j++){
+//                     cnt+=solve(0,j,i,nums);
+//             }
+//         }else{
+//             long long diff=nums[i]*1LL-1LL*nums[prev];
+//             for(long long j=i+1;j<nums.size();j++){
+//                 long long cdiff=1LL*nums[j]-1LL*nums[i];
+//                 if(cdiff==diff){
+//                     cnt+=solve(1,j,i,nums);
+//                 }
+//             }
+//         }
+//         return dp[f][i][prev+1]=cnt;
+//     }
+//     int numberOfArithmeticSlices(vector<int>& nums) {
+//       long long n=nums.size();
+//       memset(dp,-1,sizeof(dp));
+//       return solve(0,0,-1,nums);  
+//     }
+// };

@@ -61,3 +61,42 @@ using namespace std;
 //         segmin[i]=min(segmin[2*i+1],segmin[i*2+2]);
 //         segmax[i]=max(segmax[2*i+1],segmax[i*2+2]);
 // }
+
+
+//revising
+vector<int>seg;
+vector<int>arr;
+void build(int i,int left,int right){
+    if(left==right){
+        seg[i]=arr[left];
+        return;
+    }
+    int mid=(left+right)/2;
+    build(2*i+1,left,mid);
+    build(2*i+2,mid+1,right);
+    seg[i]=seg[2*i+1]+seg[2*i+2];
+}
+int query(int i,int low,int high,int left,int right){
+    if(low>right||high<left)return 0;
+    if(low<=left&&high>=right)return seg[i];
+    int mid=(left+right)/2;
+    return query(2*i+1,low,high,left,mid)+query(2*i+2,low,high,mid+1,right);
+}
+void update(int idx,int i,int left,int right,int val){
+    if(left==right){
+        seg[i]=val;
+        return;
+    }
+    int mid=(left+right)/2;
+    if(idx<=mid)update(idx,2*i+1,left,mid,val);
+    else update(idx,2*i+2,mid+1,right,val);
+    seg[i]=seg[2*i+1]+seg[2*i+2];
+}
+int main(){
+    int n=8;
+    arr={3,1,2,7,2,1,2,3}; seg.assign(32,0);
+    build(0,0,7);
+    update(2,0,0,7,23);
+    cout<<query(0,0,3,0,7);
+    
+}
