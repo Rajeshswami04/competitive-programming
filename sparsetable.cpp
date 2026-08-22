@@ -285,3 +285,74 @@ using namespace std;
 //     for(auto it:ans)cout<<it<<' ';
 // }
 
+//revision
+//rmq 
+// vector<vector<int>>st;
+// vector<int>nums;
+// void build(){
+//     int n=nums.size();
+//     int m=log2(n)+1;
+//     st.assign(n,vector<int>(m,0));
+//     for(int i=0;i<n;i++)st[i][0]=i;
+//     for(int j=1;j<m;j++){
+//         for(int i=0;i<=n-(1<<j);i++){
+//             int idx=i;
+//             int sidx=i+(1<<j)-1;
+//             if(nums[st[idx][j-1]]<nums[st[sidx][j-1]]){st[i][j]=st[idx][j-1];}
+//             else st[i][j]=st[sidx][j-1];
+//         }
+//     }
+// }
+// int rmq(int l,int r){
+//     int k=r-l+1;
+//     int p=log2(k);
+//     int rem=k-(1<<p);
+//     int si=l+rem;
+//     int sk=log2(r-si+1);
+//     return min(nums[st[l][p]],nums[st[si][sk]]);
+// }
+// int main(){
+//     nums.assign(6,0);
+//     for(auto &it:nums)cin>>it;
+//     build();
+//     cout<<rmq(0,5)<<endl;
+//     cout<<rmq(3,4)<<endl;
+//     cout<<rmq(2,4)<<endl;
+//     cout<<rmq(1,1)<<endl;
+// }
+
+
+//gcd calc
+
+
+// vector<vector<int>>st;
+// vector<int>nums;
+// void build(){
+//     int n=nums.size();
+//     int m=log2(n)+1;
+//     st.assign(n,vector<int>(m,0));
+//     for(int i=0;i<n;i++)st[i][0]=nums[i];
+//     for(int j=1;j<m;j++){
+//         for(int i=0;i<=n-(1<<j);i++){
+//             int idx=i;
+//             int sidx=i+(1<<(j-1));
+//             st[i][j]=__gcd(st[idx][j-1],st[sidx][j-1]);
+//         }
+//     }
+// }
+// int rgcdq(int l,int r){
+//     int k=r-l+1;
+//     int p=log2(k);
+//     int rem=k-(1<<p);
+//     int si=l+rem;
+//     int sk=log2(r-si+1);
+//     return __gcd(st[l][p],st[si][sk]);
+// }
+// int main(){
+//     nums.assign(10,0);
+//     for(auto &it:nums)cin>>it;
+//     build();
+//     for(int i=0;i<10;i++){
+//         for(int j=i;j<10;j++)cout<<rgcdq(i,j)<<" ";
+//     }
+// }

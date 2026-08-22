@@ -1751,3 +1751,40 @@ using namespace std;
 //       return solve(0,0,-1,nums);  
 //     }
 // };
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define int long long
+void solve(){
+    int n;
+    cin>>n;
+    n*=2;
+    vector<int>v(n);
+    for(auto &it:v)cin>>it;
+    vector<int>freq(n/2+1,-1);
+    vector<int>dp(n+1);
+    for(int i=0;i<n;i++){
+        if(freq[v[i]]==-1){
+            dp[i+1]=max(dp[i+1],dp[i]+1);
+        }else{
+            dp[i+1]=max(dp[freq[v[i]]]+(-freq[v[i]]+i+1)*(-freq[v[i]]+i+1),dp[i]+1);
+        }
+        freq[v[i]]=i;
+    }
+    cout<<dp[n]<<'\n';
+    // for( auto it:dp)cout<<it<<" ";
+}
+signed main()
+{
+    cin.tie(0);cin.sync_with_stdio(0);
+    cout.tie(0);cout.sync_with_stdio(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}

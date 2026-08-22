@@ -234,3 +234,39 @@
 //         return ans;
 //     }
 // };
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define int long long
+void solve(){
+    int n,x,y;
+    cin>>n>>x>>y;
+    vector<int>v(n);
+    for(auto &it:v)cin>>it;
+    sort(begin(v),end(v));
+    int sum=0;
+    for(auto &it:v)sum+=it;
+    int cnt=0;
+    for(int i=0;i<n-1;i++){
+        int low=sum-x-v[i];
+        int high=sum-y-v[i];
+        auto u=upper_bound(begin(v)+i+1,end(v),low);
+        auto vv=lower_bound(begin(v)+i+1,end(v),high);
+        cnt+=(u-vv);
+    }
+    cout<<cnt<<"\n";
+}
+signed main()
+{
+    cin.tie(0);cin.sync_with_stdio(0);
+    cout.tie(0);cout.sync_with_stdio(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}
