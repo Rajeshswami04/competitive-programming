@@ -868,3 +868,80 @@
 //      return ans;
 //     }
 // };
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int m,n;
+//     cin>>m>>n;
+//     vector<int>a(m);
+//     vector<int>b(n);
+//     for(auto &it:a)cin>>it;
+//     for(auto &it:b)cin>>it;
+//     int cnt1=0;
+//     int cnt2=0;
+//     for(int i=0;i<m-1;i++)cnt1+=a[i]-a[i+1]+1;
+//     cnt1+=a[m-1];
+//     for(int i=0;i<n-1;i++)cnt2+=b[i]-b[i+1]+1;
+//     cnt2+=b[n-1];
+//     if(cnt1>=cnt2){cout<<1<<'\n';}
+//     else cout<<2<<"\n";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//     }
+//     return 0;
+// }
+
+#include<bits/stdc++.h>
+using namespace std;
+ int longestSubarray(vector<int>& nums, int k) {
+        unordered_map<int, int> mp;
+        int n = nums.size();
+        int ans = 0;
+        int l = 0;
+        unordered_map<int, unordered_map<int, int>> c;
+        for (int r = 0; r < n; r++) {
+            int a = nums[r];
+            for (int i = 2; i * i <= a; i++) {
+                if (a % i == 0) {
+                    c[r][i]++;
+                    mp[i]++;
+                    while (a % i == 0)
+                        a /= i;
+                }
+            }
+            if (a > 1) {
+                c[r][a]++;
+                mp[a]++;
+            }
+            if (mp.size() <= k)
+                ans = max(ans, r - l + 1);
+            while (mp.size() > k) {
+                for (auto it : c[l]) {
+                    mp[it.first] -= it.second;
+                    if (mp[it.first] <= 0)
+                    mp.erase(it.first);
+                }
+                c.erase(l);
+                l++;
+            }
+            if (mp.size() <= k)
+                ans = max(ans, r - l + 1);
+        }
+        return ans;
+    }
+    int main(){
+        vector<int>v={4,6,9,18};
+        cout<<longestSubarray(v,4);
+    }
