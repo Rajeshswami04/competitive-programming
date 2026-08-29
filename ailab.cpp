@@ -86,7 +86,7 @@ using namespace std;
 // }
 
 // time complexity= o(v+e) bfs ,  for dfs o(v+e)
-// space complexity bfs=o(v*v+e) , dfs(v+e) + recursion stack and vis and path array so O(3v+e)
+// space complexity bfs=o(v*v+e) , dfs(v+e) + recursion stack isand vis isand path array so O(3v+e)
 
 //
 
@@ -226,7 +226,7 @@ using namespace std;
 //     for (auto &it : h)
 //         cin >> it;
 //     int m;
-//     cout << "enter number of edges and cost";
+//     cout << "enter number of edges isand cost";
 //     cin >> m;
 //     vector<vector<int>> e(m, vector<int>(3, 0));
 //     cout << "enter edges ";
@@ -283,7 +283,7 @@ using namespace std;
 // }
 // enter number of nodes:6
 // enter heuristic values for each node;
-// 10 15 5 5 10 0 enter number of edges and cost 8 enter edges 0 1 10 1 4 11 2 4 11 0 2 12 0 3 5 2 3 6 3 5 14 2 5 8 cost is 19 path is : 0 3 5
+// 10 15 5 5 10 0 enter number of edges isand cost 8 enter edges 0 1 10 1 4 11 2 4 11 0 2 12 0 3 5 2 3 6 3 5 14 2 5 8 cost is 19 path is : 0 3 5
 
     // void transportastar(){
     //     int n;
@@ -296,7 +296,7 @@ using namespace std;
     //     cout<<"enter number of edges ";
     //     cin>>m;
     //     vector<vector<int>>e(m,vector<int>(3,0));
-    //     cout<<"enter edges and time ";
+    //     cout<<"enter edges isand time ";
     //     for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
     //     cout<<"enter target node:";
     //     int t;
@@ -329,7 +329,7 @@ using namespace std;
     // enter number of nodes:6
     // enter constraints in terms of time  for each node;10 15 5 5 10 0
     // enter number of edges 8
-    // enter edges and time
+    // enter edges isand time
     // 0 1 10
     // 1 4 11
     // 2 4 11
@@ -349,7 +349,7 @@ using namespace std;
 //     cout << "enter number of cols:";
 //     cin >> n;
 //     vector<vector<int>> mat(m, vector<int>(n, 0));
-//     cout << "enter matrix values their costs and -1 for blocks:";
+//     cout << "enter matrix values their costs isand -1 for blocks:";
 //     for (int i = 0; i < m; i++)
 //     {
 //         for (int j = 0; j < n; j++)
@@ -431,7 +431,7 @@ using namespace std;
 // }
 // // enter number of rows:3
 // enter number of cols:3
-// enter matrix values their costs and -1 for blocks:
+// enter matrix values their costs isand -1 for blocks:
 // 1 2 3
 // -1 0 -1
 // 3 5 6
@@ -457,7 +457,7 @@ using namespace std;
 //     cout<<"enter number of edges ";
 //     cin>>m;
 //     vector<vector<int>>e(m,vector<int>(3,0));
-//     cout<<"enter edges and cost of flight  ";
+//     cout<<"enter edges isand cost of flight  ";
 //     for(auto &it:e){cin>>it[0]>>it[1]>>it[2];}
 //     cout<<"enter target node:";
 //     int t;
@@ -497,7 +497,7 @@ using namespace std;
 // enter number of nodes:6
 // enter flight cost in terms of time  for each node;10 15 5 5 10 0
 // enter number of edges 8
-// enter edges and cost of flight   0 1 10
+// enter edges isand cost of flight   0 1 10
 // 1 4 11
 // 2 4 11
 // 0 2 12
@@ -508,162 +508,94 @@ using namespace std;
 // enter target node:5
 // cost is 19
 // path is:0 3 5
-void func1(){
-    int n;
-    cout<<"number of nodes:";
-    cin>>n;
-
-    vector<int>v(n);
-    cout<<"enter the heuristic cost of each node:";
-    for(int i=0;i<n;i++){
-        cin>>v[i];
-    }
-
-    vector<vector<int>>adj(n);
-    cout<<"number of edges:";
-    int a;
-    cin>>a;
-
-    for(int i=0;i<a;i++){
-        int x,y;
-        cin>>x>>y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
-    }
-
-    int t;
-    cout<<"enter target node:";
-    cin>>t;
-
-    vector<int>path(n,-1);
-    vector<int>vis(n,0);
-    vector<int>cost(n,INT_MAX);
-
-    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-
-    pq.push({v[0],0});
-    cost[0]=v[0];
-    while(!pq.empty()){
-        auto it =pq.top();
-        int h=it.first;
-        int node=it.second;
-        pq.pop();
-
-        if(vis[node]) continue;
-        vis[node]=1;
-        if(node==t) break;
-        for(auto u:adj[node]){
-            if(!vis[u] && cost[u]>cost[node]+v[u]){
-                cost[u]=cost[node]+v[u];
-                path[u]=node;
-                pq.push({cost[u],u});
-            }
-        }
-    }
-
-    if(!vis[t]){
-        cout<<-1<<" we can not reach ";
-    }
-    else{
-        cout<<"minimum cost "<<cost[t]<<endl;
-
-        vector<int>p;
-        int i=t;
-
-        while(i!=-1){
-            p.push_back(i);
-            i=path[i];
-        }
-
-        reverse(p.begin(),p.end());
-
-        cout<<"path: ";
-        for(auto g:p){
-            cout<<g<<" ";
-        }
-    }
-}
-
-int main(){
-    func1();
-}
-// number of nodes:7
-// enter the heuristic cost of each node:4 2 4 3 3 4 5
-// number of edges:6
-// 0 1
-// 0 2
-// 1 3
-// 1 4
-// 2 5
-// 2 6
-// enter target node:5
-// minimum cost 12
-// 0 2 5 
 
 
 
 
-
+// #include <iostream>
+// #include <vector>
+// #include <queue>
+// #include <algorithm>
+// #include<bits/stdc++.h>
+// using namespace std;
 // void func1(){
 //     int n;
-//     cout<<"number of nodes:";
-//     cin>>n;
-//     vector<double>v(n);
-//     cout<<"enter the probabilty  of each node:";
-//     for(int i=0;i<n;i++){
-//         cin>>v[i];
+//     cout << "number of nodes:";
+//     if (!(cin >> n) || n <= 0) return;
+//     vector<double> v(n);
+//     cout << "enter the probabilty  of each node:";
+//     for (int i = 0; i < n; i++) {
+//         cin >> v[i];
 //     }
-//     vector<int>ava(n,0);
-//     cout<<"enter the for each node it is failed or not :";
-//     for(int i=0;i<n;i++){
-//         cin>>ava[i];//1=failed
+//     vector<int> ava(n, 0);
+//     cout << "enter the for each node it is failed or not :";
+//     for (int i = 0; i < n; i++) {
+//         cin >> ava[i]; // 1 = failed
 //     }
-//     vector<vector<int>>adj(n);
-//     cout<<"number of edges:";
+//     vector<vector<int>> adj(n);
+//     cout << "number of edges:";
 //     int a;
-//     cin>>a;
-//     for(int i=0;i<a;i++){
-//         int x,y; cin>>x>>y;
+//     cin >> a;
+//     for (int i = 0; i < a; i++) {
+//         int x, y; 
+//         cin >> x >> y;
 //         adj[x].push_back(y);
 //         adj[y].push_back(x);
 //     }
-//     int t;
-//     vector<int>path(n,-1);
-//     vector<double>vis(n,1e9);
-//     vis[0]=v[0]*(-1.00);
-//     priority_queue<pair<double,int>,vector<pair<double,int>>,greater<pair<double,int>>>pq;
-//     pq.push({-1*v[0],0});
-//     while(!pq.empty()){
-//         auto it=pq.top();
+//     int t = -1;
+//     vector<int> path(n, -1);
+//     vector<double> vis(n, -1.0); 
+//     priority_queue<pair<double, int>> pq; 
+//     vis[0] = v[0];
+//     pq.push({v[0], 0});
+//     while (!pq.empty()) {
+//         auto it = pq.top();
 //         pq.pop();
-//         int node=it.second;
-//         double cost=it.first;
-//         for(auto u:adj[node]){
-//             double ncost=1.0*v[u]*cost;
-//             if(vis[u]>ncost){
-//                 vis[u]=ncost;
-//                 path[u]=node;
-//                 pq.push({vis[u],u});
-//                 if(ava[u]){t=u; break;}
+//         double cost = it.first;
+//         int node = it.second;
+//         if (cost < vis[node]) continue;
+//         if (ava[node] == 1) {
+//             t = node;
+//             break;   }
+//         for (auto u : adj[node]) {
+//             double ncost = cost * v[u];
+//             if (ncost > vis[u]) {
+//                 vis[u] = ncost;
+//                 path[u] = node;
+//                 pq.push({vis[u], u});
 //             }
 //         }
 //     }
-//     if(vis[t]==1e9){
-//         cout<<-1<<" we can not reach ";
-//     }else{
-//         cout<<"maximum  probability "<<abs(vis[t])<<endl;
-//         vector<int>p;
-//         int i=t;
-//         while(i!=-1){p.push_back(i); i=path[i];}
-//         reverse(begin(p),end(p));
-//         for(auto g:p){
-//             cout<<g<<" ";
+//     if (t == -1) {
+//         cout << -1 << " we can not reach " << endl;
+//     } else {
+//         cout << "maximum  probability " << vis[t] << endl;
+//         vector<int> p;
+//         int i = t;
+//         while (i != -1) {
+//             p.push_back(i); 
+//             i = path[i];
 //         }
+//         reverse(begin(p), end(p));
+//         for (auto g : p) {
+//             cout << g << " ";
+//         }
+//         cout << endl;
 //     }
 // }
 // int main(){
 //     func1();
+//     return 0;
 // }
+// number of nodes:4
+// enter the probabilty  of each node:.9 .8 .4 .95
+// enter the for each node it is failed or not :0 0 0 1
+// number of edges:3
+// 0 1
+// 0 2 
+// // 2 3
+// maximum  probability 0.342
+// 0 2 3 
 
 
 
@@ -672,75 +604,87 @@ int main(){
 
 
 
-
-
-
-
+// #include <iostream>
+// #include <vector>
+// #include <queue>
+// #include <climits>
+// #include <algorithm>
+// using namespace std;
 // void func2(){
 //     int n;
-//     cout<<"number of nodes:";
-//     cin>>n;
-//     vector<int>v(n);
-//     cout<<"enter the estimated  distance  of each node or space :";
-//     for(int i=0;i<n;i++){
-//         cin>>v[i];
+//     cout << "number of nodes:";
+//     cin >> n;
+//     vector<int> v(n);
+//     cout << "enter the estimated  distance  of each node or space :";
+//     for(int i = 0; i < n; i++){
+//         cin >> v[i];
 //     }
-//     vector<int>ava(n,0);
-//     cout<<"enter the for each node it is avaiable or not :";
-//     for(int i=0;i<n;i++){
-//         cin>>ava[i];
+//     vector<int> ava(n, 0);
+//     cout << "enter the for each node it is avaiable or not :";
+//     for(int i = 0; i < n; i++){
+//         cin >> ava[i];
 //     }
-//     vector<vector<int>>adj(n);
-//     cout<<"number of coneections:";
+//     vector<vector<int>> adj(n);
+//     cout << "number of coneections:";
 //     int a;
-//     cin>>a;
-//     for(int i=0;i<a;i++){
-//         int x,y; cin>>x>>y;
+//     cin >> a;
+//     for(int i = 0; i < a; i++){
+//         int x, y; 
+//         cin >> x >> y;
 //         adj[x].push_back(y);
 //         adj[y].push_back(x);
 //     }
-//     int t=-1;
-//     vector<int>path(n,-1);
-//     vector<int>vis(n,INT_MAX);
-//     vis[0]=v[0];
-//     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-//     pq.push({v[0],0});
+//     int t = -1;
+//     vector<int> path(n, -1);
+//     vector<int> vis(n, INT_MAX);
+//     priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+//     vis[0] = v[0];
+//     pq.push({v[0], 0});
 //     while(!pq.empty()){
-//         auto it=pq.top();
+//         auto it = pq.top();
 //         pq.pop();
-//         int node=it.second;
-//         int cost=it.first;
-//         for(auto u:adj[node]){
-//             int ncost=v[u]+cost;
-//             if(vis[u]>ncost){
-//                 vis[u]=ncost;
-//                 path[u]=node;
-//                 pq.push({vis[u],u});
-//                 if(ava[u]){t=u;}
+//         int cost = it.first;
+//         int node = it.second;
+//         if(cost > vis[node]) continue;
+//         if(ava[node] == 1){
+//             t = node;
+//             break; 
+//         }
+//         for(auto u : adj[node]){
+//             int ncost = v[u] + cost;
+//             if(vis[u] > ncost){
+//                 vis[u] = ncost;
+//                 path[u] = node;
+//                 pq.push({vis[u], u});
 //             }
-//             if(t!=-1)break;
 //         }
 //     }
-//     if(t==-1){
-//         cout<<-1<<" we can not reach ";
-//     }else{
-//         cout<<"minimum cost "<<vis[t]<<endl;
-//         vector<int>p;
-//         int i=t;
-//         while(i!=-1){p.push_back(i); i=path[i];}
-//         reverse(begin(p),end(p));
-//         for(auto g:p){
-//             cout<<g<<" ";
+//     if(t == -1){
+//         cout << -1 << " we can not reach ";
+//     } else {
+//         cout << "minimum cost " << vis[t] << endl;
+//         vector<int> p;
+//         int i = t;
+//         while(i != -1){
+//             p.push_back(i); 
+//             i = path[i];
 //         }
+//         reverse(begin(p), end(p));
+//         for(auto g : p){
+//             cout << g << " ";
+//         }
+//         cout << endl;
 //     }
 // }
+
 // int main(){
 //     func2();
+//     return 0;
 // }
 // number of nodes:7
-// enter the estimated  distance  of each node or space:4 2 4 3  5 7 8
+// enter the estimated  distance  of each node or space :4 2 4 3 5 7 8
 // enter the for each node it is avaiable or not :0 0 0 1 1 1 1
-// number of coneections:6 
+// number of coneections:6
 // 0 1
 // 0 2
 // 1 3
@@ -750,18 +694,292 @@ int main(){
 // minimum cost 9
 // 0 1 3 
 
+// //3
+// #include <iostream>
+// #include <vector>
+// #include <climits>
+// using namespace std;
+// struct node {
+//     bool isand;
+//     vector<pair<int, int>> child;
+// };
+// vector<node> graph;
+// vector<int> path;
+// int AOStar(int u) {
+//     if (graph[u].child.size() == 0) {
+//         return 0;
+//     }
+//     if (graph[u].isand == true) {
+//         int total = 0;
+//         for (auto x : graph[u].child) {
+//             int v = x.first;
+//             int cost = x.second;
+//             int childcost = AOStar(v);
+//             total += cost + childcost;
+//         }
+//         return total;
+//     }
+//     else {
+//         int minimum = INT_MAX;
+//         int bestChild = -1;
+//         for (auto x : graph[u].child) {
+//             int v = x.first;
+//             int cost = x.second;
+//             int childcost = AOStar(v);
+//             int totalcost = cost + childcost;
+//             if (totalcost < minimum) {
+//                 minimum = totalcost;
+//                 bestChild = v;
+//             }
+//         }
+//         path[u] = bestChild;
+//         return minimum;
+//     }
+// }
+// void printpath(int u) {
+//     cout << u;
+//     if (graph[u].child.size() == 0) {
+//         return;
+//     }
+//     cout << " to ";
+//     if (graph[u].isand) {
+//         cout << "AND" << endl;
+//         for (auto x : graph[u].child) {
+//             int v = x.first;
+//             cout << " ";
+//             printpath(v);
+//         }
+//     }
+//     else {
+//         cout << "OR" << endl;
+//         int v = path[u];
+//         printpath(v);
+//     }
+// }
+// int main() {
+//     graph.resize(6);
+//     path.resize(6, -1);
+//     graph[0].isand = false;
+//     graph[1].isand = true;
+//     graph[2].isand = false;
+//     graph[3].isand = false;
+//     graph[4].isand = false;
+//     graph[5].isand = false;
+//     graph[0].child.push_back({1, 0});
+//     graph[0].child.push_back({2, 0});
+//     graph[1].child.push_back({3, 50});
+//     graph[1].child.push_back({4, 40});
+//     graph[2].child.push_back({5, 100});
+//     int answer = AOStar(0);
+//     cout << "Minimum Cost = " << answer << endl;
+//     printpath(0);
+//     return 0;
+// }
+// Minimum Cost = 90
+// 0 to OR
+// 1 to AND
+//  3 4
 
 
-// vector<bool>status;
-// vector<int>mincost;
-// vector<vector<pair<int,int>>>g;
 
-// void func3(){
+
+
+// #include <iostream>
+// #include <vector>
+// #include <climits>
+// using namespace std;
+
+// struct node {
+//     bool isand;
+//     vector<pair<int, int>> child;
+// };
+// vector<node> graph;
+// vector<int> path;
+// int AOStar(int u) {
+//     if (graph[u].child.empty()) {
+//         return 0;
+//     }
+//     if (graph[u].isand) {
+//         int total = 0;
+//         for (auto x : graph[u].child) {
+//             int v = x.first;
+//             int cost = x.second;
+//             int childcost = AOStar(v);
+//             total += cost + childcost;
+//         }
+//         return total;
+//     }
+//  else {
+//         int minimum = INT_MAX;
+//         int bestChild = -1;
+//         for (auto x : graph[u].child) {
+//             int v = x.first;
+//             int cost = x.second;
+//             int childcost = AOStar(v);
+//             int totalcost = cost + childcost;
+//             if (totalcost < minimum) {
+//                 minimum = totalcost;
+//                 bestChild = v;
+//             }
+//         }
+//         path[u] = bestChild;
+//         return minimum;
+//     }
+// }
+// void printpath(int u) {
+//     cout<<u;
+//     if (graph[u].child.empty()) {
+//         return;
+//     }
+//     if (graph[u].isand) {
+//         cout << " AND " << endl;
+//         for (auto x : graph[u].child) {
+//             cout << " ";
+//             printpath(x.first);
+//         }
+//     }
+//     else {
+//         cout << " OR " << endl;
+//         int v = path[u];
+//         printpath(v);
+//     }
+// }
+
+// int main() {
+
+//     graph.resize(8);
+//     path.resize(8, -1);
+//     graph[0].isand = false;       
+//     graph[1].isand = true;        
+//     graph[2].isand = false;       
+//     graph[3].isand = false;       
+//     graph[4].isand = false;
+//     graph[5].isand = false;
+//     graph[6].isand = false;
+//     graph[7].isand = false;
+//     graph[0].child.push_back({1, 0});
+//     graph[0].child.push_back({2, 0});
+//     graph[0].child.push_back({3, 0});
+//     graph[1].child.push_back({4, 30});
+//     graph[1].child.push_back({5, 40});
+//     graph[2].child.push_back({6, 70});
+//     graph[3].child.push_back({7, 100});
+//     int answer = AOStar(0);
+//     cout << "Minimum Cost = " << answer << endl;
+//     printpath(0);
+//     return 0;
+// }
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int cntconflicts(vector<vector<int>>&c){
+    int cnt=0;
+    set<vector<int>>mp;
+    set<vector<int>>st;
+    for(auto it:c){
+        if(mp.find({it[0],it[2]})!=mp.end()||st.find({it[1],it[2]})!=st.end()){cnt++; continue;}
+        st.insert({it[1],it[2]});
+        mp.insert({it[0],it[2]});
+    }
+    return cnt;
+}
+int main(){
+    vector<vector<vector<int>>>cls;
+    int n;
+    cout<<"enter timetable"; cin>>n;
+    cls.assign(n,vector<vector<int>>());
+    int i=0;
+    while(i<n){
+        int s;
+        cout<<"enter slots in one timetable ";
+        cin>>s;
+        while(s--){
+            int p,c,t;
+            cout<<"pid cid time ";
+            cin>>p>>c>>t;
+            cls[i].push_back({p,c,t});
+        }
+        i++;
+    }
+    int randompos=(0+n)/2;
+    int best=-1;
+    int current=cntconflicts(cls[randompos]);
+    while(randompos>=0&&randompos<n){
+        int prev=((randompos>0)?(cntconflicts(cls[randompos-1])):INT_MAX);
+        int next=((randompos<n)?(cntconflicts(cls[randompos+1])):INT_MAX);
+        if(current<=prev&&current<=next){
+            best=randompos;
+            break;
+        }else if(prev<current&&randompos>0){
+            randompos-=1;
+        }else if(next<current&&randompos<n){
+            randompos+=1;
+        }else{
+            break;
+        }
+    }
+    cout<<"best timetable is at index "<<best;
+}
+
+
+// enter timetable3
+// enter slots in one timetable 3
+// pid cid time 0 0 1 
+// pid cid time 1 0 2
+// pid cid time 3 0 1
+// enter slots in one timetable 3
+// pid cid time 0 2 0
+// pid cid time 0 2 1
+// pid cid time 0 2 2
+// enter slots in one timetable 4
+// pid cid time 1 2 0
+// pid cid time 0 2 1
+// pid cid time 0 4 1
+// pid cid time 1 0 0
+// best timetable is at index 1
+
+
+//3
+
+// double func(vector<int>&take,vector<double>&wt,vector<double>&p,int w){
+//      double pro=0;
+//     double rem=w;
+//     for(int i=0;i<n;i++){
+//         if(take[i])continue;
+//         if(wt[i]<=rem){pro-=p[i]; rem-=wt[i];}
+//         else{
+//             pro-=((rem)/(wt[i]))*p[i]*1.0;}}
+//     return 0-pro;}
+// int main(){
+//     int w;
+//     cout<<"max weight ";
+//     cin>>w;
 //     int n;
-//     cout<<"enter number of node:";
-//     cin>>n;
-//     status.assign(n,false);
-//     mincost.assign(n,INT_MAX);
-//     g.assign(n,vector<pair<int,int>>());
-
+//     cout<<"numper of weights";
+//     vector<double>wt(n),p(n);
+//     for(int i=0;i<n;i++){
+//         cin>>wt[i]>>p[i];
+//     }
+//     // int best=INT_MAX;
+//     vector<int>best(n,INT_MAX);
+//     priority_queue<pair<int,vector<int>>,vector<pair<int,vector<int>>>,greater<pair<int,vector<int>>>pq;
+//     vector<int>leave(n,0);
+//     double zerot=func(leave,wt,p,w);
+//     leave[0]=1;
+//     double zeront=func(leave,wt,p,w);
+//     best[0]=min(zeront,zerot);
+//     pq.push({best[0],{1,zerot}});
+//     pq.push({best[0],{1,zeront}});
+//     while(!pq.empty()){
+//         auto it=pq.top();
+//         int idx=it.second[0];
+//         int cost=it.first;
+//         if(best[idx]<cost)break;
+//         best[idx]=cost;
+//         int nextidx=idx+1;
+//         double nt=func(it,wt,p,w);
+//         double t=func(,wt,p,w);
+//     }
 // }

@@ -1451,3 +1451,60 @@ using namespace std;
 //     }
 //     return 0;
 // }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// int dfs(vector<int>&mark,vector<vector<int>>&adj,int i,vector<int>&vis){
+//     if(vis[i])return 0;
+//     int cnt=0;
+//     for(auto it:adj[i]){
+//         if(vis[it]==0)cnt+=dfs(mark,adj,it,vis);
+//     }
+//     if(mark[i]==1&&cnt==0){
+//         mark[i]=-1; 
+//         return 1;
+//     }
+//     if(mark[i]==1&&cnt>=1){
+//         mark[i]=-2; 
+//         return 1+cnt;
+//     }
+//     return cnt;
+// }
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<vector<int>>adj(n);
+//     for(int i=0;i<n-1;i++){
+//         int a ; cin>>a; a-=1;
+//         adj[a].push_back(i+1);
+//     }
+//     int m;  cin>>m;
+//     vector<int>mark(n);
+//     for(int i=0;i<m;i++){
+//         int a; cin>>a;
+//         mark[a-1]=1;
+//     }
+//     vector<int>vis(n,0);
+//     dfs(mark,adj,0,vis);
+//     vector<int>ans;
+//     for(int i=0;i<n;i++)if(mark[i]==-1)ans.push_back(i+1);
+//     for(int i=n-1;i>=0;i--)if(mark[i]==-2)ans.push_back(i+1);
+//     ans.pop_back();
+//     cout<<ans.size()<<" ";
+//     for(int i:ans){cout<<i<<" ";}
+//     cout<<"\n";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//     }
+//     return 0;
+// }

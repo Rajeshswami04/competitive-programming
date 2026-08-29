@@ -766,27 +766,80 @@
 // }
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//     int n; cin>>n;
+//     vector<vector<int>>v(n,vector<int>(3,0)); int i=1;
+//     for(auto &it:v){cin>>it[0]>>it[1];  it[2]=i; i++;}
+//     vector<int>ans;
+//     sort(begin(v),end(v));
+//     vector<int>vis(2*n,0);
+//     for(auto &it:v){
+//         int f=0;
+//         int a=it[0]-1; int b=it[1]-1;
+//         for(int j=a;j<=b;j++){
+//             if(vis[j]==0){vis[j]=1; f=1;}
+//         }
+//         if(f)ans.push_back(it[2]);
+//     }
+//     cout<<ans.size()<<'\n'; for(auto it:ans)cout<<it<<" ";
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+#define int long long
 void solve(){
-    int n; cin>>n;
-    vector<vector<int>>v(n,vector<int>(3,0)); int i=1;
-    for(auto &it:v){cin>>it[0]>>it[1];  it[2]=i; i++;}
-    vector<int>ans;
-    sort(begin(v),end(v));
-    vector<int>vis(2*n,0);
-    for(auto &it:v){
-        int f=0;
-        int a=it[0]-1; int b=it[1]-1;
-        for(int j=a;j<=b;j++){
-            if(vis[j]==0){vis[j]=1; f=1;}
+    int n,m;
+    cin>>n>>m;
+    int mini=m;
+    int minirows=1e9;
+    vector<int>v(n);
+    for(auto &it:v){cin>>it; }
+    vector<vector<int>>mat(n,vector<int>(m,0));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>mat[i][j];
         }
-        if(f)ans.push_back(it[2]);
     }
-    cout<<ans.size()<<'\n'; for(auto it:ans)cout<<it<<" ";
+    int cnt=1e9;
+    vector<int>pre(n,1e9);
+    pre[0]=v[0];
+    for(int i=1;i<n;i++)pre[i]=min(pre[i-1],v[i]);
+    priority_queue<int>pq;
+    for(int i=n-1;i>=0;i--){
+        minirows=pre[i];
+        for(auto &it:mat[i])pq.push(it);
+        int a=0;
+        int sum=minirows;
+        vector<int>t;
+        while(sum>0&&!pq.empty()){
+        auto it=pq.top(); t.push_back(it);
+        pq.pop();
+        sum-=it;
+        a++;
+        }
+        cnt=min(cnt,a);
+        for(auto &it:t)pq.push(it);
+    }
+    cout<<min(cnt,mini);
 }
-int main()
+signed main()
 {
     cin.tie(0);cin.sync_with_stdio(0);
     cout.tie(0);cout.sync_with_stdio(0);
@@ -795,7 +848,7 @@ int main()
     while (t--)
     {
         solve();
-        cout<<'\n';
+        cout<<"\n";
     }
     return 0;
 }

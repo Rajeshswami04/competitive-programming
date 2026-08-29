@@ -1753,38 +1753,97 @@ using namespace std;
 // };
 
 
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-#define int long long
-void solve(){
-    int n;
-    cin>>n;
-    n*=2;
-    vector<int>v(n);
-    for(auto &it:v)cin>>it;
-    vector<int>freq(n/2+1,-1);
-    vector<int>dp(n+1);
-    for(int i=0;i<n;i++){
-        if(freq[v[i]]==-1){
-            dp[i+1]=max(dp[i+1],dp[i]+1);
-        }else{
-            dp[i+1]=max(dp[freq[v[i]]]+(-freq[v[i]]+i+1)*(-freq[v[i]]+i+1),dp[i]+1);
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     n*=2;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     vector<int>freq(n/2+1,-1);
+//     vector<int>dp(n+1);
+//     for(int i=0;i<n;i++){
+//         if(freq[v[i]]==-1){
+//             dp[i+1]=max(dp[i+1],dp[i]+1);
+//         }else{
+//             dp[i+1]=max(dp[freq[v[i]]]+(-freq[v[i]]+i+1)*(-freq[v[i]]+i+1),dp[i]+1);
+//         }
+//         freq[v[i]]=i;
+//     }
+//     cout<<dp[n]<<'\n';
+//     // for( auto it:dp)cout<<it<<" ";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//     }
+//     return 0;
+// }
+
+
+// int maximumstone(vector<int>&nums){
+//     int n=nums.size();
+//     vector<long long>pre(n,0);
+//     pre[0]=nums[0];
+//     for(int i=1;i<n;i++){
+//         pre[i]=nums[i]+pre[i-1];
+//     }
+//     long long ans=1e9;
+//     vector<long long >dp(n,0);
+//     dp[n-1]=pre[n-1];
+//     ans=dp[n-1];
+//     for(int i=n-2;i>=1;i--){
+//         dp[i]=max(dp[i+1],pre[i]-dp[i+1]);
+//         ans=max(ans,dp[i]);
+//     }
+//     return ans;
+// }
+// int main(){
+//     vector<int>v={-10,-12};
+//     cout<<maximumstone(v);
+// }
+
+
+
+int maxSumTwoNoOverlap(vector<int>& nums, int firstLen, int secondLen) {
+       int n=nums.size();
+       vector<int>dp(n,0);
+       dp[0]=nums[0];
+       for(int i=1;i<n;i++)dp[i]+=dp[i-1]+nums[i];
+       int ans=0;
+       int left=-1; int right=-1;
+       int x=max(firstLen,secondLen);
+       for(int i=x-1;i<=n-x;i++){
+        if(dp[i]-(i-x)>=0?dp[i-x]:0>ans){
+            ans=dp[i]-dp[i]-(i-x>=0?dp[i-x]:0);
+            left=(i-x>=0?i-x:0);
+            right=i;
         }
-        freq[v[i]]=i;
+       } 
+       for(int i=left;i<=right;i++)dp[i]=-1e9;
+        int ans1=0;
+        left=-1;  right=-1;
+       x=min(firstLen,secondLen);
+       for(int i=x-1;i<=n-x;i++){
+        if(dp[i]-(i-x>=0?dp[i-x]:0)>ans1){
+            ans1=dp[i]-dp[i]-(i-x>=0?dp[i-x]:0);
+            left=(i-x>=0?i-x:0);
+            right=i;
+        }
+       }
+       ans+=ans1;
+       return ans; 
     }
-    cout<<dp[n]<<'\n';
-    // for( auto it:dp)cout<<it<<" ";
-}
-signed main()
-{
-    cin.tie(0);cin.sync_with_stdio(0);
-    cout.tie(0);cout.sync_with_stdio(0);
-    int t = 1;
-    cin >> t;
-    while (t--)
-    {
-        solve();
+    int main(){
+        vector<int>v={}
+        cout<<maxSumTwoNoOverlap();
     }
-    return 0;
-}
