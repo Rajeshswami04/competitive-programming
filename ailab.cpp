@@ -283,7 +283,7 @@ using namespace std;
 // }
 // enter number of nodes:6
 // enter heuristic values for each node;
-// 10 15 5 5 10 0 enter number of edges isand cost 8 enter edges 0 1 10 1 4 11 2 4 11 0 2 12 0 3 5 2 3 6 3 5 14 2 5 8 cost is 19 path is : 0 3 5
+// 1 15 5 5 1 0 enter number of edges isand cost 8 enter edges 0 1 1 1 4 11 2 4 11 0 2 12 0 3 5 2 3 6 3 5 14 2 5 8 cost is 19 path is : 0 3 5
 
     // void transportastar(){
     //     int n;
@@ -327,10 +327,10 @@ using namespace std;
     //     transportastar();
     // }
     // enter number of nodes:6
-    // enter constraints in terms of time  for each node;10 15 5 5 10 0
+    // enter constraints in terms of time  for each node;1 15 5 5 1 0
     // enter number of edges 8
     // enter edges isand time
-    // 0 1 10
+    // 0 1 1
     // 1 4 11
     // 2 4 11
     // 0 2 12
@@ -495,9 +495,9 @@ using namespace std;
 //     dronsupply();
 // }
 // enter number of nodes:6
-// enter flight cost in terms of time  for each node;10 15 5 5 10 0
+// enter flight cost in terms of time  for each node;1 15 5 5 1 0
 // enter number of edges 8
-// enter edges isand cost of flight   0 1 10
+// enter edges isand cost of flight   0 1 1
 // 1 4 11
 // 2 4 11
 // 0 2 12
@@ -769,7 +769,7 @@ using namespace std;
 //     graph[0].child.push_back({2, 0});
 //     graph[1].child.push_back({3, 50});
 //     graph[1].child.push_back({4, 40});
-//     graph[2].child.push_back({5, 100});
+//     graph[2].child.push_back({5, 10});
 //     int answer = AOStar(0);
 //     cout << "Minimum Cost = " << answer << endl;
 //     printpath(0);
@@ -863,123 +863,655 @@ using namespace std;
 //     graph[1].child.push_back({4, 30});
 //     graph[1].child.push_back({5, 40});
 //     graph[2].child.push_back({6, 70});
-//     graph[3].child.push_back({7, 100});
+//     graph[3].child.push_back({7, 10});
 //     int answer = AOStar(0);
 //     cout << "Minimum Cost = " << answer << endl;
 //     printpath(0);
 //     return 0;
 // }
 
-
-#include<bits/stdc++.h>
-using namespace std;
-
-int cntconflicts(vector<vector<int>>&c){
-    int cnt=0;
-    set<vector<int>>mp;
-    set<vector<int>>st;
-    for(auto it:c){
-        if(mp.find({it[0],it[2]})!=mp.end()||st.find({it[1],it[2]})!=st.end()){cnt++; continue;}
-        st.insert({it[1],it[2]});
-        mp.insert({it[0],it[2]});
-    }
-    return cnt;
-}
-int main(){
-    vector<vector<vector<int>>>cls;
-    int n;
-    cout<<"enter timetable"; cin>>n;
-    cls.assign(n,vector<vector<int>>());
-    int i=0;
-    while(i<n){
-        int s;
-        cout<<"enter slots in one timetable ";
-        cin>>s;
-        while(s--){
-            int p,c,t;
-            cout<<"pid cid time ";
-            cin>>p>>c>>t;
-            cls[i].push_back({p,c,t});
-        }
-        i++;
-    }
-    int randompos=(0+n)/2;
-    int best=-1;
-    int current=cntconflicts(cls[randompos]);
-    while(randompos>=0&&randompos<n){
-        int prev=((randompos>0)?(cntconflicts(cls[randompos-1])):INT_MAX);
-        int next=((randompos<n)?(cntconflicts(cls[randompos+1])):INT_MAX);
-        if(current<=prev&&current<=next){
-            best=randompos;
-            break;
-        }else if(prev<current&&randompos>0){
-            randompos-=1;
-        }else if(next<current&&randompos<n){
-            randompos+=1;
-        }else{
-            break;
-        }
-    }
-    cout<<"best timetable is at index "<<best;
-}
-
-
-// enter timetable3
+// #include<bits/stdc++.h>
+// using namespace std;
+// int cntconflicts(vector<vector<int>>&c){
+//     int cnt=0;
+//     set<vector<int>>mp; 
+//     set<vector<int>>st; 
+//     set<vector<int>>rm; 
+//     for(auto it:c){
+//         if(mp.find({it[0],it[3]})!=mp.end() || st.find({it[1],it[3]})!=st.end() || rm.find({it[2],it[3]})!=rm.end()){
+//             cnt++; 
+//             continue;
+//         }
+//         mp.insert({it[0],it[3]});
+//         st.insert({it[1],it[3]});
+//         rm.insert({it[2],it[3]});
+//     }
+//     return cnt;
+// }
+// int main(){
+//     vector<vector<int>> c; 
+//     int s;
+//     cout<<"enter slots in one timetable ";
+//     cin>>s;
+//     int timeslots = 5; 
+//     for(int i=0; i<s; i++){
+//         int p,cid,r,t;
+//         cout<<"pid cid room_id time ";
+//         cin>>p>>cid>>r>>t;
+//         c.push_back({p,cid,r,t});
+//     }
+//     int current = cntconflicts(c);
+//     int iterations = 10; 
+//     while(iterations-- && current > 0){
+//         vector<vector<int>> temp = c;
+//         int randompos = rand() % s;
+//         int newt = rand() % timeslots;
+//         temp[randompos][3] = newt;
+//         int next = cntconflicts(temp);
+//         if(next < current){
+//             current = next;
+//             c = temp;
+//         }
+//     }
+//     cout<<"conflicts in best timetable - "<<current<<"\n";
+//     cout<<"pid\tcid\troom\ttime\n";
+//     for(auto it: c){
+//         cout<<it[0]<<"\t"<<it[1]<<"\t"<<it[2]<<"\t"<<it[3]<<"\n";
+//     }
+//     return 0;
+// }
 // enter slots in one timetable 3
-// pid cid time 0 0 1 
-// pid cid time 1 0 2
-// pid cid time 3 0 1
-// enter slots in one timetable 3
-// pid cid time 0 2 0
-// pid cid time 0 2 1
-// pid cid time 0 2 2
-// enter slots in one timetable 4
-// pid cid time 1 2 0
-// pid cid time 0 2 1
-// pid cid time 0 4 1
-// pid cid time 1 0 0
-// best timetable is at index 1
+// pid cid room_id time 11 1 12 1
+// pid cid room_id time 12 2 12 1
+// pid cid room_id time 11 3 14 2
+// conflicts in best timetable -0
+// pid     cid     room    time
+// 11     1       12      1
+// 12     2       12      0
+// 11     3       14      2
 
+// //2
+// #include<bits/stdc++.h>
+// using namespace std;
+// vector<double> wgts;
+// double findaccuracy(vector<int>& c){
+//     double twscore = 0.0;
+//     int featurecnt = 0;
+//     for(int i = 0; i < c.size(); i++){
+//         if(c[i] == 1){
+//             twscore += wgts[i]; 
+//             featurecnt++;
+//         }
+//     }
+//     if(featurecnt == 0) return 0.0;
+//     double pen = 0.5 * featurecnt;
+//     double finalscore = twscore -pen;
+//     return finalscore;
+// }
+// int countfeatures(vector<int>& c){
+//     int cnt = 0;
+//     for(int it : c) cnt += it;
+//     return cnt;
+// }
+// int main(){
+//     int n = 10;
+//     wgts.assign(10,0.0);
+//     for(int i=0;i<n;i++)cin>>wgts[i];
+//     vector<int> cls(n, 0); 
+//     for(int i = 0; i < 10; i++){
+//         cls[rand() % n] = 1;
+//     }
+//     double current = findaccuracy(cls);
+//     int iterations = 100;
+//     while(iterations--){
+//         vector<int> temp = cls;
+//         int randompos = rand() % n;
+//         temp[randompos] = 1 - temp[randompos];
+//         double next = findaccuracy(temp);
+//           if(next > current){
+//             current = next;
+//             cls = temp;
+//         }
+//     }
+//     cout << "best model score: " << current << "\n";
+//     cout << "total selected features: " << countfeatures(cls) << " out of " << n << "\n";
+//     cout << "selected weature indices & wgts:\n";
+//     for(int i = 0; i < n; i++){
+//         if(cls[i] == 1){
+//             cout << "feature " << i << "  wgt: " << wgts[i] << "\n";
+//         }
+//     }
+//     return 0;
+// }
+// 15.5, 12.0, 18.2, 22.1, 14.3, 11.0, 9.5, 13.4, 1.2, 16.0,  
+//     0.0,  0.0,  -0.5, 0.0,  -1.2, 0.0,  0.0,  -0.8, 0.0,  0.0,  
+//     0.0,  -0.2, 0.0,  0.0,  0.0,  -0.9, 0.0,  2.0,  -1.5, 0.0,  
+//     0.0,  0.0,  -0.4, 0.0,  0.0,  0.0,  -0.7, 0.0,  2.0,  0.0,  
+//     0.0,  11.1, 0.0,  0.0,  -0.3, 13.4,  0.0,  1.0,  -0.6, 0.0,  
+//     0.0,  0.0,  0.0,  -0.5, 0.0,  0.0,  -1.0, 0.0,  0.0,  0.0,  
+//     0.0,  -0.8, 0.0,  0.0,  0.0,  -0.4, 0.0,  0.0,  -0.2, 0.0,  
+//     0.0,  20.0,  -1.3, 0.0,  0.0,  0.0,  -0.5, 0.0,  0.0,  0.0,  
+//     0.0,  -0.9, 0.0,  0.0,  -0.1, 1.0,  0.0,  0.0,  -0.7, 40.0,  
+//     0.0,  1.0,  0.0,  -0.3, 0.0,  0.0,  -0.6, 0.0,  1.0,  1.0  
+// best model score: 252.2
+// total selected features: 21 out of 10
+// selected weature indices & wgts:
+// feature 0  wgt: 15.5
+// feature 1  wgt: 12
+// feature 2  wgt: 18.2
+// feature 3  wgt: 22.1
+// feature 4  wgt: 14.3
+// feature 5  wgt: 11
+// feature 6  wgt: 9.5
+// feature 7  wgt: 13.4
+// feature 8  wgt: 1.2
+// feature 9  wgt: 16
+// feature 27  wgt: 2
+// feature 38  wgt: 2
+// feature 41  wgt: 11.1
+// feature 45  wgt: 13.4
+// feature 47  wgt: 1
+// feature 71  wgt: 20
+// feature 85  wgt: 1
+// feature 89  wgt: 40
+// feature 91  wgt: 1
+// feature 98  wgt: 1
+// feature 99  wgt: 1
 
 //3
 
-// double func(vector<int>&take,vector<double>&wt,vector<double>&p,int w){
-//      double pro=0;
-//     double rem=w;
-//     for(int i=0;i<n;i++){
-//         if(take[i])continue;
-//         if(wt[i]<=rem){pro-=p[i]; rem-=wt[i];}
-//         else{
-//             pro-=((rem)/(wt[i]))*p[i]*1.0;}}
-//     return 0-pro;}
-// int main(){
-//     int w;
-//     cout<<"max weight ";
-//     cin>>w;
-//     int n;
-//     cout<<"numper of weights";
-//     vector<double>wt(n),p(n);
-//     for(int i=0;i<n;i++){
-//         cin>>wt[i]>>p[i];
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// #define INF 999999
+
+// int n;
+// int nodesvisited = 0;
+// int bruteforcesearch = 0;
+// struct Node {
+//     vector<pair<int, int>> path;
+//     vector<vector<int>> reducedmatrix;
+//     int cost;
+//     int vertex;
+//     int level;
+// };
+// int reduceMatrix(vector<vector<int>>& matrix) {
+//     int reducedcost = 0;
+//     for (int i = 0; i < n; i++) {
+//         int minval = INF;
+//         for (int j = 0; j < n; j++) {
+//             if (matrix[i][j] < minval) minval = matrix[i][j];
+//         }
+//         if (minval != INF && minval != 0) {
+//             reducedcost += minval;
+//             for (int j = 0; j < n; j++) {
+//                 if (matrix[i][j] != INF) matrix[i][j] -= minval;
+//             }
+//         }
 //     }
-//     // int best=INT_MAX;
-//     vector<int>best(n,INT_MAX);
-//     priority_queue<pair<int,vector<int>>,vector<pair<int,vector<int>>>,greater<pair<int,vector<int>>>pq;
-//     vector<int>leave(n,0);
-//     double zerot=func(leave,wt,p,w);
-//     leave[0]=1;
-//     double zeront=func(leave,wt,p,w);
-//     best[0]=min(zeront,zerot);
-//     pq.push({best[0],{1,zerot}});
-//     pq.push({best[0],{1,zeront}});
-//     while(!pq.empty()){
-//         auto it=pq.top();
-//         int idx=it.second[0];
-//         int cost=it.first;
-//         if(best[idx]<cost)break;
-//         best[idx]=cost;
-//         int nextidx=idx+1;
-//         double nt=func(it,wt,p,w);
-//         double t=func(,wt,p,w);
+//     for (int j = 0; j < n; j++) {
+//         int minval = INF;
+//         for (int i = 0; i < n; i++) {
+//             if (matrix[i][j] < minval) minval = matrix[i][j];
+//         }
+//         if (minval != INF && minval != 0) {
+//             reducedcost += minval;
+//             for (int i = 0; i < n; i++) {
+//                 if (matrix[i][j] != INF) matrix[i][j] -= minval;
+//             }
+//         }
+//     }
+//     return reducedcost;
+// }
+// Node* createnode(vector<vector<int>> const &parmatrix, vector<pair<int, int>> const &path, int level, int i, int j) {
+//     Node* node = new Node;
+//     node->path = path;
+//     if (level != 0) {
+//         node->path.push_back({i, j});
+//     }
+//     node->reducedmatrix = parmatrix;
+//     if (level != 0) {
+//         for (int k = 0; k < n; k++) {
+//             node->reducedmatrix[i][k] = INF; 
+//             node->reducedmatrix[k][j] = INF; 
+//         }
+//         node->reducedmatrix[j][0] = INF;     
+//     }
+//     node->level = level;
+//     node->vertex = j;
+//     return node;
+// }
+// struct comp {
+//     bool operator()(const Node* a, const Node* b) const {
+//         return a->cost > b->cost;
+//     }
+// };
+// int solveTSP(vector<vector<int>>& costmatrix) {
+//     priority_queue<Node*, vector<Node*>, comp> pq;
+//     vector<pair<int, int>> initpath;
+//     Node* root = createnode(costmatrix, initpath, 0, 0, 0);
+//     root->cost = reduceMatrix(root->reducedmatrix);
+//     pq.push(root);
+//     while (!pq.empty()) {
+//         Node* minnode = pq.top();
+//         pq.pop();
+//         nodesvisited++;
+//         int u = minnode->vertex;
+//         if (minnode->level == n - 1) {
+//             minnode->path.push_back({u, 0});
+//             cout << "\noptimal tour Path: 1";
+//             for (auto edge : minnode->path) {
+//                 cout << " to " << edge.second + 1;
+//             }
+//             cout << "\n";
+//             return minnode->cost;
+//         }
+//         for (int v = 0; v < n; v++) {
+//             if (minnode->reducedmatrix[u][v] != INF) {
+//                 Node* child = createnode(minnode->reducedmatrix, minnode->path, minnode->level + 1, u, v);
+//                 int edge_cost = minnode->reducedmatrix[u][v];
+//                 int reducedcost = reduceMatrix(child->reducedmatrix);
+//                 child->cost = minnode->cost + edge_cost + reducedcost;
+//                 pq.push(child);
+//             }
+//         }
+//     }
+//     return INF;
+// }
+// void countbruteforcenodes(int level) {
+//     bruteforcesearch++;
+//     if (level == n - 1) return;
+//     for (int i = level + 1; i < n; i++) {
+//         countbruteforcenodes(level + 1);
 //     }
 // }
+// int main() {
+//     cout << "enter number of cities  ";
+//     cin>>n;
+//     vector<vector<int>> costmatrix(n, vector<int>(n));
+//     cout << "enter cost matrix " << n << " by " << n << " -1 for no route\n";
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < n; j++) {
+//             cin >> costmatrix[i][j];
+//             if (costmatrix[i][j] == -1 || i == j) {
+//                 costmatrix[i][j] = INF;
+//             }
+//         }
+//     }
+//     int minicosttour = solveTSP(costmatrix);
+//     countbruteforcenodes(0);
+//     cout << "Minimum Tour Cost: " << minicosttour << "\n";
+//     cout << "branch and bound nodes explored: " << nodesvisited << "\n";
+//     cout << "brute force search total nodes: " << bruteforcesearch << "\n";
+//     return 0;
+// }
+// enter number of cities  5
+// enter cost matrix 5 by 5 -1 for no route
+// -1 20 30 1 11
+// 15 -1 16 4 2
+// 3 5 -1 2 4
+// 19 6 18 -1 3
+// 16 4 7 16 -1
+
+// optimal tour Path: 1 to 4 to 2 to 5 to 3 to 1
+// Minimum Tour Cost: 28
+// branch and bound nodes explored: 5
+// brute force search total nodes: 65
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int n;
+// int capacity;
+
+// struct Item {
+//     int wgt;
+//     int prof;
+//     int id;
+// };
+
+// struct Node {
+//     int level;
+//     int prof;
+//     int wgt;
+//     double u;     
+//     double cost; 
+//     vector<int> nodessel;
+// };
+
+// bool compareitems(Item a, Item b) {
+//     double r1 = (double)a.prof / a.wgt;
+//     double r2 = (double)b.prof / b.wgt;
+//     return r1 > r2;
+// }
+
+// void calculatebounds(Node* node, vector<Item>& items) {
+//     if (node->wgt > capacity) {
+//         node->u = INT_MAX;
+//         node->cost = INT_MAX;
+//         return;
+//     }
+//     int currwe = node->wgt;
+//     int currpro = node->prof;
+//     int currcostwei = node->wgt;
+//     int currcopro = node->prof;
+//     int j = node->level + 1;
+
+//     while (j < n && currcostwei + items[j].wgt <= capacity) {
+//         currcostwei += items[j].wgt;
+//         currcopro += items[j].prof;
+//         j++;
+//     }
+//     node->cost = -currcopro; 
+
+//     j = node->level + 1;
+//     while (j < n && currwe + items[j].wgt <= capacity) {
+//         currwe += items[j].wgt;
+//         currpro += items[j].prof;
+//         j++;
+//     }
+//     if (j < n) {
+//         currpro += (capacity - currwe) * ((double)items[j].prof / items[j].wgt);
+//     }
+//     node->u = -currpro; 
+// }
+// struct comp {
+//     bool operator()(const Node* a, const Node* b) const {
+//         return a->u > b->u;
+//     }
+// };
+// int solveknapsack(vector<Item>& items, vector<int>& bestitems) {
+//     sort(items.begin(), items.end(), compareitems);
+//     priority_queue<Node*, vector<Node*>, comp> pq;
+//     Node* root = new Node;
+//     root->level = -1;
+//     root->prof = 0;
+//     root->wgt = 0;
+//     calculatebounds(root, items);
+//     pq.push(root);
+//     double finalcost = root->cost; 
+//     int maxactualprof = 0;
+//     while (!pq.empty()) {
+//         Node* minnode = pq.top();
+//         pq.pop();
+//         if (minnode->u > finalcost) {
+//             delete minnode;
+//             continue;
+//         }
+//         if (minnode->prof > maxactualprof && minnode->wgt <= capacity) {
+//             maxactualprof = minnode->prof;
+//             bestitems = minnode->nodessel;
+//         }
+//         int nextlevel = minnode->level + 1;
+//         if (nextlevel >= n) {
+//             delete minnode;
+//             continue;
+//         }
+//         Node* left = new Node;
+//         left->level = nextlevel;
+//         left->wgt = minnode->wgt + items[nextlevel].wgt;
+//         left->prof = minnode->prof + items[nextlevel].prof;
+//         left->nodessel = minnode->nodessel;
+//         left->nodessel.push_back(items[nextlevel].id);
+//         calculatebounds(left, items);
+//         if (left->wgt <= capacity) {
+//             if (left->cost < finalcost) {
+//                 finalcost = left->cost;
+//             }
+//             if (left->prof > maxactualprof) {
+//                 maxactualprof = left->prof;
+//                 bestitems = left->nodessel;
+//             }
+//             if (left->u <= finalcost) {
+//                 pq.push(left);
+//             } else {
+//                 delete left;
+//             }
+//         } else {
+//             delete left;
+//         }
+//         Node* right = new Node;
+//         right->level = nextlevel;
+//         right->wgt = minnode->wgt;
+//         right->prof = minnode->prof;
+//         right->nodessel = minnode->nodessel;
+//         calculatebounds(right, items);
+//         if (right->u <= finalcost) {
+//             if (right->cost < finalcost) {
+//                 finalcost = right->cost;
+//             }
+//             if (right->prof > maxactualprof) {
+//                 maxactualprof = right->prof;
+//                 bestitems = right->nodessel;
+//             }
+//             pq.push(right);
+//         } else {
+//             delete right;
+//         }
+//         delete minnode;
+//     }
+
+//     return (int)(-finalcost);
+// }
+
+// int main() {
+//     cout << "enter number of items: ";
+//     cin >> n;
+//     cout << "enter knapsack capacity: ";
+//     cin >> capacity;
+
+//     vector<Item> items(n);
+//     cout << "enter prof and wgt for each item:\n";
+//     for (int i = 0; i < n; i++) {
+//         items[i].id = i + 1;
+//         cin >> items[i].prof >> items[i].wgt;
+//     }
+
+//     vector<int> ans;
+//     int maxprof = solveknapsack(items, ans);
+
+//     cout << "max prof: " << maxprof << "\n";
+//     cout << "selected item  ";
+//     sort(ans.begin(), ans.end());
+//     for (int id : ans) {
+//         cout << id << " ";
+//     }
+//     cout << "\n";
+
+//     return 0;
+// }
+
+// enter number of items: 4
+// enter knapsack capacity: 15
+// enter prof and wgt for each item:
+// 1 2
+// 1 4
+// 12 6
+// 18 9
+// max prof: 38
+// selected item  1 2 4 
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// #define INF 999999
+
+// int n;
+// int nodesvisited = 0;
+// int bruteforcesearch = 0;
+
+// struct Node {
+//     int wid;
+//     int jid;
+//     int cost;
+//     int bound;
+//     vector<bool> asjobs;
+//     vector<pair<int, int>> path;
+// };
+
+// int calculatebound(int worker, int job, const vector<bool>& assigned, const vector<vector<int>>& costmatrix) {
+//     int lowerbound = 0;
+//     vector<bool> availjobs = assigned;
+//     availjobs[job] = true;
+
+//     // Estimate minimum remaining cost for unassigned workers
+//     for (int i = worker + 1; i < n; i++) {
+//         int mincost = INF;
+//         for (int j = 0; j < n; j++) {
+//             if (!availjobs[j] && costmatrix[i][j] < mincost) {
+//                 mincost = costmatrix[i][j];
+//             }
+//         }
+//         if (mincost != INF) {
+//             lowerbound += mincost;
+//         }
+//     }
+
+//     return lowerbound;
+// }
+
+// struct comp {
+//     bool operator()(const Node* a, const Node* b) const {
+//         return a->bound > b->bound; 
+//     }
+// };
+
+// int solvejobassignment(const vector<vector<int>>& costmatrix, vector<pair<int, int>>& bass) {
+//     priority_queue<Node*, vector<Node*>, comp> pq;
+//     Node* root = new Node;
+//     root->wid = -1;
+//     root->jid = -1;
+//     root->cost = 0;
+//     root->bound = 0;
+//     root->asjobs.assign(n, false);
+
+//     for (int i = 0; i < n; i++) {
+//         int mincost = INF;
+//         for (int j = 0; j < n; j++) {
+//             if (costmatrix[i][j] < mincost) mincost = costmatrix[i][j];
+//         }
+//         root->bound += mincost;
+//     }
+
+//     pq.push(root);
+
+//     int mintotalcost = INF;
+
+//     while (!pq.empty()) {
+//         Node* minnode = pq.top();
+//         pq.pop();
+//         nodesvisited++;
+
+//         int nextwor = minnode->wid + 1;
+//         if (nextwor == n) {
+//             if (minnode->cost < mintotalcost) {
+//                 mintotalcost = minnode->cost;
+//                 bass = minnode->path;
+//             }
+//             delete minnode;
+//             continue;
+//         }
+//         for (int j = 0; j < n; j++) {
+//             if (!minnode->asjobs[j]) {
+//                 Node* child = new Node;
+//                 child->wid = nextwor;
+//                 child->jid = j;
+//                 child->cost = minnode->cost + costmatrix[nextwor][j];
+//                 child->asjobs = minnode->asjobs;
+//                 child->asjobs[j] = true;
+//                 child->path = minnode->path;
+//                 child->path.push_back({nextwor, j});
+//                 child->bound = child->cost + calculatebound(nextwor, j, minnode->asjobs, costmatrix);
+//                 if (child->bound < mintotalcost) {
+//                     pq.push(child);
+//                 } else {
+//                     delete child;
+//                 }
+//             }
+//         }
+//         delete minnode;
+//     }
+//     return mintotalcost;
+// }
+// void countbruteforcenodes(int level) {
+//     bruteforcesearch++;
+//     if (level == n) return;
+//     for (int i = 0; i < n - level; i++) {
+//         countbruteforcenodes(level + 1);
+//     }
+// }
+
+// int main() {
+//     cout << "enter matrix dimension  ";
+//     cin >> n;
+//     vector<vector<int>> costmatrix(n, vector<int>(n));
+//     cout << "enter " << n << "x" << n << " cost matrix:\n";
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < n; j++) {
+//             cin >> costmatrix[i][j];
+//         }
+//     }
+//     vector<pair<int, int>> ans;
+//     int mincost = solvejobassignment(costmatrix, ans);
+//     countbruteforcenodes(0);
+//     cout << "minimum total cost " << mincost << "\n";
+//     cout << "answer worker = job\n";
+//     for (auto p : ans) {
+//         cout << "w " << p.first + 1 << " job " << p.second + 1 << "\n";
+//     }
+//     cout << " nodes explored: " << nodesvisited << "\n";
+//     cout << "brute force search total nodes: " << bruteforcesearch << "\n";
+//     return 0;
+// }
+// // enter matrix dimension  4
+// // enter 4x4 cost matrix:
+// // 9 2 7 8
+// // 6 4 3 7
+// // 5 8 1 8
+// // 7 6 9 4
+// // minimum total cost 13
+// // answer worker = job
+// // w 1 job 2
+// // w 2 job 1
+// // w 3 job 3
+// // w 4 job 4
+// //  nodes explored: 11
+// // brute force search total nodes: 65
+
+
+
+// #include <iostream>
+
+// using namespace std;
+// double f(double x) {
+//     return -(x - 3) * (x - 3) + 1;
+// }
+// int main() {
+//     double x, step;
+//     cin >> x >> step;
+//     while (true) {
+//         double current = f(x);
+//         double left = f(x - step);
+//         double right = f(x + step);
+//         if (left > current) {
+//             x = x - step;
+//         } else if (right > current) {
+//             x = x + step;
+//         } else {
+//             break;
+//         }
+//     }
+//     cout << "best x " << x << endl;
+//     cout << "max ans " << f(x) << endl;
+//     return 0;
+// }
+// 2
+// .2
+// best x 3
+// max ans 1
+

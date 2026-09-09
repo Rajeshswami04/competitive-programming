@@ -800,44 +800,228 @@
 //     return 0;
 // }
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n,m;
+//     cin>>n>>m;
+//     int mini=m;
+//     int minirows=1e9;
+//     vector<int>v(n);
+//     for(auto &it:v){cin>>it; minirows=min(minirows,it); }
+//     vector<vector<int>>mat(n,vector<int>(m,0));
+//     vector<int>p;
+//     for(int i=0;i<n;i++){
+//         for(int j=0;j<m;j++){
+//             cin>>mat[i][j];
+//         }
+//     }
+//     int cnt=1e9;
+//     for(int i=n-1;i>=0;i--){
+//         for(int j=0;j<m;j++){
+//             p.push_back(mat[i][j]);
+//         }
+//         sort(rbegin(p),rend(p));
+//         if((int)p.size()>m)p.resize(m);
+//         int a=0;
+//         int sum=minirows;
+//         while(sum>0&&a<m){
+//             sum-=p[a];
+//             a++;
+//         }
+//         cnt=min(cnt,a);
+//     }
+//     cout<<min(cnt,mini);
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int medianOfMedians(vector<int>& a, int l, int r,int small) {
+//     // If 5 or fewer elements, simply sort them
+//     if (r - l + 1 <= small) {
+//         vector<int> temp;
+//         for (int i = l; i <= r; i++) {
+//             temp.push_back(a[i]);
+//         }
+//         sort(temp.begin(), temp.end());
+//         return temp[temp.size() / 2];
+//     }
+//     // Store medians of groups of 5
+//     vector<int> medians;
+//     for (int i = l; i <= r; i += small) {
+//         int end = min(i + small-1, r);
+//         vector<int> temp;
+//         for (int j = i; j <= end; j++) {
+//             temp.push_back(a[j]);
+//         }
+//         sort(temp.begin(), temp.end());
+//         // Median of this group
+//         medians.push_back(temp[temp.size() / 2]);
+//     }
+//     // Recursively find median of medians
+//     return medianOfMedians(medians, 0, medians.size() - 1,small);
+// }
+// int main() {
+//     vector<int> a = {
+//         0, 55, 66, 77, 11,
+//         22, 33, 44, 88, 99,
+//         100, 101, 102, 103, 104,
+//         105, 106, 107, 108, 109
+//     };
+//     int ans = medianOfMedians(a, 0, a.size() - 1,7);
+//     cout << "Approximate Median = " << ans << endl;
+//     return 0;
+// }
+// #include <bits/stdc++.h>
+// using namespace std;
+// // Find median of medians
+// int medianOfMedians(vector<int>& a, int l, int r) {
+//     // If 5 or fewer elements, sort and return median
+//     if (r - l + 1 <= 5) {
+//         vector<int> temp;
+//         for (int i = l; i <= r; i++)
+//             temp.push_back(a[i]);
+//         sort(temp.begin(), temp.end());
+//         return temp[temp.size() / 2];
+//     }
+//     // Store median of every group of 5
+//     vector<int> medians;
+//     for (int i = l; i <= r; i += 5) {
+//         int end = min(i + 4, r);
+//         vector<int> temp;
+//         for (int j = i; j <= end; j++)
+//             temp.push_back(a[j]);
+//         sort(temp.begin(), temp.end());
+//         medians.push_back(temp[temp.size() / 2]);
+//     }
+//     // Find median of these medians
+//     return medianOfMedians(medians, 0, medians.size() - 1);
+// }
+// // Find the kth smallest element
+// int select(vector<int>& a, int l, int r, int k) {
+//     // Only one element
+//     if (l == r)
+//         return a[l];
+//     // Find a good pivot
+//     int pivot = medianOfMedians(a, l, r);
+//     // Partition manually
+//     vector<int> left;
+//     vector<int> equal;
+//     vector<int> right;
+//     for (int i = l; i <= r; i++) {
+//         if (a[i] < pivot)
+//             left.push_back(a[i]);
+//         else if (a[i] == pivot)
+//             equal.push_back(a[i]);
+//         else
+//             right.push_back(a[i]);
+//     }
+//     // Number of elements smaller than pivot
+//     int leftSize = left.size();
+//     // Pivot belongs to the kth position
+//     if (k < leftSize) {
+//         // Answer is in left
+//         return select(left, 0, left.size() - 1, k);
+//     }
+//     // Answer is equal to pivot
+//     else if (k < leftSize + equal.size()) {
+//         return pivot;
+//     }
+//     // Answer is in right
+//     else {
+//         return select(
+//             right,
+//             0,
+//             right.size() - 1,
+//             k - leftSize - equal.size()
+//         );
+//     }
+// }
+// int main() {
+//     vector<int> a = {
+//         0, 55, 66, 77, 11,
+//         22, 33, 44, 88, 99,
+//         100, 101, 102, 103, 104,
+//         105, 106, 107, 108, 109
+//     };
+//     int k;
+//     cin>>k;
+//     int ans = select(a, 0, a.size() - 1, k-1);
+//     cout << k << "-th smallest element = " << ans << endl;
+//     return 0;
+// }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v){cin>>it;}
+//     vector<int>diff(n,0);
+//     for(int i=0;i<n;i++){
+//         if(v[i]==-1)continue;
+//         if(v[i]==0)continue;
+//         int l=i-v[i];
+//         int r=i+v[i]+1;
+//         if(l>=0)diff[l]+=1;
+//         if(r<n)diff[r]-=1;
+//     }
+//     for(int i=1;i<n;i++){diff[i]+=diff[i-1]; if(diff[i]>1){cout<<-1; return;}}
+//     for(int i=0;i<n;i++){
+//         if(diff[i]==0)cout<<1<<" ";
+//         else cout<<0<<" ";
+//     }
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 #define int long long
 void solve(){
-    int n,m;
-    cin>>n>>m;
-    int mini=m;
-    int minirows=1e9;
-    vector<int>v(n);
-    for(auto &it:v){cin>>it; }
-    vector<vector<int>>mat(n,vector<int>(m,0));
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            cin>>mat[i][j];
-        }
+    int x,y;
+    cin>>x>>y;
+    int sum=x+y;
+    if(sum==(x^y)){cout<<sum<<" "<<0; return;}
+    int a=0;
+    for(int i=29;i>=0;i--){
+        int b=(1LL<<i);
+        if((sum&b)&&(a+b<x)){a+=b;}
     }
-    int cnt=1e9;
-    vector<int>pre(n,1e9);
-    pre[0]=v[0];
-    for(int i=1;i<n;i++)pre[i]=min(pre[i-1],v[i]);
-    priority_queue<int>pq;
-    for(int i=n-1;i>=0;i--){
-        minirows=pre[i];
-        for(auto &it:mat[i])pq.push(it);
-        int a=0;
-        int sum=minirows;
-        vector<int>t;
-        while(sum>0&&!pq.empty()){
-        auto it=pq.top(); t.push_back(it);
-        pq.pop();
-        sum-=it;
-        a++;
-        }
-        cnt=min(cnt,a);
-        for(auto &it:t)pq.push(it);
-    }
-    cout<<min(cnt,mini);
+    cout<<sum<<" "<<x-a;
+    
 }
 signed main()
 {
@@ -848,7 +1032,7 @@ signed main()
     while (t--)
     {
         solve();
-        cout<<"\n";
+        cout<<'\n';
     }
     return 0;
 }

@@ -116,4 +116,92 @@ using namespace std;
 // long long ncr(long long n, long long r, long long p) {
 // 	return fac[n] * inv[r] % p * inv[n - r] % p;
 // }
+// #include<bits/stdc++.h>
+// using namespace std;
+
+//  long long powerMod(long long base, long long exp, long long mod) {
+//         long long result = 1;
+//         base = base % mod; // Handle base larger than mod
+//         while (exp > 0) {
+//             // If exp is odd, multiply base with result
+//             if (exp % 2 == 1) {
+//                 result = (result * base) % mod;
+//             }
+//             // exp must be even now; divide exp by 2 and square the base
+//             exp /= 2;
+//             base = (base * base) % mod;
+//         }
+//         return result;
+//     }
+//     const int mod = 1e9 + 7;
+//     int sumDecoded(vector<long long>& nums) {
+//         long long sum = 0;
+//         int n = nums.size();
+//         for (int i = 0; i < n; i++) {
+//             int w = (nums[i]) % 10;
+//             long long d = nums[i] / 10;
+//             string dd = to_string(d);
+//             long long x = 0;
+//             long long y = 0;
+//             for (int j = 0; j < w; j++) {
+//                 x = (1LL * x * 10 + (dd[j] - '0'))%mod;
+//             }
+//             for (int j = w; j < dd.size(); j++) {
+//                 y = (1LL * y * 10 + (dd[j] - '0'))%mod;
+//             }
+//             sum = (sum + powerMod(x, y, mod)) % mod;
+//         }
+//         return sum;
+//     }
+//     int main(){
+//         vector<long long>v={17752335231789};
+//         cout<<sumDecoded(v);
+//     }
+
+
+// int dp[102][50001];
+//     int solve(int i,int sum,vector<int>&nums,int flag){
+//         if(i>=nums.size())return 1e9;
+//         if(sum<0)return 1e9;
+//         if(sum==0)return 0;
+//         int cnt=1e9;
+//         if(flag==0){
+//             int pick=solve(i+1,sum-nums[i],nums,0);
+//             int npick=solve(i+1,sum,nums,0);
+//             nums[i]*=2;
+//             int m=solve(i,sum-nums[i],nums,1);
+//             nums[i]/=4;
+//             int d=solve(i,sum-nums[i],nums,2);
+//             nums[i]*=2;
+//             cnt=min({cnt,pick,npick,1+m,1+d});
+//         }else if(flag==1){
+//             int pick=solve(i+1,sum-nums[i],nums,1);
+//             int npick=solve(i+1,sum,nums,1);
+//             nums[i]*=2;
+//             int m=solve(i,sum-nums[i],nums,1);
+//             nums[i]/=4;
+//             int d=solve(i,sum-nums[i],nums,2);
+//             nums[i]*=2;
+//             cnt=min({cnt,pick,npick,1+m,1+d});
+//         }else if(flag==2){
+//             int pick=solve(i+1,sum-nums[i],nums,2);
+//             int npick=solve(i+1,sum,nums,2);
+//             nums[i]/=2;
+//             int d=solve(i,sum-nums[i],nums,2);
+//             nums[i]*=2;
+//             cnt=min({cnt,pick,npick,1+d});
+//         }
+//         return cnt;
+//     }
+//     int minOperations(vector<int>& nums, int sum) {
+//         int n=nums.size();
+//         memset(dp,-1,sizeof(dp));
+//         return solve(0,sum,nums,0);
+//     }
+//     int main(){
+//         vector<int>a={10,2};
+//         cout<<minOperations(a,13);
+//     }
+
+
 

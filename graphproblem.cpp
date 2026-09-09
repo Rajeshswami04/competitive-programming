@@ -32,7 +32,7 @@
 ///additionaly the thief is very greedy he want to rob every second house.
 // plan max benifit as a branded thief.
 
-// #include<bits/stdc++.h>
+#include<bits/stdc++.h>
 // using namespace std;
 // int rotten(vector<vector<int>>mat){
 //     queue<pair<int,int>>q;
@@ -105,31 +105,31 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define  print cout<<
-// vector<int>dsu;
-// int find(int u){
-//     if(dsu[u]<0)return u;
-//     return dsu[u]=find(dsu[u]);
-// }
-// void unionf(int u,int v){
-//     int pu=find(u);
-//     int pv=find(v);
-//     if(pu==pv)return ;
-//     if(dsu[pu]<=dsu[pv]){dsu[pu]+=dsu[pv]; dsu[pv]=pu;}
-//     else{
-//         dsu[pv]+=dsu[pu]; dsu[pu]=pv;
-//     }
-// }
+vector<int>dsu;
+int find(int u){
+    if(dsu[u]<0)return u;
+    return dsu[u]=find(dsu[u]);
+}
+void unionf(int u,int v){
+    int pu=find(u);
+    int pv=find(v);
+    if(pu==pv)return ;
+    if(dsu[pu]<=dsu[pv]){dsu[pu]+=dsu[pv]; dsu[pv]=pu;}
+    else{
+        dsu[pv]+=dsu[pu]; dsu[pu]=pv;
+    }
+}
 
-// int main(){
-//     int n=4;
-//     dsu.assign(4,-1);
-//     unionf(0,2);
-//     unionf(0,3);
-//     int t=(find(2)==find(3));
-//     print t;
-// }
+int main(){
+    int n=4;
+    dsu.assign(4,-1);
+    unionf(0,2);
+    unionf(0,3);
+    int t=(find(2)==find(3));
+    print t;
+}
 
-
+#include<math.h>
 // distnace of nearest cell having one
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -1508,3 +1508,207 @@ using namespace std;
 //     }
 //     return 0;
 // }
+
+
+// class Solution {
+//     bool isBipartite(int node, int c, vector<vector<int>>& adj, vector<int>& color, vector<int>& component) {
+//         color[node] = c;
+//         component.push_back(node);
+//         for (int neighbor : adj[node]) {
+//             if (color[neighbor] == -1) {
+//                 if (!isBipartite(neighbor, 1 - c, adj, color, component)) 
+//                     return false;
+//             } else if (color[neighbor] == c) {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+//     int getMaxBFS(int start, vector<vector<int>>& adj, int n) {
+//         vector<int> dist(n, -1);
+//         queue<int> q;
+//         q.push(start);
+//         dist[start] = 1;
+//         int maxDepth = 1;
+
+//         while (!q.empty()) {
+//             int curr = q.front();
+//             q.pop();
+//             for (int neighbor : adj[curr]) {
+//                 if (dist[neighbor] == -1) {
+//                     dist[neighbor] = dist[curr] + 1;
+//                     maxDepth = max(maxDepth, dist[neighbor]);
+//                     q.push(neighbor);
+//                 }
+//             }
+//         }
+//         return maxDepth;
+//     }
+
+// public:
+//     int magnificentSets(int n, vector<vector<int>>& edges) {
+//         vector<vector<int>> adj(n);
+//         for (auto& edge : edges) {
+//             adj[edge[0] - 1].push_back(edge[1] - 1);
+//             adj[edge[1] - 1].push_back(edge[0] - 1);
+//         }
+
+//         vector<int> color(n, -1);
+//         int totalGroups = 0;
+
+//         for (int i = 0; i < n; ++i) {
+//             if (color[i] == -1) {
+//                 vector<int> component;
+//                 // Check if the component is bipartite
+//                 if (!isBipartite(i, 0, adj, color, component)) {
+//                     return -1;
+//                 }
+
+//                 // Find the max groups (depth) achievable from any root in this component
+//                 int maxComponentGroups = 0;
+//                 for (int node : component) {
+//                     maxComponentGroups = max(maxComponentGroups, getMaxBFS(node, adj, n));
+//                 }
+
+//                 totalGroups += maxComponentGroups;
+//             }
+//         }
+
+//         return totalGroups;
+//     }
+// };
+
+
+
+// 3015
+
+// int solve(int n,int x,int y){
+//     vector<vector<int>>mat(n,vector<int>(n,INT_MAX));
+//     x-=1; y-=1;
+//     for(int i=0;i<n;i++){
+//         if(i-1>=0)mat[i-1][i]=1;
+//         mat[i][i-1]=mat[i-1][i];
+//         if(i+1<=n-1)mat[i][i+1]=1;
+//         mat[i+1][i]=mat[i][i+1];
+//     }
+//     mat[x][y]=mat[y][x]=1;
+//     for(int k=0;k<n;k++){
+//         for(int i=0;i<n;i++){
+//             for(int j=0;j<n;j++){
+//                 if(mat[i][k]!=INT_MAX&&mat[k][j]!=INT_MAX){
+//                     mat[i][j]=min(mat[i][j],mat[i][k]+mat[k][j]);
+//                 }
+//             }
+//         }
+//     }
+//     vector<int>ans;
+//     for(int k=1;k<=n;k++){
+//       int cnt=0;
+//       for(int i=0;i<n;i++){
+//             for(int j=0;j<n;j++){
+//               if(mat[i][j]==k)cnt++;
+//             }
+//         }
+//         ans.push_back(cnt);  
+//     }
+//     return ans;
+// }
+
+
+//redundant connection
+
+
+// class Solution {
+// public:
+    // vector<int> dsu;
+    // int find(int u) {
+    //     if (dsu[u] < 0)
+    //         return u;
+    //     return dsu[u] = find(dsu[u]);
+    // }
+    // void unionf(int u, int v) {
+    //     int pu = find(u);
+    //     int pv = find(v);
+    //     if (pu == pv)
+    //         return;
+    //     if (dsu[pu] <= dsu[pv]) {
+    //         dsu[pu] += dsu[pv];
+    //         dsu[pv] = pu;
+    //     } else {
+    //         dsu[pv] += dsu[pu];
+    //         dsu[pu] = pv;
+    //     }
+    // }
+//     void dfs(int i, vector<int>& vis, unordered_map<int, vector<int>>& adj) {
+//         vis[i] = 1;
+//         for (auto it : adj[i]) {
+//             if (vis[it] == 0)
+//                 dfs(it, vis, adj);
+//         }
+//     }
+//     bool solve(int i, vector<vector<int>>& e, int n) {
+//         unordered_map<int, vector<int>> adj;
+//         unordered_set<int> st;
+//         for (int j = 0; j < e.size(); j++) {
+//             if (i == j)
+//                 continue;
+//             adj[e[j][0] - 1].push_back(e[j][1] - 1);
+//             st.insert(e[j][1] - 1);
+//         }
+//         vector<int> vis(n, 0);
+//         for (int j = 0; j < n; j++)
+//             if (st.find(j) == st.end()) {
+//                 dfs(j, vis, adj);
+//                 break;
+//             }
+//         int b = 1;
+//         for (int j : vis) {
+//             if (j == 0)
+//                 b = 0;
+//         }
+//         return b == 1;
+//     }
+//     vector<int> findRedundantDirectedConnection(vector<vector<int>>& edges) {
+//         int e = edges.size();
+//         int ans = 0;
+//         int m = 0;
+//         for (auto it : edges) {
+//             m = max(m, it[0]);
+//             m = max(m, it[1]);
+//         }
+//         vector<int> ind(m, 0);
+//         int indeg = -1;
+//         for (auto it : edges) {
+//             ind[it[1] - 1]++;
+//             if (ind[it[1] - 1] == 2)
+//                 indeg = it[1] - 1;
+//         }
+//         dsu.assign(m, -1);
+//         int flag = -1;
+//         for (int i = 0; i < e; i++) {
+//             int x = edges[i][0] - 1;
+//             int y = edges[i][1] - 1;
+//             if (find(x) == find(y)) {
+//                 flag = i;
+//                 ans = i;
+//             } else
+//                 unionf(x, y);
+//         }
+//         if (indeg == -1) {
+//             return edges[ans];
+//         } else {
+//             for (int i = 0; i < e; i++) {
+//                 int x = edges[i][0] - 1;
+//                 int y = edges[i][1] - 1;
+//                 if (y == indeg) {
+//                     bool b = solve(i, edges, m);
+//                     if (b)
+//                         ans = i;
+//                 }
+//             }
+//         }
+//         return edges[ans];
+//     }
+// };
+
+
