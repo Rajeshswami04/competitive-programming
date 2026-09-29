@@ -1814,36 +1814,84 @@ using namespace std;
 
 
 
-int maxSumTwoNoOverlap(vector<int>& nums, int firstLen, int secondLen) {
+// int maxSumTwoNoOverlap(vector<int>& nums, int firstLen, int secondLen) {
+//        int n=nums.size();
+//        vector<int>dp(n,0);
+//        dp[0]=nums[0];
+//        for(int i=1;i<n;i++)dp[i]+=dp[i-1]+nums[i];
+//        int ans=0;
+//        int left=-1; int right=-1;
+//        int x=max(firstLen,secondLen);
+//        for(int i=x-1;i<=n-x;i++){
+//         if(dp[i]-(i-x)>=0?dp[i-x]:0>ans){
+//             ans=dp[i]-dp[i]-(i-x>=0?dp[i-x]:0);
+//             left=(i-x>=0?i-x:0);
+//             right=i;
+//         }
+//        } 
+//        for(int i=left;i<=right;i++)dp[i]=-1e9;
+//         int ans1=0;
+//         left=-1;  right=-1;
+//        x=min(firstLen,secondLen);
+//        for(int i=x-1;i<=n-x;i++){
+//         if(dp[i]-(i-x>=0?dp[i-x]:0)>ans1){
+//             ans1=dp[i]-dp[i]-(i-x>=0?dp[i-x]:0);
+//             left=(i-x>=0?i-x:0);
+//             right=i;
+//         }
+//        }
+//        ans+=ans1;
+//        return ans; 
+//     }
+//     int main(){
+//         vector<int>v={}
+//         cout<<maxSumTwoNoOverlap();
+//     }
+
+
+
+// int main(){
+//     int n;
+//     cin>>n;
+//     vector<int>dp(n+1,1e9);
+//     dp[0]=0;
+//     for(int i=1;i<=n;i++){
+//         int sum=0;
+//         for(int j=1;j<=i;j++){
+//             sum+=j;
+//             if(sum>i)break;
+//             int rem=i-sum;
+//             if(rem==0)dp[i]=min(dp[i],j);
+//             else if(dp[rem]!=1e9){
+//                 dp[i]=min(dp[i],dp[rem]+j+1);
+//             }
+//         }
+//     }
+//     cout<<dp[n];
+// }
+
+
+    vector<vector<int>>dp;
+    int lengthOfLIS(vector<int>& nums) {
        int n=nums.size();
-       vector<int>dp(n,0);
-       dp[0]=nums[0];
-       for(int i=1;i<n;i++)dp[i]+=dp[i-1]+nums[i];
-       int ans=0;
-       int left=-1; int right=-1;
-       int x=max(firstLen,secondLen);
-       for(int i=x-1;i<=n-x;i++){
-        if(dp[i]-(i-x)>=0?dp[i-x]:0>ans){
-            ans=dp[i]-dp[i]-(i-x>=0?dp[i-x]:0);
-            left=(i-x>=0?i-x:0);
-            right=i;
-        }
-       } 
-       for(int i=left;i<=right;i++)dp[i]=-1e9;
-        int ans1=0;
-        left=-1;  right=-1;
-       x=min(firstLen,secondLen);
-       for(int i=x-1;i<=n-x;i++){
-        if(dp[i]-(i-x>=0?dp[i-x]:0)>ans1){
-            ans1=dp[i]-dp[i]-(i-x>=0?dp[i-x]:0);
-            left=(i-x>=0?i-x:0);
-            right=i;
+       map<int,int>mp;
+       dp.assign(n+1,vector<int>(n+1,0));
+       for(int i=n-1;i>=0;i--){
+        for(int prev=i-1;prev>=-1;prev--){
+            int pick=0;
+            if(prev==-1||nums[i]>nums[prev])pick=1+dp[i+1][i+1];
+            int notpick=dp[i+1][prev+1];
+            dp[i][prev+1]=max(pick,notpick);
+            mp[dp[i][prev+1]]+=mp[dp[i+1][prev+1]]+mp[dp[i+1][i+1]]+dp[i][prev+1];
         }
        }
-       ans+=ans1;
-       return ans; 
+       for(int i=0;i<=n;i++){
+        for(int j=0;j<=n;j++){cout<<dp[i][j]<<" ";}
+        cout<<"\n";
+       }
+        cout<<mp[dp[0][0]];
     }
-    int main(){
-        vector<int>v={}
-        cout<<maxSumTwoNoOverlap();
-    }
+int main(){
+    vector<int>nums={0,1,5,4,3};
+    lengthOfLIS(nums);
+}

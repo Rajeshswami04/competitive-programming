@@ -1006,24 +1006,149 @@
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int x,y;
+//     cin>>x>>y;
+//     int sum=x+y;
+//     if(sum==(x^y)){cout<<sum<<" "<<0; return;}
+//     int a=0;
+//     for(int i=29;i>=0;i--){
+//         int b=(1LL<<i);
+//         if((sum&b)&&(a+b<x)){a+=b;}
+//     }
+//     cout<<sum<<" "<<x-a;
+    
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
+// #include<bits/stdc++.h>
+// using namespace std;
+// vector<int> maxSubArray(vector<int>& nums) {
+//        int sum=nums[0];
+//        int ans=nums[0];
+//        int a=ans;
+//        int x=0,y=0;
+//        int tx=0,ty=0;
+//        int n=nums.size();
+//        for(int i=1;i<n;i++){
+//         sum+=nums[i];
+//         if(nums[i]>ans+nums[i]){
+//             tx=i;
+//         }
+//         ans=max(ans+nums[i],nums[i]);
+//         if(a<ans){x=tx; y=i;}
+//         a=max(a,ans);
+//        } 
+//        if(sum>a)return nums;
+//        else{
+//         vector<int>temp;
+//         for(int j=x;j<=y;j++)temp.push_back(nums[j]);
+//         return temp;
+//        }
+// }
+// int main(){
+//     vector<int>a={1,2,-4,4,-5,2,-6,-7,3};
+//     vector<int>b=maxSubArray(a);
+//     for(auto it:b)cout<<it<<' ';
+// }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// const int mod=1e9+7;
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     int neg1=0;
+//     int equals=0;
+//     int noteq=0;
+//     for(int i=0;i<n-1;i++){
+//         if(v[i]==-1)neg1++;
+//         else if (v[i]==v[i+1])equals++;
+//         else if(v[i]==v[i+1]-1)noteq++;
+//     }
+//     if(v[n-1]==-1)neg1++;
+//     equals%=mod;
+//     neg1%=mod;
+//     noteq%=mod;
+//     int ways=(1LL<<neg1)>>1;
+//     int x=0;
+//     if(ways==0)x=(1LL*((1)%mod)*(1LL<<equals)%mod)%mod;
+//     else x=(1LL*((ways)%mod)*(1LL<<equals)%mod)%mod;
+//     int y=0;
+//     if(neg1!=0)y=(1LL*((ways)%mod)*((1LL<<equals)%mod)*(noteq)%mod)%mod;
+//     x=(x+y)%mod;
+//     cout<<x;
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define int long long
 void solve(){
-    int x,y;
-    cin>>x>>y;
-    int sum=x+y;
-    if(sum==(x^y)){cout<<sum<<" "<<0; return;}
-    int a=0;
-    for(int i=29;i>=0;i--){
-        int b=(1LL<<i);
-        if((sum&b)&&(a+b<x)){a+=b;}
+    int n;
+    cin>>n;
+    string s1,s2;
+    cin>>s1>>s2;
+    vector<int>a,b;
+    for(int i=0;i<n;i+=2){
+        if(s1[i]=='1')a.push_back(i);
+        if(s2[i]=='1')b.push_back(i);
     }
-    cout<<sum<<" "<<x-a;
-    
+    if(a.size()!=b.size()){
+        cout<<-1; return;
+    }
+    int ans=0;
+    for(int i=0;i<a.size();i++){
+        ans+=abs(a[i]-b[i])/2;
+    }
+    a.clear(); 
+    b.clear();
+    for(int i=1;i<n;i+=2){
+        if(s1[i]=='1')a.push_back(i);
+        if(s2[i]=='1')b.push_back(i);
+    }
+    if(a.size()!=b.size()){
+        cout<<-1; return;
+    }
+    for(int i=0;i<a.size();i++){
+        ans+=abs(a[i]-b[i])/2;
+    }
+    cout<<ans;
 }
-signed main()
+int main()
 {
     cin.tie(0);cin.sync_with_stdio(0);
     cout.tie(0);cout.sync_with_stdio(0);

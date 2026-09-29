@@ -232,3 +232,145 @@ using namespace std;
 //         cout << "\n";
 //     }
 // }
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// ll bit(ll a)
+// {
+//   if(a==0) return 0;
+//   ll ans=0;
+//   while(a>0)
+//   {
+//     a/=2;
+//     ans++;
+//   }
+ 
+//   return ans;
+// }
+// void solve(){
+//     int n,l,r,k;
+//     cin>>n>>l>>r>>k;
+//     if(n&1){
+//         cout<<l;
+//     }else{
+//         if(bit(r)==bit(l)){cout<<-1; return;}
+//         if(n==2){cout<<-1; return;}
+//         int a=l;
+//         int b=(1LL<<((int)log2(a)+1)); 
+//         if(k<=n-2LL)cout<<a;
+//         else cout<<b;
+//     }
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>v(n);
+//     for(auto &it:v)cin>>it;
+//     vector<int>ans;
+//     vector<int>vis(n,0);
+//     int mask=0;
+//     for(int i=31;i>=0;i--){
+//         int a=mask;
+//         int idx=-1;
+//         for(int j=0;j<n;j++){
+//             if(vis[j])continue;
+//             int temp=(mask|v[j]);
+//             if(temp>a){a=temp; idx=j;}
+//         }
+//         if(idx!=-1){mask=a; vis[idx]=1; ans.push_back(v[idx]);}
+//     }
+//     for(int i=0;i<n;i++){if(vis[i]==0)ans.push_back(v[i]); vis[i]=1;}
+//     for(auto &it:ans)cout<<it<<" ";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+// // 12 11 9 9 1 7 2 5 8 10
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define int long long
+void solve(){
+    int n;
+    cin>>n;
+    vector<int>a(n);
+    vector<int>m(n);
+    int xora=0;
+    int xorm=0;
+    for(auto &it:a){cin>>it; xora^=it;}
+    for(auto &it:m){cin>>it; xorm^=it;}
+
+    for(int i=0;i<n;i++){
+        int bothxor=a[i]^m[i];
+        if(i&1){
+            //m
+            int tempa=xora^bothxor;
+            int tempb=xorm^bothxor;
+            if(tempb>tempa){
+                xora=tempa;
+                xorm=tempb;
+            }
+        }else{
+            //a
+            int tempa=xora^bothxor;
+            int tempb=xorm^bothxor;
+            if(tempa>tempb){
+                xora=tempa;
+                xorm=tempb;
+            }
+        }
+    }
+    if(xora>xorm){cout<<"Ajisai";}
+    else if(xora<xorm){cout<<"Mai";}
+    else cout<<"Tie";
+}
+signed main()
+{
+    cin.tie(0);cin.sync_with_stdio(0);
+    cout.tie(0);cout.sync_with_stdio(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+        cout<<"\n";
+    }
+    return 0;
+}
