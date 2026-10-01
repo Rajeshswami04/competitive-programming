@@ -1114,50 +1114,119 @@
 // }
 
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// void solve(){
+//     int n;
+//     cin>>n;
+//     string s1,s2;
+//     cin>>s1>>s2;
+//     vector<int>a,b;
+//     for(int i=0;i<n;i+=2){
+//         if(s1[i]=='1')a.push_back(i);
+//         if(s2[i]=='1')b.push_back(i);
+//     }
+//     if(a.size()!=b.size()){
+//         cout<<-1; return;
+//     }
+//     int ans=0;
+//     for(int i=0;i<a.size();i++){
+//         ans+=abs(a[i]-b[i])/2;
+//     }
+//     a.clear(); 
+//     b.clear();
+//     for(int i=1;i<n;i+=2){
+//         if(s1[i]=='1')a.push_back(i);
+//         if(s2[i]=='1')b.push_back(i);
+//     }
+//     if(a.size()!=b.size()){
+//         cout<<-1; return;
+//     }
+//     for(int i=0;i<a.size();i++){
+//         ans+=abs(a[i]-b[i])/2;
+//     }
+//     cout<<ans;
+// }
+// int main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<'\n';
+//     }
+//     return 0;
+// }
+
+
+//315
+#include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-void solve(){
-    int n;
-    cin>>n;
-    string s1,s2;
-    cin>>s1>>s2;
-    vector<int>a,b;
-    for(int i=0;i<n;i+=2){
-        if(s1[i]=='1')a.push_back(i);
-        if(s2[i]=='1')b.push_back(i);
+vector<int>ans;
+void merge(vector<pair<int,int>>& arr, int left, 
+                     int mid, int right){
+                         
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    int j=mid;
+    vector<pair<int,int>> L(n1), R(n2);
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+    int i = 0;
+    j = 0;
+    int k = left;
+    int cnt=0;
+    while (i < n1 && j < n2) {
+        if (L[i].first <= R[j].first) {
+            arr[k] = L[i];
+            ans[L[i].second]+=cnt;
+            i++;
+        }
+        else {
+            cnt++;
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
     }
-    if(a.size()!=b.size()){
-        cout<<-1; return;
+    while (i < n1) {
+        ans[L[i].second]+=cnt;
+        arr[k] = L[i];
+        i++;
+        k++;
     }
-    int ans=0;
-    for(int i=0;i<a.size();i++){
-        ans+=abs(a[i]-b[i])/2;
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
     }
-    a.clear(); 
-    b.clear();
-    for(int i=1;i<n;i+=2){
-        if(s1[i]=='1')a.push_back(i);
-        if(s2[i]=='1')b.push_back(i);
-    }
-    if(a.size()!=b.size()){
-        cout<<-1; return;
-    }
-    for(int i=0;i<a.size();i++){
-        ans+=abs(a[i]-b[i])/2;
-    }
-    cout<<ans;
 }
-int main()
-{
-    cin.tie(0);cin.sync_with_stdio(0);
-    cout.tie(0);cout.sync_with_stdio(0);
-    int t = 1;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-        cout<<'\n';
+void mergesort(vector<pair<int,int>>& arr, int left, int right){
+    if (left >= right)
+        return ;
+    int s=0;
+    int mid = left + (right - left) / 2;
+    mergesort(arr, left, mid);
+    mergesort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
+    
+}
+ vector<int> countSmaller(vector<int>& nums) {
+     int n=nums.size();
+     ans.assign(n,0);
+    vector<pair<int,int>>v;
+     for(int i=0;i<n;i++)v.push_back({nums[i],i});
+     mergesort(v,0,n-1);  
+     return ans; 
     }
-    return 0;
+int main(){
+    vector<int>v={5,2,6,1,10,11,12,10};
+    vector<int>a=countSmaller(v);
+    for(int i:a)cout<<i<<" ";
 }

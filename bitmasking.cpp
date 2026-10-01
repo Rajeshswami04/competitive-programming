@@ -323,44 +323,87 @@ using namespace std;
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef long long ll;
+// #define int long long
+// void solve(){
+//     int n;
+//     cin>>n;
+//     vector<int>a(n);
+//     vector<int>m(n);
+//     int xora=0;
+//     int xorm=0;
+//     for(auto &it:a){cin>>it; xora^=it;}
+//     for(auto &it:m){cin>>it; xorm^=it;}
+
+//     for(int i=0;i<n;i++){
+//         int bothxor=a[i]^m[i];
+//         if(i&1){
+//             //m
+//             int tempa=xora^bothxor;
+//             int tempb=xorm^bothxor;
+//             if(tempb>tempa){
+//                 xora=tempa;
+//                 xorm=tempb;
+//             }
+//         }else{
+//             //a
+//             int tempa=xora^bothxor;
+//             int tempb=xorm^bothxor;
+//             if(tempa>tempb){
+//                 xora=tempa;
+//                 xorm=tempb;
+//             }
+//         }
+//     }
+//     if(xora>xorm){cout<<"Ajisai";}
+//     else if(xora<xorm){cout<<"Mai";}
+//     else cout<<"Tie";
+// }
+// signed main()
+// {
+//     cin.tie(0);cin.sync_with_stdio(0);
+//     cout.tie(0);cout.sync_with_stdio(0);
+//     int t = 1;
+//     cin >> t;
+//     while (t--)
+//     {
+//         solve();
+//         cout<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
 #include <bits/stdc++.h>
+#define int long long
 using namespace std;
 typedef long long ll;
-#define int long long
 void solve(){
-    int n;
-    cin>>n;
-    vector<int>a(n);
-    vector<int>m(n);
-    int xora=0;
-    int xorm=0;
-    for(auto &it:a){cin>>it; xora^=it;}
-    for(auto &it:m){cin>>it; xorm^=it;}
-
+    int n,k;
+    cin>>n>>k;
+    vector<int>v(n);
     for(int i=0;i<n;i++){
-        int bothxor=a[i]^m[i];
-        if(i&1){
-            //m
-            int tempa=xora^bothxor;
-            int tempb=xorm^bothxor;
-            if(tempb>tempa){
-                xora=tempa;
-                xorm=tempb;
-            }
-        }else{
-            //a
-            int tempa=xora^bothxor;
-            int tempb=xorm^bothxor;
-            if(tempa>tempb){
-                xora=tempa;
-                xorm=tempb;
-            }
-        }
+        cin>>v[i];
     }
-    if(xora>xorm){cout<<"Ajisai";}
-    else if(xora<xorm){cout<<"Mai";}
-    else cout<<"Tie";
+    if(n==1){
+        int val=log2(k>0?k:1)+ __builtin_popcount(v[0]);
+        cout<<val;
+        return; 
+    }
+    int f=1;
+    for(int i=0;i<n;i++){
+        if(v[i]%2==0&&k>0){v[i]++; k--;}
+        if(v[i]%2==0)f=0;
+    }
+
+    int val=log2(k+1);
+    for(int i=0;i<n;i++)val+=__builtin_popcount(v[i]);
+    cout<<val-(f>0&&k>0);
 }
+
 signed main()
 {
     cin.tie(0);cin.sync_with_stdio(0);
